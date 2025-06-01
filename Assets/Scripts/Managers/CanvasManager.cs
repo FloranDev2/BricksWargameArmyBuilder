@@ -10,12 +10,17 @@ namespace Truelch.Managers
         #region ATTRIBUTES
         //Public
         // - UIs
+        [Header("UIs")]
         public ArmyBuilderUI ArmyBuilderUI;
         public FeedbackUI FeedbackUI;
+
+        [Space(15)]
+        public DynamicScroller DynamicScroller;
         #endregion ATTRIBUTES
 
 
         #region METHODS
+
         #endregion METHODS
     }
 }
