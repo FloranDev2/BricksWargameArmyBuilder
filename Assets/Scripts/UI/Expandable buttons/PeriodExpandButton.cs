@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Truelch.Data;
 using Truelch.Enums;
 using Truelch.Localization;
 using UnityEngine;
@@ -10,11 +12,26 @@ namespace Truelch.UI
     {
         #region ATTRIBUTES
         //Inspector
+        [SerializeField] private TextMeshProUGUI _text;
+        //In fact, I need to move this data in the game manager and set an index to know in which period we are. (maybe save?)
         [SerializeField] private List<PeriodData> _periodDataList;
         #endregion ATTRIBUTES
 
 
         #region METHODS
+
+        #region Init
+        protected override IEnumerator /*void*/ ExtraInit()
+        {
+            //No need to call base.ExtraInit()
+
+            Language language = _gameMgr.CurrentLanguage;
+
+            _text.text = GetLocName(_periodDataList[0], language);
+
+            yield return null; //I actually didn't needed it
+        }
+        #endregion Init
 
         #region Misc
         private string GetLocName(PeriodData data, Language language)
@@ -55,15 +72,5 @@ namespace Truelch.UI
         #endregion METHODS
     }
 
-    [System.Serializable]
-    public class PeriodData
-    {
-        [SerializeField] private string _name;
-        //public string Name; //Need a list of string, one name for each language
-        public List<TextLocData> LocNames;
-        public Period Period;
-        public Sprite PeriodIcon;
-    }
-
-
+    
 }

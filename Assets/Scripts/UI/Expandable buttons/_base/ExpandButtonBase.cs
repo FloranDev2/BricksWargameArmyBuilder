@@ -50,6 +50,18 @@ namespace Truelch.UI
             _gameMgr = GameManager.Instance;
 
             _isReady = true;
+
+            //ExtraInit();
+            StartCoroutine(ExtraInit());
+        }
+
+        /// <summary>
+        /// If I need to do something else after the Start
+        /// No need to call base.ExtraInit()
+        /// </summary>
+        protected virtual IEnumerator ExtraInit()
+        {
+            yield return null;
         }
         #endregion Initialization
 

@@ -10,6 +10,7 @@ namespace Truelch.UI
     {
         #region ATTRIBUTES
         //Inspector
+        public DynamicScroller DynamicScroller;
         public int Index; //for data
         public TextMeshProUGUI Text;
         public Image Image; //to recolor
@@ -17,6 +18,14 @@ namespace Truelch.UI
 
 
         #region METHODS
+
+        #region Public
+        public void OnClick()
+        {
+
+        }
+        #endregion Public
+
         #endregion METHODS
     }
 }

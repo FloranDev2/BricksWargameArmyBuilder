@@ -52,6 +52,16 @@ namespace Truelch.UI
 
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("Here!");
+                TestDynScroll();
+            }
+        }
+
+        //If I use the context menu, for some reason, the screen size will be incorrect...
         [ContextMenu("Test dynamic scroll")]
         private void TestDynScroll()
         {
@@ -68,11 +78,11 @@ namespace Truelch.UI
             _dynScrollParentGo.SetActive(true);
             GameObject go = _dynScrollerTf.gameObject;
 
-            //Vector3 pos = _src.position;
-            //Debug.Log("y : " + _src.position.y + " / Screen height: " + Screen.height);
+            //Debug.Log("y : " + _src.position.y + " / Screen w: " + Screen.width + ", h: " + Screen.height);
 
-            if (_src.position.y > Screen.height)
+            if (_src.position.y > 0.5f * Screen.height)
             {
+                //Debug.Log("Downward");
                 //Downward
                 Vector3 pos = new Vector3(_src.position.x, _src.position.y - 0.5f * _src.rect.height - 0.5f * height, 0f);
                 _dynScrollerTf.position = pos;
@@ -82,6 +92,7 @@ namespace Truelch.UI
             }
             else
             {
+                //Debug.Log("Upward");
                 //Upward
                 Vector3 pos = new Vector3(_src.position.x, _src.position.y + 0.5f * _src.rect.height + 0.5f * height, 0f);
                 _dynScrollerTf.position = pos;
@@ -99,6 +110,7 @@ namespace Truelch.UI
         public DynScrollElem CreateElem(int index, string msg)
         {
             var elem = Instantiate(_elemPrefab, _dynScrollerWrapper);
+            elem.DynamicScroller = this;
             elem.Index = index;
             elem.Text.text = msg;
             _elems.Add(elem);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Truelch.Data;
 using Truelch.Localization;
 using Truelch.ScriptableObjects;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace Truelch.Managers
 {
     /// <summary>
     /// For simplicity sake, for now, all data will be regrouped here. (no data manager)
+    /// TODO: stuff for Megafig
     /// </summary>
     public class GameManager : Singleton<GameManager>
     {
@@ -22,10 +24,9 @@ namespace Truelch.Managers
         public List<MinifigSO> Minifigs;
         public List<GearSO> MinifigGears;
 
-        //TODO: stuff for Megafig
-
-        // - Dynamic Data (army being created)
-        //[Header("Dynamic")]
+        [Header("Period")]
+        public int PeriodIndex; //Dynamic (+ saved / loaded)
+        public List<PeriodData> PeriodDataList; //Constant
 
         //Hidden
         // - Period
