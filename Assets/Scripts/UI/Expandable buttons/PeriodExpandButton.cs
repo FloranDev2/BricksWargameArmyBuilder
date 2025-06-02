@@ -14,7 +14,7 @@ namespace Truelch.UI
         //Inspector
         [SerializeField] private TextMeshProUGUI _text;
         //In fact, I need to move this data in the game manager and set an index to know in which period we are. (maybe save?)
-        [SerializeField] private List<PeriodData> _periodDataList;
+        //[SerializeField] private List<PeriodData> _periodDataList;
         #endregion ATTRIBUTES
 
 
@@ -25,9 +25,10 @@ namespace Truelch.UI
         {
             //No need to call base.ExtraInit()
 
-            Language language = _gameMgr.CurrentLanguage;
+            Language language = _gameMgr.GetCurrentLanguage();
 
-            _text.text = GetLocName(_periodDataList[0], language);
+            //_text.text = GetLocName(_periodDataList[0], language);
+            _text.text = GetLocName(_gameMgr.PeriodDataList[0], language);
 
             yield return null; //I actually didn't needed it
         }
@@ -48,29 +49,29 @@ namespace Truelch.UI
         #endregion Misc
 
         #region Public
-        public override void OnClick()
+        public override void OnExpandClick()
         {
             if (!_isReady) return;
 
-            base.OnClick();
+            base.OnExpandClick();
 
-            Language language = _gameMgr.CurrentLanguage;
+            Language language = _gameMgr.GetCurrentLanguage();
 
-            for (int i = 0; i < _periodDataList.Count; i++)
+            for (int i = 0; i < _gameMgr.PeriodDataList.Count; i++)
             {
-                PeriodData data = _periodDataList[i];
+                PeriodData data = _gameMgr.PeriodDataList[i];
                 _canvasMgr.DynamicScroller.CreateElem(i, GetLocName(data, language));
             }
         }
 
         public override void OnElemClick(int index)
         {
+            if (!_isReady) return;
+
 
         }
         #endregion Public
 
         #endregion METHODS
-    }
-
-    
+    }    
 }

@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     Period: 2
+    Color: {r: 1, g: 1, b: 1, a: 1}
+    Icon: {fileID: 21300000, guid: 32abe68ec1f8b004f919aab45c8b1ac6, type: 3}
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Commando
+      Txt: "M\xE9dic"
     - _name: EN
       Language: 1
-      Txt: Commando
-    Icon: {fileID: 21300000, guid: cdb40e8bf962c124f82999769107ecd0, type: 3}
+      Txt: Medic
     Abilities:
     - Icon: {fileID: 0}
       LocDescriptions:
@@ -35,7 +36,10 @@ MonoBehaviour:
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: "Texte \xE0 venir !"
+        Txt: "Pour 1 PA, vous pouvez retirer un pion fatigue d'une unit\xE9 en contact
+          avec vous et non engag\xE9e au C\xE0C."
       - _name: EN
         Language: 1
-        Txt: (coming soon)
+        Txt: You may spend 1 AP to remove 1 stress token from an allied unit in contact
+          with you that is not engaged in melee combat.
+    CurrentName: 

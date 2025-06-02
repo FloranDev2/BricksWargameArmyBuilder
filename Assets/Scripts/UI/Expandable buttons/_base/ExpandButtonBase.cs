@@ -75,21 +75,36 @@ namespace Truelch.UI
         /// Closing it is done by the dynamic scroller itself, that reacts when we click outside.
         /// TODO: or when we actually click on one of the buttons.
         /// </summary>
-        public virtual void OnClick()
+        public virtual void OnExpandClick()
         {
             if (!_isReady) return;
 
             //Rotate arrow
-            _arrowTf.eulerAngles = _arrowDefaultRot;
+            _arrowTf.eulerAngles = _arrowExpandedRot;
 
             //Relocate dynamic scroller
             //(filling it is done by the children class)
-            _canvasMgr.DynamicScroller.ShowDynamicScroller(_parentRt);
+            _canvasMgr.DynamicScroller.ShowDynamicScroller(this, _parentRt);
         }
 
-        public abstract void OnElemClick(int index);
+        //It is basically the opposite of "Expand".
+        //Didn't want to call it "Close", it'd be ambiguous.
+        /// <summary>
+        /// You NEED to call base.OnFoldClick()!
+        /// </summary>
+        public virtual void OnFoldClick()
+        {
+            _arrowTf.eulerAngles = _arrowDefaultRot;
 
-        //public abstract void OnExitDynamicScroller();
+            //The Dynamic Scroller is already cleaning and hiding itself.
+        }
+
+        /// <summary>
+        /// Click on one of the elements of the Dynamic Scroll.
+        /// It's NOT clicking on the expand button.
+        /// </summary>
+        /// <param name="index"></param>
+        public abstract void OnElemClick(int index);
         #endregion Public
 
         #endregion METHODS

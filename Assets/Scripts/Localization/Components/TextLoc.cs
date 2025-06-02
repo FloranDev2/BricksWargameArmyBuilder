@@ -40,7 +40,7 @@ namespace Truelch.Localization
 
             _gameManager = GameManager.Instance;
 
-            UpdateLoc(_gameManager.CurrentLanguage);
+            UpdateLoc(_gameManager.GetCurrentLanguage());
         }
         #endregion Initialization
 

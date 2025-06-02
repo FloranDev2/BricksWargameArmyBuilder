@@ -17,11 +17,11 @@ namespace Truelch.UI
         #region METHODS
 
         #region Public
-        public override void OnClick()
+        public override void OnExpandClick()
         {
             if (!_isReady) return;
 
-            base.OnClick();
+            base.OnExpandClick();
 
             //Create language list -> No, this is supposed to be done by the Dynamic Scroller
             /*

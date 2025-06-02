@@ -15,7 +15,7 @@ MonoBehaviour:
   data:
   - _name: FR
     Language: 0
-    Txt: MOD/FUT
+    Txt: MOD / FUT
   - _name: EN
     Language: 1
-    Txt: MOD/FUT
+    Txt: MOD / FUT

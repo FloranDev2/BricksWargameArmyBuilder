@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     Period: 2
+    Color: {r: 1, g: 0, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: cdb40e8bf962c124f82999769107ecd0, type: 3}
     LocNames:
     - _name: FR
       Language: 0
@@ -21,7 +23,6 @@ MonoBehaviour:
     - _name: EN
       Language: 1
       Txt: Commando
-    Icon: {fileID: 21300000, guid: cdb40e8bf962c124f82999769107ecd0, type: 3}
     Abilities:
     - Icon: {fileID: 0}
       LocDescriptions:
@@ -37,7 +38,9 @@ MonoBehaviour:
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: "Texte \xE0 venir !"
+        Txt: "Vous pouvez attaquer m\xEAme si vous effectuez deux d\xE9placements
+          durant votre activation."
       - _name: EN
         Language: 1
-        Txt: (coming soon)
+        Txt: You can attack even if you moved twice during your activation.
+    CurrentName: 

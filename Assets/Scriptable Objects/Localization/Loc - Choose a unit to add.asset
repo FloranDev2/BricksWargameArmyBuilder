@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae12f12cd1aeff346b4360db9fb23785, type: 3}
-  m_Name: Loc - Choose a unit
+  m_Name: Loc - Choose a unit to add
   m_EditorClassIdentifier: 
   data:
   - _name: FR
     Language: 0
-    Txt: Enregistrer
+    Txt: "Choisissez une unit\xE9 \xE0 ajouter"
   - _name: EN
     Language: 1
-    Txt: Save
+    Txt: Choose a unit to add

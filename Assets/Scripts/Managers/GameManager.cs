@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using Truelch.Data;
+using Truelch.Enums;
 using Truelch.Localization;
 using Truelch.ScriptableObjects;
+using Truelch.UI;
 using UnityEngine;
 
 namespace Truelch.Managers
@@ -21,47 +23,51 @@ namespace Truelch.Managers
         //Public (Will certainly be moved to a DataManager)
         // - Constant Data (units stats, gear, ...)
         [Header("Const")]
-        public List<MinifigSO> Minifigs;
-        public List<GearSO> MinifigGears;
+        public List<MinifigSO> MinifigSOs;
+        //I don't need MegafigSOs because Megafigs are charectarized by their options and category.
+        public List<GearSO> MinifigGearSOs;
+        public List<GearSO> MegafigGearSOs;
 
         [Header("Period")]
-        public int PeriodIndex; //Dynamic (+ saved / loaded)
+        [SerializeField] private int _periodIndex; //Dynamic (+ saved / loaded)
         public List<PeriodData> PeriodDataList; //Constant
 
+        //Inspector
+        [Header("Language")]
+        [SerializeField] private int _languageIndex;
+        //[SerializeField] private Language _currLanguage = Language.French;
+        public List<LanguageData> LanguageDataList;
+
+        [Header("Unit data")] //Will be hidden, but I'm showing it in the inspector for debug purpose
+        [SerializeField] private List<MinifigData> _armyMinifigs = new List<MinifigData>();
+
         //Hidden
+        // - Managers
+        //private SaveManager _saveMgr;
+
         // - Period
         private bool _medFanOn = true; //Medieval / Fantasy
         private bool _modFutOn = true; //Modern / Sci-Fi
-
-        // - Language
-        private Language _currLanguage = Language.French;
         #endregion ATTRIBUTES
 
 
         #region PROPERTIES
-        public bool MedFanOn { get { return _medFanOn; } }
+        public bool MedFanOn => _modFutOn;
 
         public bool ModFutOn => _modFutOn;
-
-        public Language CurrentLanguage
-        {
-            get
-            {
-                return _currLanguage;
-            }
-            private set
-            {
-                _currLanguage = value;
-                onLanguageChanged?.Invoke(value);
-            }
-        }
         #endregion PROPERTIES
 
 
         #region METHODS
 
         #region Initialization
-
+        /*
+        IEnumerator Start()
+        {
+            yield return new WaitUntil(() => SaveManager.Instance != null);
+            _saveMgr = SaveManager.Instance;
+        }
+        */
         #endregion Initialization
 
         #region Public
@@ -86,6 +92,96 @@ namespace Truelch.Managers
             {
                 _medFanOn = true;
             }
+        }
+
+        public Period GetCurrentPeriod()
+        {
+            if (_periodIndex >= 0 && _periodIndex < PeriodDataList.Count)
+            {
+                return PeriodDataList[_periodIndex].Period;
+            }
+
+            return Period.Any;
+        }
+
+        public void SetPeriod(Period newPeriod)
+        {
+            for (int i = 0; i < PeriodDataList.Count; i++)
+            {
+                var data = PeriodDataList[i];
+                if (data.Period == newPeriod)
+                {
+                    //We found the appropriate period!
+                    _periodIndex = i;
+
+                    //TODO: save here?
+                }
+            }
+
+            Debug.Log("We couldn't find the period!");
+        }
+
+        public Language GetCurrentLanguage()
+        {
+            if (_languageIndex >= 0 && _languageIndex < LanguageDataList.Count)
+            {
+                return LanguageDataList[_languageIndex].Language;
+            }
+
+            return Language.French;
+        }
+
+        public void SetLanguage(Language newLanguage)
+        {
+            _languageIndex = (int)newLanguage;
+            onLanguageChanged?.Invoke(newLanguage);
+        }
+
+        public void ChangeUnitName(int unitIndex, string newName)
+        {
+            if (unitIndex < _armyMinifigs.Count)
+            {
+                _armyMinifigs[unitIndex].CurrentName = newName;
+            }
+            else
+            {
+
+            }
+
+            //TODO: save
+        }
+
+        //Getters
+
+        /// <summary>
+        /// Get the authorized minifigs for the current period.
+        /// </summary>
+        /// <returns></returns>
+        public List<MinifigSO> GetMinifigs()
+        {
+            List<MinifigSO> minifigs = new List<MinifigSO>();
+            Period currPeriod = GetCurrentPeriod();
+
+            foreach (MinifigSO miniSO in MinifigSOs)
+            {
+                if (miniSO.Data.Period == currPeriod)
+                {
+                    minifigs.Add(miniSO);
+                }
+            }
+
+            return minifigs;
+        }
+
+        //Dynamic Data
+        public void ChangeUnitClass(int unitIndex/*,*/)
+        {
+
+        }
+
+        public void AddUnit()
+        {
+
         }
         #endregion Public
 

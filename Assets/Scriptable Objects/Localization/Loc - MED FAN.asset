@@ -15,7 +15,7 @@ MonoBehaviour:
   data:
   - _name: FR
     Language: 0
-    Txt: MED/FAN
+    Txt: MED / FAN
   - _name: EN
     Language: 1
-    Txt: MED/FAN
+    Txt: MED / FAN
