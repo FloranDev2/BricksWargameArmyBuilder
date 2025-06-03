@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Truelch.Managers;
 using UnityEngine;
 
 namespace Truelch.UI
@@ -24,6 +25,10 @@ namespace Truelch.UI
         [SerializeField] private float _testHeight = 500f;
 
         //Hidden
+        // - Managers
+        private CanvasManager _canvasMgr;
+
+        // - Misc
         private ExpandButtonBase _currExpandBtn;
         private List<DynScrollElem> _elems = new List<DynScrollElem>();
         #endregion ATTRIBUTES
@@ -32,31 +37,29 @@ namespace Truelch.UI
         #region METHODS
 
         #region Initialization
-        private void Awake()
+        IEnumerator Start()
         {
             HideDynamicScroller();
+            yield return new WaitUntil(() => CanvasManager.Instance != null);
+            _canvasMgr = CanvasManager.Instance;
+
         }
         #endregion Initialization
 
         #region Public
+        public void OnElemClick(int index)
+        {
+            //Close
+            HideDynamicScroller();
+
+            _currExpandBtn.OnElemClick(index);
+        }
+
         //Same as "un-expand"
         public void OnOutsideClick()
         {
             //Close
             HideDynamicScroller();
-
-            //Destroy elems
-            foreach (var elem in _elems)
-            {
-                Destroy(elem.gameObject);
-            }
-            _elems.Clear();
-
-            //"Event"
-            if (_currExpandBtn != null)
-            {
-                _currExpandBtn.OnFoldClick();
-            }
         }
 
         private void Update()
@@ -81,7 +84,7 @@ namespace Truelch.UI
         /// <param name="_src"></param>
         public void ShowDynamicScroller(ExpandButtonBase btn, RectTransform _src, float height = 500f)
         {
-            Debug.Log("ShowDynamicScroller(btn: " + btn + ", _src: " + _src + ", height: " + height);
+            //Debug.Log("ShowDynamicScroller(btn: " + btn + ", _src: " + _src + ", height: " + height);
 
             _currExpandBtn = btn;
 
@@ -89,35 +92,43 @@ namespace Truelch.UI
             _dynScrollParentGo.SetActive(true);
             GameObject go = _dynScrollerTf.gameObject;
 
-            Debug.Log("y : " + _src.position.y + " / Screen w: " + Screen.width + ", h: " + Screen.height);
+            //Debug.Log("y : " + _src.position.y + " / Screen w: " + Screen.width + ", h: " + Screen.height);
 
             if (_src.position.y > 0.5f * Screen.height)
             {
-                Debug.Log("Downward");
                 //Downward
-
                 UIFitter.SetWidth(ref go, _src.rect.width);
                 UIFitter.SetHeight(ref go, height);
-
-                Vector3 pos = new Vector3(_src.position.x, _src.position.y - 0.5f * _src.rect.height - 0.5f * height, 0f);
+                Vector3 pos = new Vector3(_src.position.x, _src.position.y - 0.5f * _canvasMgr.Scale * (_src.rect.height + height), 0f);
                 _dynScrollerTf.position = pos;
             }
             else
             {
-                Debug.Log("Upward");
                 //Upward
-
                 UIFitter.SetWidth(ref go, _src.rect.width);
                 UIFitter.SetHeight(ref go, height);
-
-                Vector3 pos = new Vector3(_src.position.x, _src.position.y + 0.5f * _src.rect.height + 0.5f * height, 0f);
+                Vector3 pos = new Vector3(_src.position.x, _src.position.y + 0.5f * _canvasMgr.Scale * (_src.rect.height + height), 0f);
                 _dynScrollerTf.position = pos;
             }
         }
 
         public void HideDynamicScroller()
         {
+            //Destroy elems
+            foreach (var elem in _elems)
+            {
+                Destroy(elem.gameObject);
+            }
+            _elems.Clear();
+
+            //Hide
             _dynScrollParentGo.SetActive(false);
+
+            //"Event"
+            if (_currExpandBtn != null)
+            {
+                _currExpandBtn.OnFoldClick();
+            }
         }
 
         public DynScrollElem CreateElem(int index, string msg)

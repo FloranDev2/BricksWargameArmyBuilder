@@ -22,7 +22,7 @@ namespace Truelch.UI
         #region Public
         public void OnClick()
         {
-
+            DynamicScroller.OnElemClick(Index);
         }
         #endregion Public
 

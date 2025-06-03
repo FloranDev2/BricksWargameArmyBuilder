@@ -179,9 +179,18 @@ namespace Truelch.Managers
 
         }
 
-        public void AddUnit()
+        public void AddUnit(MinifigData data)
         {
-
+            //Look for the default name:
+            foreach (var locName in data.LocNames)
+            {
+                if (locName.Language == GetCurrentLanguage())
+                {
+                    data.CurrentName = locName.Txt;
+                }
+            }
+            
+            _armyMinifigs.Add(data);
         }
         #endregion Public
 
