@@ -1,6 +1,6 @@
 namespace Truelch.Enums
 {
-    public enum MegafigCategory
+    public enum MegafigSize
     {
         Light,
         Medium,

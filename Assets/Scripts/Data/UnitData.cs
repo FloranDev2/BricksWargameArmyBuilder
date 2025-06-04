@@ -21,6 +21,6 @@ namespace Truelch.Data
         public List<GearData> GearList;
 
         [Header("Megafig only")]
-        public MegafigCategory MegafigType;
+        public MegafigSize MegafigType;
     }
 }
