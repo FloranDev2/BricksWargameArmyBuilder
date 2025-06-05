@@ -12,12 +12,13 @@ namespace Truelch.UI
     public class GearExpBtn : ExpandButtonBase
     {
         #region ATTRIBUTES
+        [Header("Gear")] //To separate from Expand Button Base stuff
         //Public
-        [Header("Gear")]
         public int Index;
 
         //Inspector
-        //[SerializeField] private
+        [SerializeField] private TextMeshProUGUI _nameTxt; //For rename + recolor
+        [SerializeField] private Image _bgImg; //For recolor
 
         //Hidden
         private UnitExpBtn _unitElem;

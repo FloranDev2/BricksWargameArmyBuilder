@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Truelch.Data
 {
+    // --- OLD ---
+    //I might just merge all units in one data.
+
     //Should I merge Megafig and Minifigs?
     //One one hand, they have some different specifics features.
     //One the other hand, it'd make them very easier to manage in the UnitManager.

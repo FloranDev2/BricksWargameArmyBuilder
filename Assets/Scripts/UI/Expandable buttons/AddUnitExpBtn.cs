@@ -32,14 +32,14 @@ namespace Truelch.UI
 
             int index = 0;
 
-            //Minifigs
-            for (int i = 0; i < _gameMgr.MinifigSOs.Count; i++)
+            for (int i = 0; i < _gameMgr.UnitSOs.Count; i++)
             {
-                MinifigData data = _gameMgr.MinifigSOs[i].Data;
+                //MinifigData data = _gameMgr.MinifigSOs[i].Data;
+                UnitData data = _gameMgr.UnitSOs[i].Data;
 
                 //TODO: concatenate this function, somewhere...
                 //_canvasMgr.DynamicScroller.CreateElem(index, data.CurrentName);
-                string name = "Minifig";
+                string name = "Unit";
                 foreach (var d in data.LocNames)
                 {
                     if (d.Language == language)
@@ -53,24 +53,12 @@ namespace Truelch.UI
 
                 index++;
             }
-
-            //Megafigs
-            _canvasMgr.DynamicScroller.CreateElem(index, "Mégafig");
-            //foreach (var cat in Enum.GetValues<MegafigCategory>()) //Doesn't work
-            /*
-            foreach (string name in Enum.GetNames(typeof(MegafigCategory)))
-            {
-                MegafigCategory value = Enum.Parse<MegafigCategory>(name, true);
-                _canvasMgr.DynamicScroller.CreateElem(index, "Mégafig");
-                index++;
-            }
-            */
         }
 
         public override void OnElemClick(int index)
         {
             Debug.Log("OnElemClick(index: " + index + ")");
-            _gameMgr.AddUnit(_gameMgr.MinifigSOs[index].Data);
+            _gameMgr.AddUnit(_gameMgr.UnitSOs[index].Data);
         }
         #endregion Public
 

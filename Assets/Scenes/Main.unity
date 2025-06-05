@@ -166,13 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978c4de1c16a3f94eb533040e3b60559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinifigSOs:
-  - {fileID: 11400000, guid: 8447633bd680874428d0210cbd2529f6, type: 2}
-  - {fileID: 11400000, guid: 1b691d08dd7544e41834e12eb0942758, type: 2}
-  MinifigGearSOs:
-  - {fileID: 11400000, guid: 5700cbf6a34ec004eace4dd18d0255dd, type: 2}
-  MegafigGearSOs:
-  - {fileID: 11400000, guid: 6261379033a28bb4eb8f034bed12fcc9, type: 2}
+  UnitSOs: []
+  GearSOs: []
   _periodIndex: 0
   PeriodDataList:
   - _name: Any
@@ -217,7 +212,7 @@ MonoBehaviour:
   - _name: English
     Language: 1
     FlagIcon: {fileID: 21300000, guid: 7a8b01fb593c22f41a249022a2dbebba, type: 3}
-  _armyMinifigs: []
+  _armyUnits: []
 --- !u!1 &69653572
 GameObject:
   m_ObjectHideFlags: 0

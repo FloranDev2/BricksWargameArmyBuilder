@@ -23,10 +23,15 @@ namespace Truelch.Managers
         //Public (Will certainly be moved to a DataManager)
         // - Constant Data (units stats, gear, ...)
         [Header("Const")]
-        public List<MinifigSO> MinifigSOs;
+        // --- OLD ---
+        //public List<MinifigSO> MinifigSOs;
         //I don't need MegafigSOs because Megafigs are charectarized by their options and category.
-        public List<GearSO> MinifigGearSOs;
-        public List<GearSO> MegafigGearSOs;
+        //public List<GearSO> MinifigGearSOs;
+        //public List<GearSO> MegafigGearSOs;
+
+        // --- NEW ---
+        public List<UnitSO> UnitSOs;
+        public List<GearSO> GearSOs;
 
         [Header("Period")]
         [SerializeField] private int _periodIndex; //Dynamic (+ saved / loaded)
@@ -35,11 +40,10 @@ namespace Truelch.Managers
         //Inspector
         [Header("Language")]
         [SerializeField] private int _languageIndex;
-        //[SerializeField] private Language _currLanguage = Language.French;
         public List<LanguageData> LanguageDataList;
 
         [Header("Unit data")] //Will be hidden, but I'm showing it in the inspector for debug purpose
-        [SerializeField] private List<MinifigData> _armyMinifigs = new List<MinifigData>();
+        [SerializeField] private List<UnitData> _armyUnits = new List<UnitData>();
 
         //Hidden
         // - Managers
@@ -53,7 +57,6 @@ namespace Truelch.Managers
 
         #region PROPERTIES
         public bool MedFanOn => _modFutOn;
-
         public bool ModFutOn => _modFutOn;
         #endregion PROPERTIES
 
@@ -139,13 +142,9 @@ namespace Truelch.Managers
 
         public void ChangeUnitName(int unitIndex, string newName)
         {
-            if (unitIndex < _armyMinifigs.Count)
+            if (unitIndex < _armyUnits.Count)
             {
-                _armyMinifigs[unitIndex].CurrentName = newName;
-            }
-            else
-            {
-
+                _armyUnits[unitIndex].CurrentName = newName;
             }
 
             //TODO: save
@@ -157,6 +156,7 @@ namespace Truelch.Managers
         /// Get the authorized minifigs for the current period.
         /// </summary>
         /// <returns></returns>
+        /*
         public List<MinifigSO> GetMinifigs()
         {
             List<MinifigSO> minifigs = new List<MinifigSO>();
@@ -172,6 +172,7 @@ namespace Truelch.Managers
 
             return minifigs;
         }
+        */
 
         //Dynamic Data
         public void ChangeUnitClass(int unitIndex/*,*/)
@@ -179,7 +180,7 @@ namespace Truelch.Managers
 
         }
 
-        public void AddUnit(MinifigData data)
+        public void AddUnit(UnitData data)
         {
             //Look for the default name:
             foreach (var locName in data.LocNames)
@@ -190,7 +191,7 @@ namespace Truelch.Managers
                 }
             }
             
-            _armyMinifigs.Add(data);
+            _armyUnits.Add(data);
         }
         #endregion Public
 
