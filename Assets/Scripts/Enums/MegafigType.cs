@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MegafigType : MonoBehaviour
+namespace Truelch.Enums
 {
-    #region ATTRIBUTES
-    #endregion ATTRIBUTES
-
-
-    #region METHODS
-    #endregion METHODS
+    public enum MegafigType
+    {
+        Ground, //Terrestre
+        Levitation, //A Gravite
+        Walker, //Marcheur
+        Flying, //Volante
+        Creature, //Creature
+        Support, //Soutien
+    }
 }

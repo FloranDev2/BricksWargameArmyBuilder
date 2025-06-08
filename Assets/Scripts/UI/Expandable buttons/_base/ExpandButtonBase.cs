@@ -26,7 +26,7 @@ namespace Truelch.UI
         //Hidden
         // - Misc
         protected bool _isReady = false;
-        /*[SerializeField]*/ protected RectTransform _parentRt;
+        protected RectTransform _parentRt;
 
         // - Managers
         protected CanvasManager _canvasMgr;

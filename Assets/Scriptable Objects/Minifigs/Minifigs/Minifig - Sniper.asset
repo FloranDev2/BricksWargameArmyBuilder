@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac211420a121eb4c955f3ab79a07618, type: 3}
+  m_Name: Minifig - Sniper
+  m_EditorClassIdentifier: 
+  Data:
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Sniper
+    - _name: EN
+      Language: 1
+      Txt: Sniper
+    Type: 0
+    Icon: {fileID: 21300000, guid: 7efdc70634d26b348b4e607fd6649d18, type: 3}
+    Color: {r: 0, g: 0.6862745, b: 0.3137255, a: 1}
+    MaxAmount: 2
+    MinUnitIntegration: 0
+    IntegrationCost: -1
+    MaxGear: 3
+    MiniType: 0
+    Abilities:
+    - Icon: {fileID: 21300000, guid: 1f86062a221ec00499eb4f2eee782020, type: 3}
+      LocDescriptions:
+      - _name: FR
+        Language: 0
+        Txt: "Lorsque vous attaquez \xE0 distance, si vous n'avez pas boug\xE9, ajoutez
+          1D d'attaque. De plus, vos r\xE9sultats 6 ne sont pas impact\xE9s par les
+          effets de couvert."
+      - _name: EN
+        Language: 1
+        Txt: When you use a ranged attack, if you didn't move, add 1 additional attack
+          die. Furthermore, your 6 results aren't affected by cover effects.
+    - Icon: {fileID: 21300000, guid: d0730acac4069ed4488914379c947756, type: 3}
+      LocDescriptions:
+      - _name: FR
+        Language: 0
+        Txt: "Vous pouvez tirer au-del\xE0 de la port\xE9e bleue avec 1D d'attaque
+          de base. Si vous le faites, consid\xE9rez les r\xE9sultats 4 comme des
+          \xE9checs."
+      - _name: EN
+        Language: 1
+        Txt: You may attack beyond blue range with 1 die. If you do so, you must
+          consider 4 results as fails.
+    MegaType: 0
+    Sturdiness: 0
+    Recuperation: 0
+    Speed: 1
+    CurrentName: 
+    GearList: []

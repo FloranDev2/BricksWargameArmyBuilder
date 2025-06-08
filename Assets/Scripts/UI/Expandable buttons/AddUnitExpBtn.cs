@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Truelch.Data;
-using Truelch.Enums;
 using Truelch.Localization;
 using UnityEngine;
 
@@ -34,11 +32,9 @@ namespace Truelch.UI
 
             for (int i = 0; i < _gameMgr.UnitSOs.Count; i++)
             {
-                //MinifigData data = _gameMgr.MinifigSOs[i].Data;
                 UnitData data = _gameMgr.UnitSOs[i].Data;
 
                 //TODO: concatenate this function, somewhere...
-                //_canvasMgr.DynamicScroller.CreateElem(index, data.CurrentName);
                 string name = "Unit";
                 foreach (var d in data.LocNames)
                 {
@@ -48,9 +44,7 @@ namespace Truelch.UI
                         break;
                     }
                 }
-
                 _canvasMgr.DynamicScroller.CreateElem(index, name);
-
                 index++;
             }
         }
@@ -58,7 +52,8 @@ namespace Truelch.UI
         public override void OnElemClick(int index)
         {
             Debug.Log("OnElemClick(index: " + index + ")");
-            _gameMgr.AddUnit(_gameMgr.UnitSOs[index].Data);
+            //_gameMgr.AddUnit(_gameMgr.UnitSOs[index].Data);
+            _gameMgr.AddUnit(_gameMgr.UnitSOs[index]);
         }
         #endregion Public
 

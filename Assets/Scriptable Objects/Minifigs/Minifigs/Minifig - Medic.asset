@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac211420a121eb4c955f3ab79a07618, type: 3}
+  m_Name: Minifig - Medic
+  m_EditorClassIdentifier: 
+  Data:
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: "M\xE9dic"
+    - _name: EN
+      Language: 1
+      Txt: Medic
+    Type: 0
+    Icon: {fileID: 21300000, guid: 32abe68ec1f8b004f919aab45c8b1ac6, type: 3}
+    Color: {r: 1, g: 1, b: 1, a: 1}
+    MaxAmount: 2
+    MinUnitIntegration: 0
+    IntegrationCost: -1
+    MaxGear: 3
+    MiniType: 0
+    Abilities:
+    - Icon: {fileID: 21300000, guid: d0730acac4069ed4488914379c947756, type: 3}
+      LocDescriptions:
+      - _name: FR
+        Language: 0
+        Txt: "Pour 1 PA, vous pouvez retirer un pion fatigue d'une unit\xE9 en contact
+          avec vous et non engag\xE9es au C\xE0C."
+      - _name: EN
+        Language: 1
+        Txt: You may spend 1 AP to remove a strain token to a friendly unit in contact
+          that's not engaged in melee combat.
+    - Icon: {fileID: 21300000, guid: d0730acac4069ed4488914379c947756, type: 3}
+      LocDescriptions:
+      - _name: FR
+        Language: 0
+        Txt: "Lorsque vous r\xE9animez un h\xE9ros alli\xE9, lancez 1D suppl\xE9mentaire.
+          Une seule r\xE9ussite reste n\xE9cessaire pour votre action.\nSi vous utilisez
+          l'\xE9quipement du soin, consid\xE9rez les r\xE9sultats 3 comme des r\xE9ussites."
+      - _name: EN
+        Language: 1
+        Txt: 'When you''re reviving a friendly hero, you may roll 1 additional die.
+          You still only need one success to accomplish this action.
+
+          If
+          you use the heal gear, you may consider results 3 as successes.'
+    MegaType: 0
+    Sturdiness: 0
+    Recuperation: 0
+    Speed: 1
+    CurrentName: 
+    GearList: []

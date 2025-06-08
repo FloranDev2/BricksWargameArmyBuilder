@@ -166,8 +166,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978c4de1c16a3f94eb533040e3b60559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitSOs: []
-  GearSOs: []
+  UnitSOs:
+  - {fileID: 11400000, guid: da8bc4b1ae3208f419b881d89c9e99fc, type: 2}
+  - {fileID: 11400000, guid: cc714a229df04ca4fbea763fde9ce8ce, type: 2}
+  - {fileID: 11400000, guid: 1055dfe58be76a84e99e2416a736fc95, type: 2}
+  GearSOs:
+  - {fileID: 11400000, guid: 5700cbf6a34ec004eace4dd18d0255dd, type: 2}
+  - {fileID: 11400000, guid: 6261379033a28bb4eb8f034bed12fcc9, type: 2}
   _periodIndex: 0
   PeriodDataList:
   - _name: Any
@@ -3092,6 +3097,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 563cfffed63be3948b090f72473aa382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unitElemPrefab: {fileID: 6423134004289348381, guid: c208d0ab4baed704a984b78aa1f8cdc4,
+    type: 3}
+  _unitElemWrapper: {fileID: 2001034562}
 --- !u!1 &1950355702
 GameObject:
   m_ObjectHideFlags: 0

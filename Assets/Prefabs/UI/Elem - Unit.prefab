@@ -99,7 +99,8 @@ MonoBehaviour:
   _arrowDefaultRot: {x: 0, y: 0, z: 0}
   _arrowExpandedRot: {x: 0, y: 0, z: 180}
   Index: 0
-  _classIcon: {fileID: 5597441482668095119}
+  _bgColorImg: {fileID: 1996586486662660415}
+  _classIconImg: {fileID: 5597441482668095119}
   _placeHolderTxt: {fileID: 6687700871931662810}
   _finalTxt: {fileID: 534775952401714273}
   _gearWrapper: {fileID: 2380034904524135971}
@@ -844,7 +845,7 @@ GameObject:
   - component: {fileID: 1996586486662660415}
   - component: {fileID: 648256907818225394}
   m_Layer: 5
-  m_Name: Button - Change Unit
+  m_Name: Button - Change Class
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -954,7 +955,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1996586486662660415}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6423134004289348381}
+        m_TargetAssemblyTypeName: Truelch.UI.UnitExpBtn, Assembly-CSharp
+        m_MethodName: OnExpandClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5467205597983138497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,8 +1031,9 @@ GameObject:
   - component: {fileID: 2544869409128848287}
   - component: {fileID: 4411661305044897376}
   - component: {fileID: 1656075678000308141}
+  - component: {fileID: 4275188842282888788}
   m_Layer: 5
-  m_Name: Text (TMP) - Delete
+  m_Name: '[LOC] Text (TMP) - Delete'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1141,6 +1155,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4275188842282888788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5561743702235334196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50c0b0c1a51f564fbeae2e258d886fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _locData: {fileID: 11400000, guid: 289b902450b6cc14c9e064dff6721f5a, type: 2}
+  _showLogs: 0
 --- !u!1 &6226007645792468659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,7 +1290,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 782646399222114311}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 1
@@ -1565,10 +1593,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
+  m_fontSize: 72
   m_fontSizeBase: 14
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1727,7 +1755,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4825893055862512141}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6423134004289348381}
+        m_TargetAssemblyTypeName: Truelch.UI.UnitExpBtn, Assembly-CSharp
+        m_MethodName: OnDeleteClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7508226139721395844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,7 +2027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50c0b0c1a51f564fbeae2e258d886fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _locData: {fileID: 0}
+  _locData: {fileID: 11400000, guid: de41b0fff2dd02f48ab6fcd59887a36c, type: 2}
   _showLogs: 0
 --- !u!1 &8891624388687761095
 GameObject:
@@ -2109,4 +2149,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2429239963424130178}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6423134004289348381}
+        m_TargetAssemblyTypeName: Truelch.UI.UnitExpBtn, Assembly-CSharp
+        m_MethodName: OnDuplicateClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

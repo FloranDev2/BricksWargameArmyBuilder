@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Truelch.Localization;
 using Truelch.Managers;
+using Truelch.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +12,10 @@ namespace Truelch.UI
     public class ArmyBuilderUI : MonoBehaviour
     {
         #region ATTRIBUTES
+        //Inspector
+        [SerializeField] private UnitExpBtn _unitElemPrefab;
+        [SerializeField] private Transform _unitElemWrapper;
+
         //Hidden
         // - Managers
         private GameManager _gameMgr;
@@ -32,6 +39,24 @@ namespace Truelch.UI
         }
         #endregion Initialization
 
+        #region Delegate Event
+        private void OnEnable()
+        {
+            GameManager.onUnitAdded += OnUnitAdded;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.onUnitAdded -= OnUnitAdded;
+        }
+
+        private void OnUnitAdded(UnitSO unitSO)
+        {
+            var unitElem = Instantiate(_unitElemPrefab, _unitElemWrapper);
+            unitElem.Init(this, unitSO);
+        }
+        #endregion Delegate Event
+
         #region Public
         //Options
         public void OnSaveClick()
@@ -44,6 +69,13 @@ namespace Truelch.UI
         {
             if (!_isReady) return;
             //TODO
+        }
+
+        public void OnRemoveUnitClick(UnitExpBtn btn)
+        {
+            _unitElems.Remove(btn);
+
+            //_gameMgr.AddUnit
         }
         #endregion Public
 

@@ -20,6 +20,9 @@ namespace Truelch.Managers
         public delegate void OnLanguageChanged(Language newLanguage);
         public static OnLanguageChanged onLanguageChanged;
 
+        public delegate void OnUnitAdded(UnitSO unitSO);
+        public static OnUnitAdded onUnitAdded;
+
         //Public (Will certainly be moved to a DataManager)
         // - Constant Data (units stats, gear, ...)
         [Header("Const")]
@@ -150,48 +153,40 @@ namespace Truelch.Managers
             //TODO: save
         }
 
-        //Getters
-
-        /// <summary>
-        /// Get the authorized minifigs for the current period.
-        /// </summary>
-        /// <returns></returns>
-        /*
-        public List<MinifigSO> GetMinifigs()
-        {
-            List<MinifigSO> minifigs = new List<MinifigSO>();
-            Period currPeriod = GetCurrentPeriod();
-
-            foreach (MinifigSO miniSO in MinifigSOs)
-            {
-                if (miniSO.Data.Period == currPeriod)
-                {
-                    minifigs.Add(miniSO);
-                }
-            }
-
-            return minifigs;
-        }
-        */
-
         //Dynamic Data
-        public void ChangeUnitClass(int unitIndex/*,*/)
+        public void ChangeUnitClass(int unitIndex, UnitData newClass)
         {
+            //Keep some stuff? (Name, Gear, ...)
 
+            _armyUnits[unitIndex] = newClass;
         }
 
-        public void AddUnit(UnitData data)
+        //public UnitData AddUnit(UnitData data)
+        public void /*UnitData*/ AddUnit(UnitSO so)
         {
             //Look for the default name:
-            foreach (var locName in data.LocNames)
+            //foreach (var locName in data.LocNames)
+            foreach (var locName in so.Data.LocNames)
             {
                 if (locName.Language == GetCurrentLanguage())
                 {
-                    data.CurrentName = locName.Txt;
+                    //data.CurrentName = locName.Txt;
+                    so.Data.CurrentName = locName.Txt;
                 }
             }
             
-            _armyUnits.Add(data);
+            //_armyUnits.Add(data);
+            _armyUnits.Add(so.Data);
+
+            //Event
+            onUnitAdded?.Invoke(so);
+
+            //return data;
+        }
+
+        public void RemoveUnit(UnitData data)
+        {
+            _armyUnits.Remove(data);
         }
         #endregion Public
 

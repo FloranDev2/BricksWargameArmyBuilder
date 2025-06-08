@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Truelch.Data;
+using Truelch.Localization;
+using Truelch.Managers;
+using Truelch.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +31,8 @@ namespace Truelch.UI
         //Inspector
         // - Top
         [Header("UI Refs")]
-        [SerializeField] private Image _classIcon; //Commando, Medic, etc.
+        [SerializeField] private Image _bgColorImg;
+        [SerializeField] private Image _classIconImg; //Commando, Medic, etc.
         [SerializeField] private TextMeshProUGUI _placeHolderTxt;
         [SerializeField] private TextMeshProUGUI _finalTxt; //I may not use it
 
@@ -41,7 +45,10 @@ namespace Truelch.UI
         // - Bottom
 
         //Hidden
+        private ArmyBuilderUI _armyBuilderUI;
         private List<GearExpBtn> _gearElems = new List<GearExpBtn>();
+
+        private UnitData _unitData;
         #endregion ATTRIBUTES
 
 
@@ -73,43 +80,83 @@ namespace Truelch.UI
             //Assuming that gear exp button have a placeholder mode, but it's still the same prefab
             //L2A: Create if needed
         }
+
+        IEnumerator CR_RefreshClass(UnitSO unitSO)
+        {
+            yield return new WaitUntil(() => _isReady == true);
+
+            //Name
+            string name = "Unit";
+            Language language = _gameMgr.GetCurrentLanguage();
+            foreach (var foo in unitSO.Data.LocNames)
+            {
+                if (foo.Language == language)
+                {
+                    name = foo.Txt;
+                    break;
+                }
+            }
+            _placeHolderTxt.text = name;
+
+            //Icon
+            _classIconImg.sprite = unitSO.Data.Icon;
+            _bgColorImg.color = unitSO.Data.Color;
+        }
         #endregion Misc
 
         #region Public
-        public void Init(string name)
+        public void Init(ArmyBuilderUI ui, UnitSO unitSO)
         {
-            _placeHolderTxt.text = name;
+            _armyBuilderUI = ui;
+            _unitData = unitSO.Data;
+            RefreshClass(unitSO);
         }
 
+        public void RefreshClass(UnitSO unitSO)
+        {
+            StartCoroutine(CR_RefreshClass(unitSO));
+        }
+
+        // --- INHERITED FROM EXPAND BUTTON BASE ---
+        public override void OnExpandClick()
+        {
+            if (!_isReady) return;
+
+            base.OnExpandClick();
+
+            Language language = _gameMgr.GetCurrentLanguage();
+
+            int index = 0;
+
+            for (int i = 0; i < _gameMgr.UnitSOs.Count; i++)
+            {
+                UnitData data = _gameMgr.UnitSOs[i].Data;
+
+                //TODO: concatenate this function, somewhere...
+                string name = "Unit";
+                foreach (var d in data.LocNames)
+                {
+                    if (d.Language == language)
+                    {
+                        name = d.Txt;
+                        break;
+                    }
+                }
+                _canvasMgr.DynamicScroller.CreateElem(index, name);
+                index++;
+            }
+        }
+
+        // --- BUTTONS CALLBACKS ----
         public override void OnElemClick(int index)
         {
             //Look for new class
 
         }
 
-        public void OnEndEdit(string name)
-        {
-            _gameMgr.ChangeUnitName(Index, name);
-        }
-
-        //This will be for each individual button option
-        /*
-        //Change the gear. Example: change from armor to heal.
-        public void OnEditOptionClick(int slot)
-        {
-
-        }
-
-        //Click on the "?" to the right, opening a big pop up filled with text.
-        public void OnShowOptionClick()
-        {
-
-        }
-        */
-
         public void OnDeleteClick()
         {
-
+            _armyBuilderUI.OnRemoveUnitClick(this);
         }
 
         public void OnDuplicateClick()
@@ -125,6 +172,17 @@ namespace Truelch.UI
         public void OnDeleteGearClick()
         {
 
+        }
+
+        public void OnShowInfosClick()
+        {
+
+        }
+
+        // --- UI Events ---
+        public void OnEndEdit(string name)
+        {
+            _gameMgr.ChangeUnitName(Index, name);
         }
         #endregion Public
 
