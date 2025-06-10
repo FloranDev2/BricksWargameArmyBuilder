@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Truelch.Localization;
 using Truelch.Managers;
 using Truelch.ScriptableObjects;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Truelch.UI
 {
@@ -13,7 +11,8 @@ namespace Truelch.UI
     {
         #region ATTRIBUTES
         //Inspector
-        [SerializeField] private UnitExpBtn _unitElemPrefab;
+        //[SerializeField] private UnitExpBtn _unitElemPrefab; //Old
+        [SerializeField] private UnitElem _unitElemPrefab; //New
         [SerializeField] private Transform _unitElemWrapper;
 
         //Hidden
@@ -24,7 +23,8 @@ namespace Truelch.UI
         private bool _isReady = false;
 
         // - Units
-        private List<UnitExpBtn> _unitElems = new List<UnitExpBtn>();
+        //private List<UnitExpBtn> _unitElems = new List<UnitExpBtn>();
+        private List<UnitElem> _unitElems = new List<UnitElem>();
         #endregion ATTRIBUTES
 
 
@@ -71,7 +71,8 @@ namespace Truelch.UI
             //TODO
         }
 
-        public void OnRemoveUnitClick(UnitExpBtn btn)
+        //public void OnRemoveUnitClick(UnitExpBtn btn)
+        public void OnRemoveUnitClick(UnitElem btn)
         {
             _unitElems.Remove(btn);
 

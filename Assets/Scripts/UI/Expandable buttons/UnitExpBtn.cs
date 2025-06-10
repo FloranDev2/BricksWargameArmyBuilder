@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using Truelch.Data;
 using Truelch.Localization;
-using Truelch.Managers;
 using Truelch.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +10,11 @@ using UnityEngine.UI;
 namespace Truelch.UI
 {
     /// <summary>
+    /// WILL BE REMOVED.
+    /// LOGIC WILL BE SPLIT BETWEEN:
+    /// - UNIT ELEM (PARENT)
+    /// - CHANGE UNIT CLASS
+    /// 
     /// This actually needs to be an ExpandButton, so we can choose the class.
     /// Unless I'm doing a script for a children component.
     /// 
@@ -156,7 +160,7 @@ namespace Truelch.UI
 
         public void OnDeleteClick()
         {
-            _armyBuilderUI.OnRemoveUnitClick(this);
+            //_armyBuilderUI.OnRemoveUnitClick(this);
         }
 
         public void OnDuplicateClick()
