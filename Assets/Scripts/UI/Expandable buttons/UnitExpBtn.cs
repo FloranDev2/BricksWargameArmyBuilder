@@ -178,15 +178,12 @@ namespace Truelch.UI
 
         }
 
-        public void OnShowInfosClick()
-        {
 
-        }
 
         // --- UI Events ---
         public void OnEndEdit(string name)
         {
-            _gameMgr.ChangeUnitName(Index, name);
+            //_gameMgr.ChangeUnitName(Index, name);
         }
         #endregion Public
 

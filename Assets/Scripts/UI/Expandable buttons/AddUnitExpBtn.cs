@@ -53,7 +53,8 @@ namespace Truelch.UI
         {
             Debug.Log("OnElemClick(index: " + index + ")");
             //_gameMgr.AddUnit(_gameMgr.UnitSOs[index].Data);
-            _gameMgr.AddUnit(_gameMgr.UnitSOs[index]);
+            UnitData clone = _gameMgr.UnitSOs[index].Data.GetClone();
+            _gameMgr.AddUnit(clone);
         }
         #endregion Public
 

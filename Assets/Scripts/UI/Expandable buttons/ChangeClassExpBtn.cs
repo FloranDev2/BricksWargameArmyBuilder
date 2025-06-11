@@ -11,6 +11,7 @@ namespace Truelch.UI
     {
         #region ATTRIBUTES
         //Inspector
+        [SerializeField] private UnitElem _unitElem;
         #endregion ATTRIBUTES
 
 
@@ -49,8 +50,23 @@ namespace Truelch.UI
         public override void OnElemClick(int index)
         {
             Debug.Log("OnElemClick(index: " + index + ")");
+
+            //Old
             //_gameMgr.AddUnit(_gameMgr.UnitSOs[index].Data);
-            _gameMgr.AddUnit(_gameMgr.UnitSOs[index]);
+            //_gameMgr.AddUnit(_gameMgr.UnitSOs[index]);
+
+            //New (final)
+            //if (_unitElem.UnitData != null)
+            //{
+            //    _unitElem.OnChangeClassClick(_gameMgr.UnitSOs[index]);
+            //}
+            //else
+            //{
+            //    _gameMgr.AddUnit(_gameMgr.UnitSOs[index]);
+            //}
+
+            //Test
+            _unitElem.OnChangeClassClick(_gameMgr.UnitSOs[index]);
         }
         #endregion Public
 

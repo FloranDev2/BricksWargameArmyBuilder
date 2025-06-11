@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Truelch.Data;
 using Truelch.Managers;
 using Truelch.ScriptableObjects;
 using UnityEngine;
@@ -11,8 +12,7 @@ namespace Truelch.UI
     {
         #region ATTRIBUTES
         //Inspector
-        //[SerializeField] private UnitExpBtn _unitElemPrefab; //Old
-        [SerializeField] private UnitElem _unitElemPrefab; //New
+        [SerializeField] private UnitElem _unitElemPrefab;
         [SerializeField] private Transform _unitElemWrapper;
 
         //Hidden
@@ -23,8 +23,7 @@ namespace Truelch.UI
         private bool _isReady = false;
 
         // - Units
-        //private List<UnitExpBtn> _unitElems = new List<UnitExpBtn>();
-        private List<UnitElem> _unitElems = new List<UnitElem>();
+        [SerializeField] private List<UnitElem> _unitElems = new List<UnitElem>();
         #endregion ATTRIBUTES
 
 
@@ -50,10 +49,12 @@ namespace Truelch.UI
             GameManager.onUnitAdded -= OnUnitAdded;
         }
 
-        private void OnUnitAdded(UnitSO unitSO)
+        //private void OnUnitAdded(UnitSO unitSO)
+        private void OnUnitAdded(UnitData unitData)
         {
             var unitElem = Instantiate(_unitElemPrefab, _unitElemWrapper);
-            unitElem.Init(this, unitSO);
+            //unitElem.Init(this, unitData);
+            unitElem.Init(this, unitData);
         }
         #endregion Delegate Event
 
@@ -71,12 +72,11 @@ namespace Truelch.UI
             //TODO
         }
 
-        //public void OnRemoveUnitClick(UnitExpBtn btn)
         public void OnRemoveUnitClick(UnitElem btn)
         {
+            _gameMgr.RemoveUnit(btn.UnitData);
             _unitElems.Remove(btn);
-
-            //_gameMgr.AddUnit
+            Destroy(btn.gameObject);
         }
         #endregion Public
 

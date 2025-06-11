@@ -14,4 +14,3 @@ namespace Truelch.UI
         #endregion METHODS
     }
 }
-

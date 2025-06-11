@@ -34,8 +34,8 @@ namespace Truelch.Data
     [System.Serializable]
     public class UnitData
     {
+        #region ATTRIBUTES
         [Header("Infos")]
-        //[SerializeField] private string _name; //For inspector (unnecessary, it's hold within a SO)
         public List<TextLocData> LocNames;
         public UnitType Type;
         public Sprite Icon;
@@ -64,5 +64,41 @@ namespace Truelch.Data
         [Header("Dynamic Data")]
         public string CurrentName;
         public List<GearData> GearList;
+        #endregion ATTRIBUTES
+
+
+        #region METHODS
+        public UnitData GetClone()
+        {
+            UnitData clone = new UnitData();
+
+            //Infos
+            clone.LocNames = new List<TextLocData>();
+            foreach (TextLocData locName in LocNames)
+            {
+                clone.LocNames.Add(locName.GetClone());
+            }
+            clone.Type = Type;
+            clone.Icon = Icon;
+            clone.Color = Color;
+
+            //Gameplay
+            clone.MaxAmount = MaxAmount;
+            clone.MinUnitIntegration = MinUnitIntegration;
+            clone.IntegrationCost = IntegrationCost;
+            clone.MaxGear = MaxGear;
+
+            //Minifig only
+            clone.MiniType = MiniType;
+            clone.Abilities = new List<MinifigAbility>();
+            foreach (MinifigAbility ability in Abilities)
+            {
+                clone.Abilities.Add(ability.GetClone());
+            }
+
+
+            return clone;
+        }
+        #endregion METHODS
     }
 }

@@ -20,19 +20,12 @@ namespace Truelch.Managers
         public delegate void OnLanguageChanged(Language newLanguage);
         public static OnLanguageChanged onLanguageChanged;
 
-        public delegate void OnUnitAdded(UnitSO unitSO);
+        public delegate void OnUnitAdded(UnitData unitData);
         public static OnUnitAdded onUnitAdded;
 
         //Public (Will certainly be moved to a DataManager)
         // - Constant Data (units stats, gear, ...)
         [Header("Const")]
-        // --- OLD ---
-        //public List<MinifigSO> MinifigSOs;
-        //I don't need MegafigSOs because Megafigs are charectarized by their options and category.
-        //public List<GearSO> MinifigGearSOs;
-        //public List<GearSO> MegafigGearSOs;
-
-        // --- NEW ---
         public List<UnitSO> UnitSOs;
         public List<GearSO> GearSOs;
 
@@ -46,7 +39,7 @@ namespace Truelch.Managers
         public List<LanguageData> LanguageDataList;
 
         [Header("Unit data")] //Will be hidden, but I'm showing it in the inspector for debug purpose
-        [SerializeField] private List<UnitData> _armyUnits = new List<UnitData>();
+        public List<UnitData> ArmyUnits = new List<UnitData>();
 
         //Hidden
         // - Managers
@@ -143,50 +136,56 @@ namespace Truelch.Managers
             onLanguageChanged?.Invoke(newLanguage);
         }
 
-        public void ChangeUnitName(int unitIndex, string newName)
-        {
-            if (unitIndex < _armyUnits.Count)
-            {
-                _armyUnits[unitIndex].CurrentName = newName;
-            }
+        //public void ChangeUnitName(int unitIndex, string newName)
+        //{
+        //    if (unitIndex < ArmyUnits.Count)
+        //    {
+        //        ArmyUnits[unitIndex].CurrentName = newName;
+        //    }
 
-            //TODO: save
-        }
+        //    //TODO: save
+        //}
 
         //Dynamic Data
         public void ChangeUnitClass(int unitIndex, UnitData newClass)
         {
             //Keep some stuff? (Name, Gear, ...)
 
-            _armyUnits[unitIndex] = newClass;
+            ArmyUnits[unitIndex] = newClass;
         }
 
-        //public UnitData AddUnit(UnitData data)
-        public void /*UnitData*/ AddUnit(UnitSO so)
+        public UnitData AddUnit(UnitData src)
         {
+            UnitData unitData = src.GetClone();
+
             //Look for the default name:
-            //foreach (var locName in data.LocNames)
-            foreach (var locName in so.Data.LocNames)
+            foreach (var locName in src.LocNames)
             {
                 if (locName.Language == GetCurrentLanguage())
                 {
-                    //data.CurrentName = locName.Txt;
-                    so.Data.CurrentName = locName.Txt;
+                    src.CurrentName = locName.Txt;
                 }
             }
-            
-            //_armyUnits.Add(data);
-            _armyUnits.Add(so.Data);
+
+            ArmyUnits.Add(unitData);
 
             //Event
-            onUnitAdded?.Invoke(so);
+            onUnitAdded?.Invoke(unitData);
 
-            //return data;
+            return unitData;
         }
 
         public void RemoveUnit(UnitData data)
         {
-            _armyUnits.Remove(data);
+            if (ArmyUnits.Contains(data))
+            {
+                Debug.Log("Contains! :)");
+                ArmyUnits.Remove(data);
+            }
+            else
+            {
+                Debug.Log("Does NOT contain! :(");
+            }
         }
         #endregion Public
 
