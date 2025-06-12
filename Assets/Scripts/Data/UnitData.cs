@@ -70,6 +70,7 @@ namespace Truelch.Data
         #region METHODS
         public UnitData GetClone()
         {
+            //Create a fresh clone
             UnitData clone = new UnitData();
 
             //Infos
@@ -96,7 +97,21 @@ namespace Truelch.Data
                 clone.Abilities.Add(ability.GetClone());
             }
 
+            //Megafig only
+            clone.MegaType = MegaType;
+            clone.Sturdiness = Sturdiness;
+            clone.Recuperation = Recuperation;
+            clone.Speed = Speed;
 
+            //Dynamic data
+            clone.CurrentName = CurrentName;
+            clone.GearList = new List<GearData>();
+            foreach (var gear in GearList)
+            {
+
+            }
+
+            //Return
             return clone;
         }
         #endregion METHODS

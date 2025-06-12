@@ -179,6 +179,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f84ec4c34787284988f46f436d1c9af, type: 2}
   GearSOs:
   - {fileID: 11400000, guid: 5700cbf6a34ec004eace4dd18d0255dd, type: 2}
+  - {fileID: 11400000, guid: e3b7cf4d1a887b049ba85625152b8181, type: 2}
+  - {fileID: 11400000, guid: a07374b5695daa8489b7300818f9eecb, type: 2}
+  - {fileID: 11400000, guid: fba935f7f4d7c2c439c303fca2190b54, type: 2}
+  - {fileID: 11400000, guid: 873ed095f20527240a64a1aed97ec50f, type: 2}
+  - {fileID: 11400000, guid: ba357d6d0b059a846b8b8a9dbf49c69f, type: 2}
+  - {fileID: 11400000, guid: 96b285e3887eceb4fbd52c1f42090f73, type: 2}
+  - {fileID: 11400000, guid: 751176efffd138b4daa4ac87eda5ec4f, type: 2}
+  - {fileID: 11400000, guid: 5584540d0098f064786f8b8917e81c48, type: 2}
   - {fileID: 11400000, guid: 6261379033a28bb4eb8f034bed12fcc9, type: 2}
   _periodIndex: 0
   PeriodDataList:

@@ -136,6 +136,8 @@ namespace Truelch.Managers
             onLanguageChanged?.Invoke(newLanguage);
         }
 
+        //I can change the data directly.
+        //Not sure if that's clean, but it'll do for now.
         //public void ChangeUnitName(int unitIndex, string newName)
         //{
         //    if (unitIndex < ArmyUnits.Count)
@@ -179,7 +181,6 @@ namespace Truelch.Managers
         {
             if (ArmyUnits.Contains(data))
             {
-                Debug.Log("Contains! :)");
                 ArmyUnits.Remove(data);
             }
             else

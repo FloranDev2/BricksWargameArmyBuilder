@@ -7,8 +7,7 @@ using UnityEngine;
 namespace Truelch.UI
 {
     /// <summary>
-    /// Enumerate enums values:
-    /// https://www.pietschsoft.com/post/2024/05/03/csharp-iterate-over-enum
+    /// OLD, I'll remove it at some point, and use UnitElem to replace it.
     /// </summary>
     public class AddUnitExpBtn : ExpandButtonBase
     {
@@ -51,8 +50,6 @@ namespace Truelch.UI
 
         public override void OnElemClick(int index)
         {
-            Debug.Log("OnElemClick(index: " + index + ")");
-            //_gameMgr.AddUnit(_gameMgr.UnitSOs[index].Data);
             UnitData clone = _gameMgr.UnitSOs[index].Data.GetClone();
             _gameMgr.AddUnit(clone);
         }

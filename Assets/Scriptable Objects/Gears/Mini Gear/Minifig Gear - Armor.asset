@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Minifig Gear - Armor
   m_EditorClassIdentifier: 
   Data:
+    Period: 0
     Color: {r: 1, g: 0, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: 6b54911fd1dc1ad4a88317d752c1e664, type: 3}
     LocNames:
     - _name: FR
       Language: 0
@@ -24,7 +26,9 @@ MonoBehaviour:
     LocDecriptions:
     - _name: FR
       Language: 0
-      Txt: "Description \xE0 venir !"
+      Txt: "Lorsqu\u2019un adversaire vous attaque, annulez automatiquement un r\xE9sultat
+        4 de son jet de d\xE9s."
     - _name: EN
       Language: 1
       Txt: (coming soon)
+    SlotSize: 1

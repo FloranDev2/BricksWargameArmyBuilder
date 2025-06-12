@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -15,7 +14,7 @@ namespace Truelch.UI
     {
         #region ATTRIBUTES
         //Public
-        [NonSerialized] public UnitData UnitData;
+        /*[NonSerialized]*/ public UnitData UnitData;
 
         //Inspector
         // - Top
@@ -47,49 +46,54 @@ namespace Truelch.UI
         {
             yield return new WaitUntil(() => GameManager.Instance != null);
             _gameMgr = GameManager.Instance;
-            //CM_AssignUnitData();
         }
         #endregion Init
-
-        #region Context Menus
-        //TMP!
-        //[ContextMenu("Assign Unit Data")]
-        //private void CM_AssignUnitData()
-        //{
-        //    if (_gameMgr == null)
-        //    {
-        //        Debug.Log("CM_AssignUnitData -> early return");
-        //        return;
-        //    }
-
-        //    _gameMgr.ArmyUnits.Add(_gameMgr.UnitSOs[0].Data);
-        //    UnitData = _gameMgr.ArmyUnits[0];
-
-        //    Debug.Log("CM_AssignUnitData -> data assigned!");
-        //}
-        #endregion Context Menus
 
         #region Misc
         IEnumerator CR_RefreshClass()
         {
-            yield return new WaitUntil(() => _gameMgr != null);
+            if (_gameMgr == null) yield return new WaitUntil(() => _gameMgr != null);
 
             //Name
             string name = "Unit";
             Language language = _gameMgr.GetCurrentLanguage();
-            foreach (var foo in UnitData.LocNames)
+            foreach (var locName in UnitData.LocNames)
             {
-                if (foo.Language == language)
+                if (locName.Language == language)
                 {
-                    name = foo.Txt;
+                    name = locName.Txt;
                     break;
                 }
             }
-            _placeHolderTxt.text = name;
+            _placeHolderTxt.text = string.IsNullOrEmpty(UnitData.CurrentName) ? name : UnitData.CurrentName;
 
             //Icon
             _classIconImg.sprite = UnitData.Icon;
             _bgColorImg.color = UnitData.Color;
+
+            //Gears! (new!)
+            // - TODO: check if we can keep previous upgrades?
+
+            // - Destroy previous ?
+            foreach (GearExpBtn gearBtn in _gearElems)
+            {
+                Destroy(gearBtn.gameObject);
+            }
+
+            // - Create new
+            for (int i = 0; i < UnitData.MaxGear; i++)
+            {
+                GearExpBtn gearBtn = Instantiate(_gearElemPrefab, _gearWrapper);
+                gearBtn.Init(this, i);
+                _gearElems.Add(gearBtn);
+            }
+
+            // - Update Data
+            UnitData.GearList.Clear();
+            for (int i = 0; i < UnitData.MaxGear; i++)
+            {
+                UnitData.GearList.Add(null);
+            }
         }
         #endregion Misc
 
@@ -104,8 +108,22 @@ namespace Truelch.UI
 
         public void OnChangeClassClick(UnitSO unitSO)
         {
-            UnitData = unitSO.Data;
-            StartCoroutine(CR_RefreshClass());
+            if (_gameMgr.ArmyUnits.Contains(UnitData))
+            {
+                int index = _gameMgr.ArmyUnits.IndexOf(UnitData);
+                string name = UnitData.CurrentName;
+                UnitData = unitSO.Data.GetClone();
+                if (!string.IsNullOrEmpty(name))
+                {
+                    UnitData.CurrentName = name;
+                }
+                _gameMgr.ArmyUnits[index] = UnitData;
+                StartCoroutine(CR_RefreshClass());
+            }
+            else
+            {
+                Debug.Log("WTF");
+            }
         }
 
         public void OnShowInfosClick()
@@ -115,7 +133,8 @@ namespace Truelch.UI
 
         public void OnDuplicateClick()
         {
-            _gameMgr.AddUnit(UnitData);
+            UnitData cloneData = UnitData.GetClone();
+            _gameMgr.AddUnit(cloneData);
         }
 
         public void OnDeleteClick()
@@ -123,11 +142,21 @@ namespace Truelch.UI
             _armyBuilderUI.OnRemoveUnitClick(this);
         }
 
+        // --- Gear ---
+        public void OnGearChanged(int gearIndex, GearSO newGear)
+        {
+            GearData clonedGear = newGear.Data.GetClone();
+            UnitData.GearList[gearIndex] = clonedGear;
+        }
+
+        //public void OnDestroyGear(GearExpBtn gear)
+        //{
+
+        //}
+
         // --- UI Events ---
         public void OnEndEdit(string name)
         {
-            Debug.Log("OnEndEdit(name: " + name + ")");
-            //_gameMgr.ChangeUnitName(Index, name);
             UnitData.CurrentName = name;
         }
         #endregion Public

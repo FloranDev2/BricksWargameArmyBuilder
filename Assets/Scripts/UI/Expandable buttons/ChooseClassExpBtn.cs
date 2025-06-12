@@ -7,7 +7,10 @@ using UnityEngine;
 
 namespace Truelch.UI
 {
-    public class ChangeClassExpBtn : ExpandButtonBase
+    /// <summary>
+    /// Both for changing class or selecting the class of a new unit to add.
+    /// </summary>
+    public class ChooseClassExpBtn : ExpandButtonBase
     {
         #region ATTRIBUTES
         //Inspector
@@ -26,8 +29,6 @@ namespace Truelch.UI
 
             Language language = _gameMgr.GetCurrentLanguage();
 
-            int index = 0;
-
             for (int i = 0; i < _gameMgr.UnitSOs.Count; i++)
             {
                 UnitData data = _gameMgr.UnitSOs[i].Data;
@@ -42,31 +43,27 @@ namespace Truelch.UI
                         break;
                     }
                 }
-                _canvasMgr.DynamicScroller.CreateElem(index, name);
-                index++;
+                _canvasMgr.DynamicScroller.CreateElem(i, name);
             }
         }
 
         public override void OnElemClick(int index)
         {
-            Debug.Log("OnElemClick(index: " + index + ")");
-
-            //Old
-            //_gameMgr.AddUnit(_gameMgr.UnitSOs[index].Data);
-            //_gameMgr.AddUnit(_gameMgr.UnitSOs[index]);
+            //Debug.Log("OnElemClick(index: " + index + ")");
 
             //New (final)
-            //if (_unitElem.UnitData != null)
-            //{
-            //    _unitElem.OnChangeClassClick(_gameMgr.UnitSOs[index]);
-            //}
-            //else
-            //{
-            //    _gameMgr.AddUnit(_gameMgr.UnitSOs[index]);
-            //}
-
-            //Test
-            _unitElem.OnChangeClassClick(_gameMgr.UnitSOs[index]);
+            if (_unitElem.UnitData != null)
+            {
+                //Debug.Log("[A] Change class!");
+                _unitElem.OnChangeClassClick(_gameMgr.UnitSOs[index]);
+            }
+            else
+            {
+                //Debug.Log("[B] Add unit!");
+                //Otherwise, I might risk data corruption?
+                UnitData newData = _gameMgr.UnitSOs[index].Data.GetClone();
+                _gameMgr.AddUnit(newData);
+            }
         }
         #endregion Public
 
