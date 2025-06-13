@@ -20,6 +20,7 @@ namespace Truelch.UI
         //Inspector
         [SerializeField] private TextMeshProUGUI _nameTxt; //For rename + recolor
         [SerializeField] private Image _bgImg; //For recolor
+        [SerializeField] private Image _gearImg;
 
         //Hidden
         private UnitElem _unitElem;
