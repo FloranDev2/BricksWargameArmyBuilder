@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Minifig Gear - Radio
   m_EditorClassIdentifier: 
   Data:
+    IsReal: 1
     Period: 2
     Color: {r: 0, g: 0, b: 1, a: 1}
-    Icon: {fileID: 21300000, guid: c5d5cc6746157834cacceedf3cf467af, type: 3}
+    Icon: {fileID: 21300000, guid: 32da202f8df4d3047abc65dd584392e4, type: 3}
     LocNames:
     - _name: FR
       Language: 0
@@ -23,17 +24,10 @@ MonoBehaviour:
     - _name: EN
       Language: 1
       Txt: Radio
-    LocDecriptions:
+    LocDescriptions:
     - _name: FR
       Language: 0
-      Txt: "Lorsque vous attaquez une cible \xE0 distance, vous pouvez utiliser maximum
-        1PA d\u2019une autre unit\xE9 alli\xE9e \xE9quip\xE9e d\u2019une radio \xE0
-        la place du v\xF4tre, \xE0 condition que cette unit\xE9 soit \xE0 port\xE9e
-        de tir et en vue de votre cible. Cette attaque doit \xEAtre comptabilis\xE9e
-        dans la valeur de contrainte de l\u2019unit\xE9 active.\n\nCOMBINAISON AVEC
-        \xAB EFFET DE CHEF \xBB: Si votre chef est \xE9quip\xE9 d\u2019une radio,
-        alors son effet de chef pourra \xEAtre aussi appliqu\xE9 \xE0 distance bleue
-        \xE0 toutes les unit\xE9s \xE9quip\xE9es de radio."
+      Txt: "(description \xE0 venir)"
     - _name: EN
       Language: 1
       Txt: (coming soon)

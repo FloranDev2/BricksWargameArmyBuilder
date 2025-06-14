@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Minifig Gear - Banner
   m_EditorClassIdentifier: 
   Data:
+    IsReal: 1
     Period: 2
     Color: {r: 0, g: 0, b: 1, a: 1}
-    Icon: {fileID: 21300000, guid: 8b58b0a5d1f608b45b72bf3df46a1c19, type: 3}
+    Icon: {fileID: 21300000, guid: 4dd9d17dfac3f0a4c8797bb7f7e79805, type: 3}
     LocNames:
     - _name: FR
       Language: 0
@@ -23,15 +24,12 @@ MonoBehaviour:
     - _name: EN
       Language: 1
       Txt: Banner
-    LocDecriptions:
+    LocDescriptions:
     - _name: FR
       Language: 0
       Txt: "Chaque unit\xE9 qui attaque \xE0 port\xE9e verte d\u2019une ou plusieurs
         banni\xE8res peut relancer 1D pour chacune d\u2019entre elle. L\u2019unit\xE9
-        \xE9quip\xE9e d\u2019une banni\xE8re ne peut pas utiliser cet effet sur elle-m\xEAme.\n\nCOMBINAISON
-        AVEC \xAB EFFET DE CHEF \xBB : Si votre chef est \xE9quip\xE9 d\u2019une
-        banni\xE8re, alors son effet de chef pourra \xEAtre aussi appliqu\xE9 \xE0
-        toutes les unit\xE9s situ\xE9es \xE0 distance jaune."
+        \xE9quip\xE9e d\u2019une banni\xE8re ne peut pas utiliser cet effet sur elle-m\xEAme."
     - _name: EN
       Language: 1
       Txt: (coming soon)

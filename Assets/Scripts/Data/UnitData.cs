@@ -106,9 +106,18 @@ namespace Truelch.Data
             //Dynamic data
             clone.CurrentName = CurrentName;
             clone.GearList = new List<GearData>();
-            foreach (var gear in GearList)
+            //Debug.Log("Here");
+            foreach (GearData gear in GearList)
             {
-
+                if (gear != null)
+                {
+                    clone.GearList.Add(gear.GetClone());
+                }
+                else
+                {
+                    //Debug.Log("Gear is null!");
+                    clone.GearList.Add(null);
+                }
             }
 
             //Return

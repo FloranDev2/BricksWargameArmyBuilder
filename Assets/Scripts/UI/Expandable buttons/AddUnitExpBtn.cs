@@ -50,8 +50,9 @@ namespace Truelch.UI
 
         public override void OnElemClick(int index)
         {
-            UnitData clone = _gameMgr.UnitSOs[index].Data.GetClone();
-            _gameMgr.AddUnit(clone);
+            //UnitData clone = _gameMgr.UnitSOs[index].Data.GetClone();
+            //_gameMgr.AddUnit(clone);
+            _gameMgr.AddUnit(_gameMgr.UnitSOs[index].Data); //Cloning the data is done by the game manager already
         }
         #endregion Public
 

@@ -61,8 +61,10 @@ namespace Truelch.UI
             {
                 //Debug.Log("[B] Add unit!");
                 //Otherwise, I might risk data corruption?
-                UnitData newData = _gameMgr.UnitSOs[index].Data.GetClone();
-                _gameMgr.AddUnit(newData);
+                // -> GameManager is already cloning the data, just send the original from here:
+                //UnitData newData = _gameMgr.UnitSOs[index].Data.GetClone();
+                //_gameMgr.AddUnit(newData);
+                _gameMgr.AddUnit(_gameMgr.UnitSOs[index].Data);
             }
         }
         #endregion Public

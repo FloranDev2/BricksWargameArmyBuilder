@@ -156,6 +156,11 @@ namespace Truelch.Managers
             ArmyUnits[unitIndex] = newClass;
         }
 
+        /// <summary>
+        /// No need to clone the data, this method will do it already
+        /// </summary>
+        /// <param name="src"></param>
+        /// <returns></returns>
         public UnitData AddUnit(UnitData src)
         {
             UnitData unitData = src.GetClone();

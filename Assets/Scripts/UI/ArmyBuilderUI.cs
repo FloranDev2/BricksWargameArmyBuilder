@@ -52,6 +52,7 @@ namespace Truelch.UI
         //private void OnUnitAdded(UnitSO unitSO)
         private void OnUnitAdded(UnitData unitData)
         {
+            Debug.Log("OnUnitAdded");
             var unitElem = Instantiate(_unitElemPrefab, _unitElemWrapper);
             //unitElem.Init(this, unitData);
             unitElem.Init(this, unitData);

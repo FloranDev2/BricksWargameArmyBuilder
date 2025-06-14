@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Minifig Gear - Explo Grenade
   m_EditorClassIdentifier: 
   Data:
+    IsReal: 1
     Period: 2
     Color: {r: 1, g: 0.5019608, b: 0, a: 1}
     Icon: {fileID: 21300000, guid: 6bdc03605ec4e4b45b96988a053de4c4, type: 3}
@@ -23,14 +24,10 @@ MonoBehaviour:
     - _name: EN
       Language: 1
       Txt: Explosive (Grenade)
-    LocDecriptions:
+    LocDescriptions:
     - _name: FR
       Language: 0
-      Txt: "En d\xE9but de partie, choisissez dans la liste ci-dessous le type d\u2019explosif
-        dont vous souhaitez \xE9quiper votre unit\xE9, puis placez le pion correspondant
-        sur la pi\xE8ce d\u2019\xE9quipement orange. Un explosif s\u2019utilise contre
-        1PA et doit respecter le descriptif correspondant.\r\nVotre unit\xE9 peut
-        s\u2019\xE9quiper de 2 explosif/sortil\xE8ge maximum."
+      Txt: "(description \xE0 venir)"
     - _name: EN
       Language: 1
       Txt: (coming soon)

@@ -6,7 +6,9 @@ using UnityEngine;
 namespace Truelch.UI
 {
     /// <summary>
-    /// TODO: add a search bar?!
+    /// TODO:
+    /// - Add a search bar?!
+    /// - Maybe add a "minimum width" option (and expand toward the farthest side if needed)
     /// </summary>
     public class DynamicScroller : MonoBehaviour
     {
