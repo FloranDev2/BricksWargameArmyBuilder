@@ -15,6 +15,16 @@ public static class Utils
     #endregion ENUMS
 
 
+    #region MISC
+    //https://discussions.unity.com/t/how-can-i-add-copy-paste-clipboard-support-to-my-game/44249
+    public static string Clipboard
+    {
+        get { return GUIUtility.systemCopyBuffer; }
+        set { GUIUtility.systemCopyBuffer = value; }
+    }
+    #endregion MISC
+
+
     #region PLATFORM
 
     public static bool IsComputer()

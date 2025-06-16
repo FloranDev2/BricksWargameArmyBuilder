@@ -78,7 +78,7 @@ namespace Truelch.UI
 
             if (UnitData.GearList == null || UnitData.GearList.Count == 0)
             {
-                Debug.Log("No gear!!");
+                //Debug.Log("No gear!!");
 
                 // - Destroy previous ?
                 foreach (GearExpBtn gearBtn in _gearElems)
@@ -109,7 +109,7 @@ namespace Truelch.UI
                 //TODO: check if there are mismatch between data and gear buttons...
                 if (_gearElems.Count == 0)
                 {
-                    Debug.Log("[DUPLICATE?] We should create gear elems here!");
+                    //Debug.Log("[DUPLICATE] We should create gear elems here!");
                     for (int i = 0; i < UnitData.GearList.Count; i++)
                     {
                         GearData gear = UnitData.GearList[i];
@@ -120,7 +120,7 @@ namespace Truelch.UI
                 }
                 else
                 {
-                    Debug.Log("[CHANGE CLASS?] We should NOT create new gear elems!");
+                    //Debug.Log("[CHANGE CLASS] We should NOT create new gear elems!");
                 }
             }                
         }
@@ -189,7 +189,6 @@ namespace Truelch.UI
 
         public void OnDuplicateClick()
         {
-            Debug.Log("OnDuplicateClick()");
             _gameMgr.AddUnit(UnitData);
         }
 
@@ -199,17 +198,16 @@ namespace Truelch.UI
         }
 
         // --- Gear ---
-        //public void OnGearChanged(int gearIndex, GearSO newGear)
         public void OnGearChanged(int gearIndex, GearData newGear)
         {
             GearData clonedGear = newGear.GetClone();
             UnitData.GearList[gearIndex] = clonedGear;
         }
 
-        //public void OnDestroyGear(GearExpBtn gear)
-        //{
-
-        //}
+        public void OnDestroyGear(GearExpBtn gear)
+        {
+            UnitData.GearList[gear.Index] = null;
+        }
 
         // --- UI Events ---
         public void OnEndEdit(string name)

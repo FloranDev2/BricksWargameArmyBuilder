@@ -23,6 +23,9 @@ namespace Truelch.Managers
         public delegate void OnUnitAdded(UnitData unitData);
         public static OnUnitAdded onUnitAdded;
 
+        public delegate void OnUnitClassChanged(int unitIndex, UnitData newClass);
+        public static OnUnitClassChanged onUnitClassChanged;
+
         //Public (Will certainly be moved to a DataManager)
         // - Constant Data (units stats, gear, ...)
         [Header("Const")]
@@ -154,6 +157,8 @@ namespace Truelch.Managers
             //Keep some stuff? (Name, Gear, ...)
 
             ArmyUnits[unitIndex] = newClass;
+
+            onUnitClassChanged?.Invoke(unitIndex, newClass);
         }
 
         /// <summary>

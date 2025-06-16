@@ -45,6 +45,16 @@ namespace Truelch.Localization
         #endregion Initialization
 
         #region Loc
+        public void UpdateLoc()
+        {
+            if (_gameManager == null)
+            {
+                Debug.Log("No GameManager found!");
+                return;
+            }
+            UpdateLoc(_gameManager.GetCurrentLanguage());
+        }
+
         public void UpdateLoc(Language lang)
         {
             if (_showLogs)

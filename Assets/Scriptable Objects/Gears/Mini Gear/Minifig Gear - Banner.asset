@@ -33,4 +33,5 @@ MonoBehaviour:
     - _name: EN
       Language: 1
       Txt: (coming soon)
+    ExportString: ':blue_square:'
     SlotSize: 1

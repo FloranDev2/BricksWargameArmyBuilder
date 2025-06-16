@@ -17,6 +17,7 @@ namespace Truelch.Data
         //TODO: regrouper les deux en-dessous en un nouveau type de Data plutot qu'utiliser TextLocData
         public List<TextLocData> LocNames;
         public List<TextLocData> LocDescriptions;
+        public string ExportString;
         [Range(1, 2)] public int SlotSize = 1; //Simple: 1, Double: 2 (wait, transport can take more?)
         #endregion ATTRIBUTES
 
@@ -34,7 +35,6 @@ namespace Truelch.Data
             
             if (LocNames != null)
             {
-                //Debug.Log("LocNames is ok :)");
                 clone.LocNames = new List<TextLocData>();
                 foreach (var name in LocNames)
                 {
@@ -48,18 +48,19 @@ namespace Truelch.Data
 
             if (LocDescriptions != null)
             {
-                //Debug.Log("LocDescriptions is ok :)");
                 clone.LocDescriptions = new List<TextLocData>();
                 foreach (var desc in LocDescriptions)
                 {
                     clone.LocDescriptions.Add(desc.GetClone());
                 }
-                clone.SlotSize = SlotSize;
             }
             else
             {
                 Debug.Log("LocDescriptions DOES NOT EXIST :(");
             }
+
+            clone.ExportString = ExportString;
+            clone.SlotSize = SlotSize;
 
             return clone;
         }

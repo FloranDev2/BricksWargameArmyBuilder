@@ -35,10 +35,18 @@ namespace Truelch.UI
         #region Misc
         private void UpdateGear(GearData gearData)
         {
-            _nameTxt.text = ""; //or set active false?
+            //_nameTxt.text = ""; //or set active false?
+            _nameTxt.gameObject.SetActive(false); //because text loc will write over this
             _gearImg.gameObject.SetActive(true);
             _gearImg.sprite = gearData.Icon;
             _unitElem.OnGearChanged(Index, gearData); //this might create infinite loop, no?
+        }
+
+        public void ClearGear()
+        {
+            _nameTxt.gameObject.SetActive(true);
+            _nameTxt.GetComponent<TextLoc>().UpdateLoc(); //this will reset to the "Choose an option" text
+            _gearImg.gameObject.SetActive(false);
         }
         #endregion Misc
 
@@ -52,17 +60,15 @@ namespace Truelch.UI
             //Oh, it may happened that it's also null...
             if (gearData == null || !gearData.IsReal)
             {
-                Debug.Log("Gear Data is null OR not real"); //some girl on an airplane, probably...
+                //Debug.Log("Gear Data is null OR not real"); //some girl on an airplane, probably...
                 //initial init or init after delete gear
                 _gearImg.gameObject.SetActive(false);
 
             }
             else
             {
-                Debug.Log("Gear Data exists!");
+                //Debug.Log("Gear Data exists!");
                 //init after duplicating a unit with existing gear
-                //_gearImg.gameObject.SetActive(true);
-                //_nameTxt.text = "";
                 UpdateGear(gearData);
             }
         }
@@ -88,7 +94,7 @@ namespace Truelch.UI
                         break;
                     }
                 }
-                _canvasMgr.DynamicScroller.CreateElem(i, name);
+                _canvasMgr.DynamicScroller.CreateElem(i, name, gearSO.Data.Color);
             }
         }
 
@@ -99,8 +105,11 @@ namespace Truelch.UI
 
         public void OnDeleteClick()
         {
-            //_unitElem.OnDestroyGear(this);
             //Or maybe revert to "select" gear mode instead of removing the gameobject?
+            _unitElem.OnDestroyGear(this);
+
+            //Clear
+            ClearGear();
         }
 
         public void OnInfosClick()

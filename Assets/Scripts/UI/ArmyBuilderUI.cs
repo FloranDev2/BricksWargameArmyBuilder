@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Truelch.Data;
+using Truelch.Localization;
 using Truelch.Managers;
 using Truelch.ScriptableObjects;
 using UnityEngine;
@@ -12,6 +14,11 @@ namespace Truelch.UI
     {
         #region ATTRIBUTES
         //Inspector
+        [Header("Top")]
+        [SerializeField] private TextLocSO _integrationValLoc;
+        [SerializeField] private TextMeshProUGUI _integrationTxt;
+
+        [Header("Bot - Units")]
         [SerializeField] private UnitElem _unitElemPrefab;
         [SerializeField] private Transform _unitElemWrapper;
 
@@ -42,6 +49,7 @@ namespace Truelch.UI
         private void OnEnable()
         {
             GameManager.onUnitAdded += OnUnitAdded;
+            GameManager.onUnitClassChanged += OnUnitClassChanged;
         }
 
         private void OnDisable()
@@ -49,13 +57,15 @@ namespace Truelch.UI
             GameManager.onUnitAdded -= OnUnitAdded;
         }
 
-        //private void OnUnitAdded(UnitSO unitSO)
         private void OnUnitAdded(UnitData unitData)
         {
-            Debug.Log("OnUnitAdded");
             var unitElem = Instantiate(_unitElemPrefab, _unitElemWrapper);
-            //unitElem.Init(this, unitData);
             unitElem.Init(this, unitData);
+        }
+
+        private void OnUnitClassChanged(int unitIndex, UnitData newClass)
+        {
+
         }
         #endregion Delegate Event
 
@@ -70,7 +80,42 @@ namespace Truelch.UI
         public void OnPrintExportClick()
         {
             if (!_isReady) return;
-            //TODO
+
+            Language language = _gameMgr.GetCurrentLanguage();
+
+            string export = "";
+            foreach (UnitData unit in _gameMgr.ArmyUnits)
+            {
+                string unitName = "";
+                foreach (var locName in unit.LocNames)
+                {
+                    if (locName.Language == language)
+                    {
+                        unitName = locName.Txt;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(unit.CurrentName) && unit.CurrentName != unitName)
+                {
+                    export += "\n- " + unit.CurrentName + " (" + unitName + ")";
+                }
+                else
+                {
+                    export += "\n- " + unitName;
+                }
+                
+                foreach (var gear in unit.GearList)
+                {
+                    if (gear != null)
+                    {
+                        export += " " + gear.ExportString;
+                    }                    
+                }
+            }
+
+            Utils.Clipboard = export;
+
+            Debug.Log("Exported: " + export);
         }
 
         public void OnRemoveUnitClick(UnitElem btn)
