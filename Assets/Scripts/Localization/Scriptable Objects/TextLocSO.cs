@@ -7,6 +7,6 @@ namespace Truelch.Localization
     [CreateAssetMenu(fileName = "Text Localization", menuName = "ScriptableObjects/TextLocSO")]
     public class TextLocSO : ScriptableObject
     {
-        public List<TextLocData> data;
+        public List<TextLocData> Data;
     }
 }

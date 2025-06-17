@@ -49,21 +49,12 @@ namespace Truelch.UI
 
         public override void OnElemClick(int index)
         {
-            //Debug.Log("OnElemClick(index: " + index + ")");
-
-            //New (final)
             if (_unitElem.UnitData != null)
             {
-                //Debug.Log("[A] Change class!");
                 _unitElem.OnChangeClassClick(_gameMgr.UnitSOs[index]);
             }
             else
             {
-                //Debug.Log("[B] Add unit!");
-                //Otherwise, I might risk data corruption?
-                // -> GameManager is already cloning the data, just send the original from here:
-                //UnitData newData = _gameMgr.UnitSOs[index].Data.GetClone();
-                //_gameMgr.AddUnit(newData);
                 _gameMgr.AddUnit(_gameMgr.UnitSOs[index].Data);
             }
         }

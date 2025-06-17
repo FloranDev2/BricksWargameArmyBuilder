@@ -81,10 +81,11 @@ namespace Truelch.UI
             base.OnExpandClick();
 
             Language language = _gameMgr.GetCurrentLanguage();
+            List<GearSO> availableGears = _gameMgr.GetGearSOs(_unitElem.UnitData);
 
-            for (int i = 0; i < _gameMgr.GearSOs.Count; i++)
+            for (int i = 0; i < availableGears.Count; i++)
             {
-                var gearSO = _gameMgr.GearSOs[i];
+                var gearSO = availableGears[i];
                 string name = "Gear";
                 foreach (var locName in gearSO.Data.LocNames)
                 {

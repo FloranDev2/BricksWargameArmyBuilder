@@ -66,7 +66,7 @@ namespace Truelch.Localization
                 return;
             }
 
-            foreach (var loc in _locData.data)
+            foreach (var loc in _locData.Data)
             {
                 if (loc.Language == lang)
                 {

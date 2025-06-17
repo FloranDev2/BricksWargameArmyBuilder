@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae12f12cd1aeff346b4360db9fb23785, type: 3}
   m_Name: Loc - Integration Value
   m_EditorClassIdentifier: 
-  data:
+  Data:
   - _name: FR
     Language: 0
     Txt: "Valeur d'int\xE9gration : "

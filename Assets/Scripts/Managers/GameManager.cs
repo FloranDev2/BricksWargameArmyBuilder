@@ -26,6 +26,9 @@ namespace Truelch.Managers
         public delegate void OnUnitClassChanged(int unitIndex, UnitData newClass);
         public static OnUnitClassChanged onUnitClassChanged;
 
+        public delegate void OnGearChanged(int unitIndex, int gearIndex, GearData newGear);
+        public static OnGearChanged onGearChanged;
+
         //Public (Will certainly be moved to a DataManager)
         // - Constant Data (units stats, gear, ...)
         [Header("Const")]
@@ -73,11 +76,12 @@ namespace Truelch.Managers
         #endregion Initialization
 
         #region Public
+        // --- UI CALLBACKS ---
         public void OnSaveClick()
         {
 
         }
-
+        
         public void OnMedFanToggleClick()
         {
             _medFanOn = !_medFanOn;
@@ -94,6 +98,37 @@ namespace Truelch.Managers
             {
                 _medFanOn = true;
             }
+        }
+
+        public List<GearSO> GetGearSOs(UnitData unitData)
+        {
+            List<GearSO> gears = new List<GearSO>();
+            foreach (GearSO gear in GearSOs)
+            {
+                bool isOk = true;
+
+                if (gear.Data.UnitType != unitData.Type)
+                {
+                    isOk = false;
+                }
+
+                bool isMegaOk = gear.Data.RestrictedMegaTypes.Count == 0;
+                foreach (MegafigType megaType in gear.Data.RestrictedMegaTypes)
+                {
+                    if (unitData.MegaType == megaType)
+                    {
+                        isMegaOk = true;
+                        break;
+                    }
+                }
+                isOk = isOk && isMegaOk;
+
+                if (isOk)
+                {
+                    gears.Add(gear);
+                }
+            }
+            return gears;
         }
 
         public Period GetCurrentPeriod()
@@ -139,26 +174,17 @@ namespace Truelch.Managers
             onLanguageChanged?.Invoke(newLanguage);
         }
 
-        //I can change the data directly.
-        //Not sure if that's clean, but it'll do for now.
-        //public void ChangeUnitName(int unitIndex, string newName)
-        //{
-        //    if (unitIndex < ArmyUnits.Count)
-        //    {
-        //        ArmyUnits[unitIndex].CurrentName = newName;
-        //    }
-
-        //    //TODO: save
-        //}
-
         //Dynamic Data
         public void ChangeUnitClass(int unitIndex, UnitData newClass)
         {
-            //Keep some stuff? (Name, Gear, ...)
-
+            //Debug.Log("ChangeUnitClass(unitIndex: " + unitIndex + ", newClass: " + newClass + ")");
             ArmyUnits[unitIndex] = newClass;
-
             onUnitClassChanged?.Invoke(unitIndex, newClass);
+        }
+
+        public void ChangeGear(int unitIndex, int gearIndex, GearData newGear)
+        {
+            onGearChanged?.Invoke(unitIndex, gearIndex, newGear);
         }
 
         /// <summary>

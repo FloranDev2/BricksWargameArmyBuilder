@@ -11,14 +11,20 @@ namespace Truelch.Data
     {
         #region ATTRIBUTES
         public bool IsReal = false; //Null stuff, when displayed in the inspector, isn't null anymore.
-        public Period Period;
         public Color Color = Color.white;
         public Sprite Icon;
+
+        [Header("Limitations")]
+        public Period Period;
+        public UnitType UnitType;
+        public List<MegafigType> RestrictedMegaTypes; //if empty, no restriction
+        [Range(1, 2)] public int SlotSize = 1; //Simple: 1, Double: 2 (wait, transport can take more?)
+
         //TODO: regrouper les deux en-dessous en un nouveau type de Data plutot qu'utiliser TextLocData
+        [Header("Strings")]
         public List<TextLocData> LocNames;
         public List<TextLocData> LocDescriptions;
         public string ExportString;
-        [Range(1, 2)] public int SlotSize = 1; //Simple: 1, Double: 2 (wait, transport can take more?)
         #endregion ATTRIBUTES
 
 
@@ -41,10 +47,6 @@ namespace Truelch.Data
                     clone.LocNames.Add(name.GetClone());
                 }
             }
-            else
-            {
-                Debug.Log("LocNames DOES NOT EXIST :(");
-            }
 
             if (LocDescriptions != null)
             {
@@ -53,10 +55,6 @@ namespace Truelch.Data
                 {
                     clone.LocDescriptions.Add(desc.GetClone());
                 }
-            }
-            else
-            {
-                Debug.Log("LocDescriptions DOES NOT EXIST :(");
             }
 
             clone.ExportString = ExportString;

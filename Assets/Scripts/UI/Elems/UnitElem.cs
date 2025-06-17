@@ -54,6 +54,7 @@ namespace Truelch.UI
         #region Misc
         IEnumerator CR_RefreshClass()
         {
+            //Debug.Log("CR_RefreshClass()");
             if (_gameMgr == null) yield return new WaitUntil(() => _gameMgr != null);
 
             //Name
@@ -73,18 +74,23 @@ namespace Truelch.UI
             _classIconImg.sprite = UnitData.Icon;
             _bgColorImg.color = UnitData.Color;
 
-            //Gears! (new!)
-            // - TODO: check if we can keep previous upgrades?
-
             if (UnitData.GearList == null || UnitData.GearList.Count == 0)
             {
                 //Debug.Log("No gear!!");
-
                 // - Destroy previous ?
                 foreach (GearExpBtn gearBtn in _gearElems)
                 {
-                    Destroy(gearBtn.gameObject);
+                    //Debug.Log("-> gearBtn: " + gearBtn);
+                    if (gearBtn != null)
+                    {
+                        Destroy(gearBtn.gameObject);
+                    }
+                    else
+                    {
+                        Debug.Log("WTF gearBtn is null");
+                    }                    
                 }
+                _gearElems.Clear();
 
                 // - Create new
                 for (int i = 0; i < UnitData.MaxGear; i++)
@@ -103,14 +109,19 @@ namespace Truelch.UI
             }
             else
             {
-                //No need to add them again
-                //Edit: except if it's from a duplicate and not a change class!
+                //Debug.Log("Else (there was some gear)");
 
-                //TODO: check if there are mismatch between data and gear buttons...
-                if (_gearElems.Count == 0)
+                int oldAmount = _gearElems.Count;
+                int newAmount = UnitData.GearList.Count;
+                int diff = newAmount - oldAmount;
+
+                //Debug.Log("old: " + oldAmount + ", new: " + newAmount + " -> diff: " + diff);
+
+                if (diff > 0)
                 {
-                    //Debug.Log("[DUPLICATE] We should create gear elems here!");
-                    for (int i = 0; i < UnitData.GearList.Count; i++)
+                    //Add
+                    //Debug.Log("Add!");
+                    for (int i = oldAmount; i < newAmount; i++)
                     {
                         GearData gear = UnitData.GearList[i];
                         GearExpBtn gearBtn = Instantiate(_gearElemPrefab, _gearWrapper);
@@ -120,7 +131,13 @@ namespace Truelch.UI
                 }
                 else
                 {
-                    //Debug.Log("[CHANGE CLASS] We should NOT create new gear elems!");
+                    //Remove
+                    //Debug.Log("Remove!");
+                    for (int i = newAmount; i < oldAmount; i++)
+                    {
+                        Destroy(_gearElems[_gearElems.Count - 1].gameObject);
+                        _gearElems.RemoveAt(_gearElems.Count - 1);
+                    }
                 }
             }                
         }
@@ -135,9 +152,8 @@ namespace Truelch.UI
             StartCoroutine(CR_RefreshClass());
         }
 
-        public void OnChangeClassClick(UnitSO unitSO)
+        public void OnChangeClassClick(UnitSO newUnitSO)
         {
-            //Debug.Log("OnChangeClassClick");
             if (_gameMgr.ArmyUnits.Contains(UnitData))
             {
                 int index = _gameMgr.ArmyUnits.IndexOf(UnitData);
@@ -145,36 +161,41 @@ namespace Truelch.UI
                 //Things to keep:
                 // - CurrentName (custom name written in the text input)
                 // - GearList (new!)
-                string name = UnitData.CurrentName;
+
                 List<GearData> gears = new List<GearData>();
-                foreach (GearData gear in UnitData.GearList)
+                if (UnitData.Type != newUnitSO.Data.Type)
                 {
-                    if (gear != null)
+                    //We must clear the gears (nothing to do, gears is already empty)
+                    //Debug.Log("old: " + UnitData.Type + ", new: " + UnitData.Type + " -> clear gear!");
+                }
+                else
+                {
+                    //Update gear
+                    //Debug.Log("Updating gear...");
+                    for (int i = 0; i < newUnitSO.Data.MaxGear; i++)
                     {
-                        gears.Add(gear.GetClone());
-                    }
-                    else
-                    {
-                        gears.Add(null);
+                        GearData gear = null;
+                        if (i < UnitData.GearList.Count && UnitData.GearList[i] != null)
+                        {
+                            gear = UnitData.GearList[i].GetClone();
+                        }
+                        gears.Add(gear);
                     }
                 }
-                //Debug.Log("[BEFORE] gears: " + gears.Count);
 
-                UnitData = unitSO.Data.GetClone();
+                string name = UnitData.CurrentName;
+                UnitData = newUnitSO.Data.GetClone();
 
                 //Give back the things saved, IF they are relevant
-                //
                 if (!string.IsNullOrEmpty(name))
                 {
                     UnitData.CurrentName = name;
                 }
                 UnitData.GearList = gears;
 
-                //Debug.Log("[AFTER] UnitData.GearList: " + UnitData.GearList.Count);
-
                 //End
-                _gameMgr.ArmyUnits[index] = UnitData;
-                StartCoroutine(CR_RefreshClass());
+                _gameMgr.ChangeUnitClass(index, UnitData);
+                StartCoroutine(CR_RefreshClass()); //react to the event instead?
             }
             else
             {

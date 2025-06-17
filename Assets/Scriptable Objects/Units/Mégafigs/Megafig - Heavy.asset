@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ac211420a121eb4c955f3ab79a07618, type: 3}
-  m_Name: Megafig - Medium
+  m_Name: Megafig - Heavy
   m_EditorClassIdentifier: 
   Data:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: "M\xE9gafigurine Moyenne"
+      Txt: "M\xE9gafigurine Lourde"
     - _name: EN
       Language: 1
       Txt: Medium Megafig
     Type: 1
     Icon: {fileID: 21300000, guid: 4ab3d8c9cf5fe2343a777d0087f1de48, type: 3}
-    Color: {r: 0.43921572, g: 0.18823531, b: 0.627451, a: 1}
+    Color: {r: 0.75294125, g: 0, b: 0, a: 1}
     MaxAmount: 0
     MinUnitIntegration: 0
-    IntegrationCost: 1
-    MaxGear: 5
+    IntegrationCost: 3
+    MaxGear: 6
     MiniType: 0
     Abilities: []
     MegaType: 0
-    Sturdiness: 4
-    Recuperation: 3
-    Speed: 2
-    CurrentName: 
+    Sturdiness: 5
+    Recuperation: 2
+    Speed: 1
+    CurrentName: "M\xE9gafigurine Lourde"
     GearList: []

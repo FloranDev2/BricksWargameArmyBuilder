@@ -1737,6 +1737,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fe183077cb08f42b960ed3612f3b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UnitData:
+    LocNames: []
+    Type: 0
+    Icon: {fileID: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+    MaxAmount: 0
+    MinUnitIntegration: 0
+    IntegrationCost: 0
+    MaxGear: 3
+    MiniType: 0
+    Abilities: []
+    MegaType: 0
+    Sturdiness: 3
+    Recuperation: 4
+    Speed: 3
+    CurrentName: 
+    GearList: []
   _bgColorImg: {fileID: 563237086990354268}
   _classIconImg: {fileID: 2500426593735563004}
   _placeHolderTxt: {fileID: 1778349169407997680}
@@ -1744,6 +1761,7 @@ MonoBehaviour:
   _gearWrapper: {fileID: 9025244920625559923}
   _gearElemPrefab: {fileID: 7190079255935608757, guid: 55df2735009e43843895d4c3b41dc550,
     type: 3}
+  _gearElems: []
 --- !u!1 &8591364257353601447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,9 +1817,9 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 3
   m_Spacing: 0
-  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
+  m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0

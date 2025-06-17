@@ -167,16 +167,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitSOs:
-  - {fileID: 11400000, guid: cc714a229df04ca4fbea763fde9ce8ce, type: 2}
-  - {fileID: 11400000, guid: e4bd95fa412a2cd48b5cfa5dc489e162, type: 2}
-  - {fileID: 11400000, guid: b52ab53e42eb8e54c9587648b833b417, type: 2}
-  - {fileID: 11400000, guid: 7c6f0c92f47b5894d8f6a6c6a66a4303, type: 2}
   - {fileID: 11400000, guid: da8bc4b1ae3208f419b881d89c9e99fc, type: 2}
+  - {fileID: 11400000, guid: cc714a229df04ca4fbea763fde9ce8ce, type: 2}
+  - {fileID: 11400000, guid: b52ab53e42eb8e54c9587648b833b417, type: 2}
   - {fileID: 11400000, guid: 39eea0c3946a89246a867d0ebaabb867, type: 2}
+  - {fileID: 11400000, guid: 7c6f0c92f47b5894d8f6a6c6a66a4303, type: 2}
+  - {fileID: 11400000, guid: e4bd95fa412a2cd48b5cfa5dc489e162, type: 2}
   - {fileID: 11400000, guid: 21e3a95b74a0da54d99103ae5bbb400d, type: 2}
-  - {fileID: 11400000, guid: 59797dbae6d6a24448d83997ea4ce76a, type: 2}
   - {fileID: 11400000, guid: 1055dfe58be76a84e99e2416a736fc95, type: 2}
   - {fileID: 11400000, guid: 8f84ec4c34787284988f46f436d1c9af, type: 2}
+  - {fileID: 11400000, guid: 59797dbae6d6a24448d83997ea4ce76a, type: 2}
   GearSOs:
   - {fileID: 11400000, guid: 5700cbf6a34ec004eace4dd18d0255dd, type: 2}
   - {fileID: 11400000, guid: e3b7cf4d1a887b049ba85625152b8181, type: 2}
@@ -188,6 +188,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 751176efffd138b4daa4ac87eda5ec4f, type: 2}
   - {fileID: 11400000, guid: 5584540d0098f064786f8b8917e81c48, type: 2}
   - {fileID: 11400000, guid: 6261379033a28bb4eb8f034bed12fcc9, type: 2}
+  - {fileID: 11400000, guid: 577b3b43531b7c64abd6c8755f5183a6, type: 2}
+  - {fileID: 11400000, guid: b83a20a7df991f849b422d0a2d4a7512, type: 2}
+  - {fileID: 11400000, guid: 9d9dbad9d22b3bc468d3ecef1e5b872f, type: 2}
+  - {fileID: 11400000, guid: e410ca95488be0145b7b1fa2bc7b5f55, type: 2}
+  - {fileID: 11400000, guid: aed22969efa6e4b41991704be9339265, type: 2}
   _periodIndex: 0
   PeriodDataList:
   - _name: Any
@@ -3208,6 +3213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _integrationTxt: {fileID: 1022721118}
+  _integrationValLoc: {fileID: 11400000, guid: dbbca80327d555a4d97210a1df52cebb, type: 2}
+  _correctColor: {r: 0.29703632, g: 0.8396226, b: 0.41118798, a: 1}
+  _incorrectColor: {r: 0.8490566, g: 0.21333638, b: 0.18823424, a: 1}
   _unitElemPrefab: {fileID: 6449179434303663994, guid: b1748b1144e0b494aa49768439accd74,
     type: 3}
   _unitElemWrapper: {fileID: 2001034562}
