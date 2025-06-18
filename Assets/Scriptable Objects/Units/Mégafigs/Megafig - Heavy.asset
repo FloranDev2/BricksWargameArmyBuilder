@@ -29,6 +29,7 @@ MonoBehaviour:
     MaxGear: 6
     MiniType: 0
     Abilities: []
+    MegaSize: 3
     MegaType: 0
     Sturdiness: 5
     Recuperation: 2

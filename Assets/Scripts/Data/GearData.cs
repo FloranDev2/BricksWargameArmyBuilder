@@ -17,8 +17,10 @@ namespace Truelch.Data
         [Header("Limitations")]
         public Period Period;
         public UnitType UnitType;
-        public List<MegafigType> RestrictedMegaTypes; //if empty, no restriction
+        public List<MegafigCategory> RestrictedMegaCategories; //if empty, no restriction
+        public List<MegafigSize> RestrictedMegaSizes; //if empty, no restriction
         [Range(1, 2)] public int SlotSize = 1; //Simple: 1, Double: 2 (wait, transport can take more?)
+        public bool TurretPossible = false;
 
         //TODO: regrouper les deux en-dessous en un nouveau type de Data plutot qu'utiliser TextLocData
         [Header("Strings")]

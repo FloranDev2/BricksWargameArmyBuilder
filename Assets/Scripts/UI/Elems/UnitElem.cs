@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Truelch.Data;
+using Truelch.Enums;
 using Truelch.Localization;
 using Truelch.Managers;
 using Truelch.ScriptableObjects;
@@ -24,6 +25,9 @@ namespace Truelch.UI
         [SerializeField] private Image _classIconImg; //Commando, Medic, etc.
         [SerializeField] private TextMeshProUGUI _placeHolderTxt;
         [SerializeField] private TextMeshProUGUI _finalTxt; //I may not use it
+
+        [SerializeField] private TextMeshProUGUI _megaTypeTxt;
+        [SerializeField] private GameObject _chooseMegaCatGo;
 
         // - Equipment
         [Header("Gear")]
@@ -69,6 +73,9 @@ namespace Truelch.UI
                 }
             }
             _placeHolderTxt.text = string.IsNullOrEmpty(UnitData.CurrentName) ? name : UnitData.CurrentName;
+
+            //Megafig Category
+            _chooseMegaCatGo.SetActive(UnitData.Type == UnitType.Megafig);
 
             //Icon
             _classIconImg.sprite = UnitData.Icon;
@@ -203,6 +210,23 @@ namespace Truelch.UI
             }
         }
 
+        public void OnMegaCatChanged(MegafigCategory newMegaCat)
+        {
+            Debug.Log("OnMegaCatChanged(newMegaCat: " + newMegaCat + ")");
+        }
+
+        public void OnGearChanged(int gearIndex, GearData newGear)
+        {
+            GearData clonedGear = newGear.GetClone();
+            UnitData.GearList[gearIndex] = clonedGear;
+        }
+
+        public void OnDestroyGear(GearExpBtn gear)
+        {
+            UnitData.GearList[gear.Index] = null;
+        }
+
+        // --- OTHER BUTTONS ---
         public void OnShowInfosClick()
         {
 
@@ -216,18 +240,6 @@ namespace Truelch.UI
         public void OnDeleteClick()
         {
             _armyBuilderUI.OnRemoveUnitClick(this);
-        }
-
-        // --- Gear ---
-        public void OnGearChanged(int gearIndex, GearData newGear)
-        {
-            GearData clonedGear = newGear.GetClone();
-            UnitData.GearList[gearIndex] = clonedGear;
-        }
-
-        public void OnDestroyGear(GearExpBtn gear)
-        {
-            UnitData.GearList[gear.Index] = null;
         }
 
         // --- UI Events ---

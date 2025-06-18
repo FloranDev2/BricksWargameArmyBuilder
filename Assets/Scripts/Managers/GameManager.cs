@@ -39,6 +39,9 @@ namespace Truelch.Managers
         [SerializeField] private int _periodIndex; //Dynamic (+ saved / loaded)
         public List<PeriodData> PeriodDataList; //Constant
 
+        [Header("Megafig")]
+        public List<MegafigCategoryLocData> MegafigCategoryLocDataList;
+
         //Inspector
         [Header("Language")]
         [SerializeField] private int _languageIndex;
@@ -112,16 +115,27 @@ namespace Truelch.Managers
                     isOk = false;
                 }
 
-                bool isMegaOk = gear.Data.RestrictedMegaTypes.Count == 0;
-                foreach (MegafigType megaType in gear.Data.RestrictedMegaTypes)
+                bool isMegaCatOk = gear.Data.RestrictedMegaCategories.Count == 0;
+                foreach (MegafigCategory megaType in gear.Data.RestrictedMegaCategories)
                 {
-                    if (unitData.MegaType == megaType)
+                    if (unitData.MegaCategory == megaType)
                     {
-                        isMegaOk = true;
+                        isMegaCatOk = true;
                         break;
                     }
                 }
-                isOk = isOk && isMegaOk;
+                isOk = isOk && isMegaCatOk;
+
+                bool isMegaSizeOk = gear.Data.RestrictedMegaSizes.Count == 0;
+                foreach (MegafigSize megaSize in gear.Data.RestrictedMegaSizes)
+                {
+                    if (unitData.MegaSize == megaSize)
+                    {
+                        isMegaSizeOk = true;
+                        break;
+                    }
+                }
+                isOk = isOk && isMegaSizeOk;
 
                 if (isOk)
                 {

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac211420a121eb4c955f3ab79a07618, type: 3}
+  m_Name: Minifig - Infantry
+  m_EditorClassIdentifier: 
+  Data:
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Infanterie
+    - _name: EN
+      Language: 1
+      Txt: Infantry
+    Type: 0
+    Icon: {fileID: 21300000, guid: 7880aad632c27d74e82c28cb78bc607f, type: 3}
+    Color: {r: 0.53333336, g: 0.19607845, b: 0, a: 1}
+    MaxAmount: 0
+    MinUnitIntegration: 0
+    IntegrationCost: -1
+    MaxGear: 3
+    MiniType: 1
+    Abilities:
+    - Icon: {fileID: 21300000, guid: 1f86062a221ec00499eb4f2eee782020, type: 3}
+      LocDescriptions:
+      - _name: FR
+        Language: 0
+        Txt: "(description \xE0 venir)"
+      - _name: EN
+        Language: 1
+        Txt: (coming soon)
+    - Icon: {fileID: 21300000, guid: d0730acac4069ed4488914379c947756, type: 3}
+      LocDescriptions:
+      - _name: FR
+        Language: 0
+        Txt: "(description \xE0 venir)"
+      - _name: EN
+        Language: 1
+        Txt: (coming soon)
+    MegaSize: 0
+    MegaType: 0
+    Sturdiness: 0
+    Recuperation: 0
+    Speed: 1
+    CurrentName: 
+    GearList: []

@@ -7,10 +7,11 @@ using UnityEngine;
 
 namespace Truelch.UI
 {
-    public class PeriodExpandButton : ExpandButtonBase
+    public class ChooseMegaCatExpBtn : ExpandButtonBase
     {
         #region ATTRIBUTES
         //Inspector
+        [SerializeField] private UnitElem _unitElem;
         [SerializeField] private TextMeshProUGUI _text;
         #endregion ATTRIBUTES
 
@@ -18,17 +19,16 @@ namespace Truelch.UI
         #region METHODS
 
         #region Init
-        protected override IEnumerator /*void*/ ExtraInit()
+        protected override IEnumerator ExtraInit()
         {
-            //No need to call base.ExtraInit()
             Language language = _gameMgr.GetCurrentLanguage();
-            _text.text = GetLocName(_gameMgr.PeriodDataList[0], language);
-            yield return null; //I actually didn't needed it
+            _text.text = GetLocName(_gameMgr.MegafigCategoryLocDataList[0], language);
+            yield return null;
         }
         #endregion Init
 
         #region Misc
-        private string GetLocName(PeriodData data, Language language)
+        private string GetLocName(MegafigCategoryLocData data, Language language)
         {
             foreach (var locData in data.LocNames)
             {
@@ -50,21 +50,19 @@ namespace Truelch.UI
 
             Language language = _gameMgr.GetCurrentLanguage();
 
-            for (int i = 0; i < _gameMgr.PeriodDataList.Count; i++)
+            for (int i = 0; i < _gameMgr.MegafigCategoryLocDataList.Count; i++)
             {
-                PeriodData data = _gameMgr.PeriodDataList[i];
+                MegafigCategoryLocData data = _gameMgr.MegafigCategoryLocDataList[i];
                 _canvasMgr.DynamicScroller.CreateElem(i, GetLocName(data, language));
             }
         }
 
         public override void OnElemClick(int index)
         {
-            if (!_isReady) return;
-
-
+            _unitElem.OnMegaCatChanged(_gameMgr.MegafigCategoryLocDataList[index].MegafigCategory);
         }
         #endregion Public
 
         #endregion METHODS
-    }    
+    }
 }

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
+  m_Name: MegaGear - Armor
+  m_EditorClassIdentifier: 
+  Data:
+    IsReal: 1
+    Color: {r: 1, g: 0, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: 6b54911fd1dc1ad4a88317d752c1e664, type: 3}
+    Period: 0
+    UnitType: 1
+    RestrictedMegaTypes: 
+    SlotSize: 1
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Armure
+    - _name: EN
+      Language: 1
+      Txt: Armor
+    LocDescriptions:
+    - _name: FR
+      Language: 0
+      Txt: "(description \xE0 venir)"
+    - _name: EN
+      Language: 1
+      Txt: (coming soon)
+    ExportString: ':red_square:'

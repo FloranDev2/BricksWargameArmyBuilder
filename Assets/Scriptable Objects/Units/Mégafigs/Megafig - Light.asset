@@ -29,10 +29,10 @@ MonoBehaviour:
     MaxGear: 4
     MiniType: 0
     Abilities: []
+    MegaSize: 1
     MegaType: 0
     Sturdiness: 3
     Recuperation: 4
-    Load: 4
     Speed: 3
     CurrentName: 
     GearList: []

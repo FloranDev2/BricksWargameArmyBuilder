@@ -78,6 +78,7 @@ namespace Truelch.UI
             UpdateIntegrationValue();
         }
         
+        //Move that logic to the GameManager?
         private void OnGearChanged(int unitIndex, int gearIndex, GearData newGear)
         {
             //Prepare data
@@ -93,6 +94,7 @@ namespace Truelch.UI
             //Check for army specialization
             foreach (UnitData unit in _gameMgr.ArmyUnits)
             {
+
                 foreach (var gear in unit.GearList)
                 {
 
