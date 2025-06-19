@@ -61,7 +61,7 @@ namespace Truelch.UI
         {
             if (!_isReady) return;
 
-
+            _gameMgr.SetCurrentPeriod(index);
         }
         #endregion Public
 

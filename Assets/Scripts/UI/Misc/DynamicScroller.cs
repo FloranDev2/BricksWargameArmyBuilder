@@ -64,14 +64,14 @@ namespace Truelch.UI
             HideDynamicScroller();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("Here!");
-                TestDynScroll();
-            }
-        }
+        //private void Update()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Space))
+        //    {
+        //        Debug.Log("Here!");
+        //        TestDynScroll();
+        //    }
+        //}
 
         //If I use the context menu, for some reason, the screen size will be incorrect...
         [ContextMenu("Test dynamic scroll")]

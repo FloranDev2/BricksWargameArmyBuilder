@@ -51,7 +51,8 @@ MonoBehaviour:
         Language: 1
         Txt: You may attack beyond blue range with 1 die. If you do so, you must
           consider 4 results as fails.
-    MegaType: 0
+    MegaSize: 0
+    MegaCategory: 0
     Sturdiness: 0
     Recuperation: 0
     Speed: 1

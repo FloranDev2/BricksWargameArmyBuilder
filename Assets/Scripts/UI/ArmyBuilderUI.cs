@@ -53,22 +53,25 @@ namespace Truelch.UI
         #region Delegate Event
         private void OnEnable()
         {
-            GameManager.onUnitAdded += OnUnitAdded;
-            GameManager.onUnitClassChanged += OnUnitClassChanged;
-            GameManager.onGearChanged += OnGearChanged;
+            GameManager.onUnitAdded          += OnUnitAdded;
+            GameManager.onUnitClassChanged   += OnUnitClassChanged;
+            GameManager.onGearChanged        += OnGearChanged;
+            GameManager.onUnitMegaCatChanged += OnUnitMegaCatChanged;
         }
 
         private void OnDisable()
         {
-            GameManager.onUnitAdded -= OnUnitAdded;
-            GameManager.onUnitClassChanged -= OnUnitClassChanged;
-            GameManager.onGearChanged -= OnGearChanged;
+            GameManager.onUnitAdded          -= OnUnitAdded;
+            GameManager.onUnitClassChanged   -= OnUnitClassChanged;
+            GameManager.onGearChanged        -= OnGearChanged;
+            GameManager.onUnitMegaCatChanged -= OnUnitMegaCatChanged;
         }
 
         private void OnUnitAdded(UnitData unitData)
         {
             var unitElem = Instantiate(_unitElemPrefab, _unitElemWrapper);
             unitElem.Init(this, unitData);
+            _unitElems.Add(unitElem);
             UpdateIntegrationValue();
         }
 
@@ -77,28 +80,98 @@ namespace Truelch.UI
             //Debug.Log("OnUnitClassChanged(unitIndex: " + unitIndex + ", newClass: " + newClass + ")");
             UpdateIntegrationValue();
         }
-        
-        //Move that logic to the GameManager?
-        private void OnGearChanged(int unitIndex, int gearIndex, GearData newGear)
+
+        private void OnUnitMegaCatChanged(int unitIndex, MegafigCategory newCat)
         {
+            Language language = _gameMgr.GetCurrentLanguage();
+
+            MegafigCategoryLocData data = null;
+            foreach (MegafigCategoryLocData megaCatLoc in _gameMgr.MegafigCategoryLocDataList)
+            {
+                if (megaCatLoc.MegafigCategory == newCat)
+                {
+                    data = megaCatLoc;
+                    break;
+                }
+            }
+
+            if (data != null)
+            {
+                foreach (var locName in data.LocNames)
+                {
+                    if (locName.Language == language)
+                    {
+                        _unitElems[unitIndex].SetMegaCatText(locName.Txt);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("Oh no");
+            }
+        }
+
+        //Move that logic to the GameManager?
+        private void OnGearChanged(int unitIndex, int gearIndex, GearData newGear, GearData oldGear)
+        {
+            return; //not finished yet
+
+            //Optimization idea: only do this logic if the old / new gear is a 2 slot gear (and the unit is a minifig!)
+
+            UnitData triggeringUnit = _gameMgr.ArmyUnits[unitIndex];
+
+            bool mustContinue = triggeringUnit.Type == UnitType.Minifig;
+
+            if (mustContinue == false)
+            {
+                Debug.Log("Useless to update gear on the army!");
+                return;
+            }
+
             //Prepare data
-            List<SpecializationGearData> spe = new List<SpecializationGearData>();
+            List<SpecializationGearData> speList = new List<SpecializationGearData>();
             foreach (GearSO gearSO in _gameMgr.GearSOs)
             {
                 if (gearSO.Data.SlotSize == 2 && gearSO.Data.UnitType == UnitType.Minifig)
                 {
-                    spe.Add(new SpecializationGearData(gearSO.Data));
+                    speList.Add(new SpecializationGearData(gearSO.Data));
                 }
             }
 
             //Check for army specialization
             foreach (UnitData unit in _gameMgr.ArmyUnits)
             {
+                //Set to false again...
+                foreach (var spe in speList)
+                {
+                    spe.IsOk = false;
+                }
 
                 foreach (var gear in unit.GearList)
                 {
-
+                    //...until we meet the gear and set it to true again!
+                    if (gear.SlotSize == 2)
+                    {
+                        foreach (var spe in speList)
+                        {
+                            if (spe.Gear == gear)
+                            {
+                                Debug.Log("Spe ok");
+                                spe.IsOk = true;
+                            }
+                        }
+                    }
                 }
+            }
+
+            //2nd loop: update specialized gear on units
+            foreach (UnitElem unitElem in _unitElems)
+            {
+                //foreach ()
+                //{
+
+                //}
             }
         }
         #endregion Delegate Event

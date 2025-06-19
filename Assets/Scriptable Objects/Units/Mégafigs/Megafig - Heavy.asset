@@ -16,10 +16,12 @@ MonoBehaviour:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: "M\xE9gafigurine Lourde"
+      Txt: "M\xE9gafigurine\nLourde"
     - _name: EN
       Language: 1
-      Txt: Medium Megafig
+      Txt: 'Heavy
+
+        Megafig'
     Type: 1
     Icon: {fileID: 21300000, guid: 4ab3d8c9cf5fe2343a777d0087f1de48, type: 3}
     Color: {r: 0.75294125, g: 0, b: 0, a: 1}
@@ -30,9 +32,9 @@ MonoBehaviour:
     MiniType: 0
     Abilities: []
     MegaSize: 3
-    MegaType: 0
+    MegaCategory: 0
     Sturdiness: 5
     Recuperation: 2
     Speed: 1
-    CurrentName: "M\xE9gafigurine Lourde"
+    CurrentName: 
     GearList: []

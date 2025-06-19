@@ -53,7 +53,8 @@ MonoBehaviour:
 
           If
           you use the heal gear, you may consider results 3 as successes.'
-    MegaType: 0
+    MegaSize: 0
+    MegaCategory: 0
     Sturdiness: 0
     Recuperation: 0
     Speed: 1

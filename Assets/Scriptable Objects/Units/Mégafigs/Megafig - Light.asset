@@ -16,10 +16,12 @@ MonoBehaviour:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: "M\xE9gafigurine L\xE9g\xE8re"
+      Txt: "M\xE9gafigurine\nL\xE9g\xE8re"
     - _name: EN
       Language: 1
-      Txt: Light Megafig
+      Txt: 'Light
+
+        Megafig'
     Type: 1
     Icon: {fileID: 21300000, guid: d3d320cc68a421740acdd858eab7495d, type: 3}
     Color: {r: 0, g: 0.6901961, b: 0.94117653, a: 1}
@@ -30,7 +32,7 @@ MonoBehaviour:
     MiniType: 0
     Abilities: []
     MegaSize: 1
-    MegaType: 0
+    MegaCategory: 0
     Sturdiness: 3
     Recuperation: 4
     Speed: 3

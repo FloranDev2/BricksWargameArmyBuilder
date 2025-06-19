@@ -101,7 +101,9 @@ namespace Truelch.UI
 
         public override void OnElemClick(int index)
         {
-            UpdateGear(_gameMgr.GearSOs[index].Data);
+            //UpdateGear(_gameMgr.GearSOs[index].Data);
+            List<GearSO> availableGears = _gameMgr.GetGearSOs(_unitElem.UnitData);
+            UpdateGear(availableGears[index].Data);
         }
 
         public void OnDeleteClick()

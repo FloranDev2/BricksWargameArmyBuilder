@@ -77,6 +77,21 @@ namespace Truelch.UI
             //Megafig Category
             _chooseMegaCatGo.SetActive(UnitData.Type == UnitType.Megafig);
 
+            foreach (var megaCat in _gameMgr.MegafigCategoryLocDataList)
+            {
+                if (megaCat.MegafigCategory == UnitData.MegaCategory)
+                {
+                    foreach (var locName in megaCat.LocNames)
+                    {
+                        if (locName.Language == language)
+                        {
+
+                            _megaTypeTxt.text = locName.Txt;
+                        }
+                    }
+                }
+            }
+
             //Icon
             _classIconImg.sprite = UnitData.Icon;
             _bgColorImg.color = UnitData.Color;
@@ -159,6 +174,11 @@ namespace Truelch.UI
             StartCoroutine(CR_RefreshClass());
         }
 
+        public void SetMegaCatText(string name)
+        {
+            _megaTypeTxt.text = name;
+        }
+
         public void OnChangeClassClick(UnitSO newUnitSO)
         {
             if (_gameMgr.ArmyUnits.Contains(UnitData))
@@ -213,6 +233,8 @@ namespace Truelch.UI
         public void OnMegaCatChanged(MegafigCategory newMegaCat)
         {
             Debug.Log("OnMegaCatChanged(newMegaCat: " + newMegaCat + ")");
+            int index = _gameMgr.ArmyUnits.IndexOf(UnitData);
+            _gameMgr.ChangeUnitMegaCategory(index, newMegaCat);
         }
 
         public void OnGearChanged(int gearIndex, GearData newGear)

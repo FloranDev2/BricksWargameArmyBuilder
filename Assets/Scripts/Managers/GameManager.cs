@@ -26,7 +26,10 @@ namespace Truelch.Managers
         public delegate void OnUnitClassChanged(int unitIndex, UnitData newClass);
         public static OnUnitClassChanged onUnitClassChanged;
 
-        public delegate void OnGearChanged(int unitIndex, int gearIndex, GearData newGear);
+        public delegate void OnUnitMegaCatChanged(int unitIndex, MegafigCategory newCat);
+        public static OnUnitMegaCatChanged onUnitMegaCatChanged;
+
+        public delegate void OnGearChanged(int unitIndex, int gearIndex, GearData newGear, GearData oldGear);
         public static OnGearChanged onGearChanged;
 
         //Public (Will certainly be moved to a DataManager)
@@ -155,6 +158,13 @@ namespace Truelch.Managers
             return Period.Any;
         }
 
+        public void SetCurrentPeriod(int index)
+        {
+            _periodIndex = index;
+
+
+        }
+
         public void SetPeriod(Period newPeriod)
         {
             for (int i = 0; i < PeriodDataList.Count; i++)
@@ -196,9 +206,16 @@ namespace Truelch.Managers
             onUnitClassChanged?.Invoke(unitIndex, newClass);
         }
 
-        public void ChangeGear(int unitIndex, int gearIndex, GearData newGear)
+        public void ChangeUnitMegaCategory(int unitIndex, MegafigCategory newCat)
         {
-            onGearChanged?.Invoke(unitIndex, gearIndex, newGear);
+            Debug.Log("ChangeUnitMegaCategory(unitIndex: " + unitIndex + ", newCat: " + newCat + ")");
+            ArmyUnits[unitIndex].MegaCategory = newCat;
+            onUnitMegaCatChanged?.Invoke(unitIndex, newCat);
+        }
+
+        public void ChangeGear(int unitIndex, int gearIndex, GearData newGear, GearData oldGear)
+        {
+            onGearChanged?.Invoke(unitIndex, gearIndex, newGear, oldGear);
         }
 
         /// <summary>
@@ -215,7 +232,7 @@ namespace Truelch.Managers
             {
                 if (locName.Language == GetCurrentLanguage())
                 {
-                    src.CurrentName = locName.Txt;
+                    unitData.CurrentName = locName.Txt;
                 }
             }
 
