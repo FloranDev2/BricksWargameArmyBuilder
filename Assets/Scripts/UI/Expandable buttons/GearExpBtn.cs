@@ -33,13 +33,23 @@ namespace Truelch.UI
         #region METHODS
 
         #region Misc
-        private void UpdateGear(GearData gearData)
+        public void UpdateGear(GearData gearData, bool callEvent)
         {
+            if (gearData == null || !gearData.IsReal)
+            {
+                //Debug.Log("Not real gear!");
+                return;
+            }
+
             //_nameTxt.text = ""; //or set active false?
             _nameTxt.gameObject.SetActive(false); //because text loc will write over this
             _gearImg.gameObject.SetActive(true);
             _gearImg.sprite = gearData.Icon;
-            _unitElem.OnGearChanged(Index, gearData); //this might create infinite loop, no?
+
+            if (callEvent) //to prevent infinite loop
+            {
+                _unitElem.OnGearChanged(Index, gearData); //this might create infinite loop, no?
+            }            
         }
 
         public void ClearGear()
@@ -63,13 +73,12 @@ namespace Truelch.UI
                 //Debug.Log("Gear Data is null OR not real"); //some girl on an airplane, probably...
                 //initial init or init after delete gear
                 _gearImg.gameObject.SetActive(false);
-
             }
             else
             {
                 //Debug.Log("Gear Data exists!");
                 //init after duplicating a unit with existing gear
-                UpdateGear(gearData);
+                UpdateGear(gearData, false); //wouldn't cause an infinite loop, but is unnecessary anyway (I think?)
             }
         }
 
@@ -101,9 +110,14 @@ namespace Truelch.UI
 
         public override void OnElemClick(int index)
         {
-            //UpdateGear(_gameMgr.GearSOs[index].Data);
+            //Debug.Log("GearExpBtn.OnElemClick(index: " + index + ")");
+
+            //Old
             List<GearSO> availableGears = _gameMgr.GetGearSOs(_unitElem.UnitData);
-            UpdateGear(availableGears[index].Data);
+            //UpdateGear(availableGears[index].Data, true); //I'll keep it
+
+            //New already done in UpdateGear
+            _unitElem.OnGearChanged(Index, availableGears[index].Data);
         }
 
         public void OnDeleteClick()

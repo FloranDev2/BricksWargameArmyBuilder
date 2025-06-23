@@ -54,6 +54,7 @@ namespace Truelch.UI
         private void OnEnable()
         {
             GameManager.onUnitAdded          += OnUnitAdded;
+            GameManager.onUnitRemoved        += OnUnitRemoved;
             GameManager.onUnitClassChanged   += OnUnitClassChanged;
             GameManager.onGearChanged        += OnGearChanged;
             GameManager.onUnitMegaCatChanged += OnUnitMegaCatChanged;
@@ -62,6 +63,7 @@ namespace Truelch.UI
         private void OnDisable()
         {
             GameManager.onUnitAdded          -= OnUnitAdded;
+            GameManager.onUnitRemoved        -= OnUnitRemoved;
             GameManager.onUnitClassChanged   -= OnUnitClassChanged;
             GameManager.onGearChanged        -= OnGearChanged;
             GameManager.onUnitMegaCatChanged -= OnUnitMegaCatChanged;
@@ -75,9 +77,13 @@ namespace Truelch.UI
             UpdateIntegrationValue();
         }
 
+        private void OnUnitRemoved(UnitData unitData)
+        {
+            UpdateIntegrationValue();
+        }
+
         private void OnUnitClassChanged(int unitIndex, UnitData newClass)
         {
-            //Debug.Log("OnUnitClassChanged(unitIndex: " + unitIndex + ", newClass: " + newClass + ")");
             UpdateIntegrationValue();
         }
 
@@ -112,67 +118,21 @@ namespace Truelch.UI
             }
         }
 
-        //Move that logic to the GameManager?
-        private void OnGearChanged(int unitIndex, int gearIndex, GearData newGear, GearData oldGear)
+        /*
+        //Optimization idea: only do this logic if the old / new gear is a 2 slot gear (and the unit is a minifig!)
+        UnitData triggeringUnit = _gameMgr.ArmyUnits[unitIndex];
+        bool mustContinue = triggeringUnit.Type == UnitType.Minifig;
+        if (mustContinue == false)
         {
-            return; //not finished yet
-
-            //Optimization idea: only do this logic if the old / new gear is a 2 slot gear (and the unit is a minifig!)
-
-            UnitData triggeringUnit = _gameMgr.ArmyUnits[unitIndex];
-
-            bool mustContinue = triggeringUnit.Type == UnitType.Minifig;
-
-            if (mustContinue == false)
-            {
-                Debug.Log("Useless to update gear on the army!");
-                return;
-            }
-
-            //Prepare data
-            List<SpecializationGearData> speList = new List<SpecializationGearData>();
-            foreach (GearSO gearSO in _gameMgr.GearSOs)
-            {
-                if (gearSO.Data.SlotSize == 2 && gearSO.Data.UnitType == UnitType.Minifig)
-                {
-                    speList.Add(new SpecializationGearData(gearSO.Data));
-                }
-            }
-
-            //Check for army specialization
-            foreach (UnitData unit in _gameMgr.ArmyUnits)
-            {
-                //Set to false again...
-                foreach (var spe in speList)
-                {
-                    spe.IsOk = false;
-                }
-
-                foreach (var gear in unit.GearList)
-                {
-                    //...until we meet the gear and set it to true again!
-                    if (gear.SlotSize == 2)
-                    {
-                        foreach (var spe in speList)
-                        {
-                            if (spe.Gear == gear)
-                            {
-                                Debug.Log("Spe ok");
-                                spe.IsOk = true;
-                            }
-                        }
-                    }
-                }
-            }
-
-            //2nd loop: update specialized gear on units
-            foreach (UnitElem unitElem in _unitElems)
-            {
-                //foreach ()
-                //{
-
-                //}
-            }
+            Debug.Log("Useless to update gear on the army!");
+            return;
+        }
+        */
+        //Move that logic to the GameManager?
+        //TODO: I'm moving the data analyze to the game manager
+        private void OnGearChanged(int unitIndex, int gearIndex, GearData newGear/*, GearData oldGear*/)
+        {
+            _unitElems[unitIndex].RefreshGear();            
         }
         #endregion Delegate Event
 

@@ -133,12 +133,12 @@ GameObject:
   - component: {fileID: 21228196}
   - component: {fileID: 21228197}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: Game Manager (TEST)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &21228196
 Transform:
   m_ObjectHideFlags: 0
@@ -182,40 +182,8 @@ MonoBehaviour:
   GearSOs:
   - {fileID: 11400000, guid: 5700cbf6a34ec004eace4dd18d0255dd, type: 2}
   - {fileID: 11400000, guid: 751176efffd138b4daa4ac87eda5ec4f, type: 2}
-  - {fileID: 11400000, guid: 5584540d0098f064786f8b8917e81c48, type: 2}
-  - {fileID: 11400000, guid: e3b7cf4d1a887b049ba85625152b8181, type: 2}
-  - {fileID: 11400000, guid: fba935f7f4d7c2c439c303fca2190b54, type: 2}
-  - {fileID: 11400000, guid: 96b285e3887eceb4fbd52c1f42090f73, type: 2}
-  - {fileID: 11400000, guid: 873ed095f20527240a64a1aed97ec50f, type: 2}
-  - {fileID: 11400000, guid: a07374b5695daa8489b7300818f9eecb, type: 2}
-  - {fileID: 11400000, guid: ba357d6d0b059a846b8b8a9dbf49c69f, type: 2}
-  - {fileID: 11400000, guid: d407f6e800a06de4bb80cf559b6cce4b, type: 2}
-  - {fileID: 11400000, guid: dd13e92ed2476f6479cd07d9dcbcc2aa, type: 2}
-  - {fileID: 11400000, guid: e1c03e31cdfbdc34a8637f49708eff5d, type: 2}
-  - {fileID: 11400000, guid: d79b27d8e773a1c4ab1488f7f3701864, type: 2}
-  - {fileID: 11400000, guid: b32f5d834ba5d914ebc1ec3190d154f1, type: 2}
   - {fileID: 11400000, guid: 5e17d3222ce4ea14a8b96907c0212e24, type: 2}
   - {fileID: 11400000, guid: 0164f14c638fe7e4e8673cb3dc4b8663, type: 2}
-  - {fileID: 11400000, guid: 4ffd2f7663c11e4448a0b1006e2ccdcd, type: 2}
-  - {fileID: 11400000, guid: c04b3323677849b46b52a90eb45cf35b, type: 2}
-  - {fileID: 11400000, guid: 115399889b4afd04bb278182df34e0a8, type: 2}
-  - {fileID: 11400000, guid: 4badafbad9272dd428ff8a6d16e8aba5, type: 2}
-  - {fileID: 11400000, guid: c3f5b5fd7818cfa45855b1fc39fc27a9, type: 2}
-  - {fileID: 11400000, guid: 6261379033a28bb4eb8f034bed12fcc9, type: 2}
-  - {fileID: 11400000, guid: 577b3b43531b7c64abd6c8755f5183a6, type: 2}
-  - {fileID: 11400000, guid: b83a20a7df991f849b422d0a2d4a7512, type: 2}
-  - {fileID: 11400000, guid: e410ca95488be0145b7b1fa2bc7b5f55, type: 2}
-  - {fileID: 11400000, guid: 9d9dbad9d22b3bc468d3ecef1e5b872f, type: 2}
-  - {fileID: 11400000, guid: aed22969efa6e4b41991704be9339265, type: 2}
-  - {fileID: 11400000, guid: 36c61b67b88e63a4cbfde7e34c69326b, type: 2}
-  - {fileID: 11400000, guid: c4fcb7ed98ebbc849a8218d6183ea44a, type: 2}
-  - {fileID: 11400000, guid: 6c5839c8d723f7b47bba5256bf5af22e, type: 2}
-  - {fileID: 11400000, guid: e0a71fa673d6e0945911e4475d76faaf, type: 2}
-  - {fileID: 11400000, guid: 4dee5e8035951b948905aeda6def9202, type: 2}
-  - {fileID: 11400000, guid: 237a23b5fbfff7b4cbddec5650600fed, type: 2}
-  - {fileID: 11400000, guid: 2a89ad184062591469b98512d24b150b, type: 2}
-  - {fileID: 11400000, guid: 35fec9abe6bcaa2498857887e253ae54, type: 2}
-  - {fileID: 11400000, guid: 3c46fd22786e44e4c83248f5ac2dcde2, type: 2}
   _periodIndex: 0
   PeriodDataList:
   - _name: Any
@@ -1933,6 +1901,200 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 832575517}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &838076538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 838076540}
+  - component: {fileID: 838076539}
+  m_Layer: 0
+  m_Name: Game Manager (BACK UP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &838076539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838076538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978c4de1c16a3f94eb533040e3b60559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitSOs:
+  - {fileID: 11400000, guid: da8bc4b1ae3208f419b881d89c9e99fc, type: 2}
+  - {fileID: 11400000, guid: cc714a229df04ca4fbea763fde9ce8ce, type: 2}
+  - {fileID: 11400000, guid: b52ab53e42eb8e54c9587648b833b417, type: 2}
+  - {fileID: 11400000, guid: 39eea0c3946a89246a867d0ebaabb867, type: 2}
+  - {fileID: 11400000, guid: 7c6f0c92f47b5894d8f6a6c6a66a4303, type: 2}
+  - {fileID: 11400000, guid: e4bd95fa412a2cd48b5cfa5dc489e162, type: 2}
+  - {fileID: 11400000, guid: 21e3a95b74a0da54d99103ae5bbb400d, type: 2}
+  - {fileID: 11400000, guid: a7d49d60552dd254a877a2d068a11583, type: 2}
+  - {fileID: 11400000, guid: b87ef5662e868a74080d1ed1f7c37ae2, type: 2}
+  - {fileID: 11400000, guid: 1055dfe58be76a84e99e2416a736fc95, type: 2}
+  - {fileID: 11400000, guid: 8f84ec4c34787284988f46f436d1c9af, type: 2}
+  - {fileID: 11400000, guid: 59797dbae6d6a24448d83997ea4ce76a, type: 2}
+  GearSOs:
+  - {fileID: 11400000, guid: 5700cbf6a34ec004eace4dd18d0255dd, type: 2}
+  - {fileID: 11400000, guid: 751176efffd138b4daa4ac87eda5ec4f, type: 2}
+  - {fileID: 11400000, guid: 5584540d0098f064786f8b8917e81c48, type: 2}
+  - {fileID: 11400000, guid: e3b7cf4d1a887b049ba85625152b8181, type: 2}
+  - {fileID: 11400000, guid: fba935f7f4d7c2c439c303fca2190b54, type: 2}
+  - {fileID: 11400000, guid: 96b285e3887eceb4fbd52c1f42090f73, type: 2}
+  - {fileID: 11400000, guid: 873ed095f20527240a64a1aed97ec50f, type: 2}
+  - {fileID: 11400000, guid: a07374b5695daa8489b7300818f9eecb, type: 2}
+  - {fileID: 11400000, guid: ba357d6d0b059a846b8b8a9dbf49c69f, type: 2}
+  - {fileID: 11400000, guid: d407f6e800a06de4bb80cf559b6cce4b, type: 2}
+  - {fileID: 11400000, guid: dd13e92ed2476f6479cd07d9dcbcc2aa, type: 2}
+  - {fileID: 11400000, guid: e1c03e31cdfbdc34a8637f49708eff5d, type: 2}
+  - {fileID: 11400000, guid: d79b27d8e773a1c4ab1488f7f3701864, type: 2}
+  - {fileID: 11400000, guid: b32f5d834ba5d914ebc1ec3190d154f1, type: 2}
+  - {fileID: 11400000, guid: 5e17d3222ce4ea14a8b96907c0212e24, type: 2}
+  - {fileID: 11400000, guid: 0164f14c638fe7e4e8673cb3dc4b8663, type: 2}
+  - {fileID: 11400000, guid: 4ffd2f7663c11e4448a0b1006e2ccdcd, type: 2}
+  - {fileID: 11400000, guid: c04b3323677849b46b52a90eb45cf35b, type: 2}
+  - {fileID: 11400000, guid: 115399889b4afd04bb278182df34e0a8, type: 2}
+  - {fileID: 11400000, guid: 4badafbad9272dd428ff8a6d16e8aba5, type: 2}
+  - {fileID: 11400000, guid: c3f5b5fd7818cfa45855b1fc39fc27a9, type: 2}
+  - {fileID: 11400000, guid: 6261379033a28bb4eb8f034bed12fcc9, type: 2}
+  - {fileID: 11400000, guid: 577b3b43531b7c64abd6c8755f5183a6, type: 2}
+  - {fileID: 11400000, guid: b83a20a7df991f849b422d0a2d4a7512, type: 2}
+  - {fileID: 11400000, guid: e410ca95488be0145b7b1fa2bc7b5f55, type: 2}
+  - {fileID: 11400000, guid: 9d9dbad9d22b3bc468d3ecef1e5b872f, type: 2}
+  - {fileID: 11400000, guid: aed22969efa6e4b41991704be9339265, type: 2}
+  - {fileID: 11400000, guid: 36c61b67b88e63a4cbfde7e34c69326b, type: 2}
+  - {fileID: 11400000, guid: c4fcb7ed98ebbc849a8218d6183ea44a, type: 2}
+  - {fileID: 11400000, guid: 6c5839c8d723f7b47bba5256bf5af22e, type: 2}
+  - {fileID: 11400000, guid: e0a71fa673d6e0945911e4475d76faaf, type: 2}
+  - {fileID: 11400000, guid: 4dee5e8035951b948905aeda6def9202, type: 2}
+  - {fileID: 11400000, guid: 237a23b5fbfff7b4cbddec5650600fed, type: 2}
+  - {fileID: 11400000, guid: 2a89ad184062591469b98512d24b150b, type: 2}
+  - {fileID: 11400000, guid: 35fec9abe6bcaa2498857887e253ae54, type: 2}
+  - {fileID: 11400000, guid: 3c46fd22786e44e4c83248f5ac2dcde2, type: 2}
+  _periodIndex: 0
+  PeriodDataList:
+  - _name: Any
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: "P\xE9riodes m\xE9lang\xE9es"
+    - _name: EN
+      Language: 1
+      Txt: Mixed periods
+    Period: 0
+    PeriodIcon: {fileID: 0}
+  - _name: MED/FAN
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: MED / FAN
+    - _name: EN
+      Language: 1
+      Txt: 'MED /
+
+        FAN'
+    Period: 1
+    PeriodIcon: {fileID: 0}
+  - _name: MOD/FUT
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: MOD / FUT
+    - _name: EN
+      Language: 1
+      Txt: 'MOD /
+
+        FUT'
+    Period: 2
+    PeriodIcon: {fileID: 0}
+  MegafigCategoryLocDataList:
+  - _name: Terrestre
+    MegafigCategory: 0
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Terrestre
+    - _name: EN
+      Language: 1
+      Txt: Ground
+  - _name: "A Gravit\xE9"
+    MegafigCategory: 1
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: "A Gravit\xE9"
+    - _name: EN
+      Language: 1
+      Txt: Levitation
+  - _name: Marcheur
+    MegafigCategory: 2
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Marcheur
+    - _name: EN
+      Language: 1
+      Txt: Walker
+  - _name: Volante
+    MegafigCategory: 3
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Volante
+    - _name: EN
+      Language: 1
+      Txt: Flying
+  - _name: "Cr\xE9ature"
+    MegafigCategory: 4
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: "Cr\xE9ature"
+    - _name: EN
+      Language: 1
+      Txt: Creature
+  - _name: De Soutien
+    MegafigCategory: 5
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: De Soutien
+    - _name: EN
+      Language: 1
+      Txt: Support
+  _languageIndex: 0
+  LanguageDataList:
+  - _name: French
+    Language: 0
+    FlagIcon: {fileID: 21300000, guid: 43fe61ddad7dcb34aaad56294b454e8f, type: 3}
+  - _name: English
+    Language: 1
+    FlagIcon: {fileID: 21300000, guid: 7a8b01fb593c22f41a249022a2dbebba, type: 3}
+  ArmyUnits: []
+--- !u!4 &838076540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838076538}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -4299,4 +4461,5 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1182377666}
   - {fileID: 21228196}
+  - {fileID: 838076540}
   - {fileID: 1228339432}

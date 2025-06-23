@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Truelch.Enums;
 using Truelch.Localization;
+using Truelch.ScriptableObjects;
 using UnityEngine;
 
 namespace Truelch.Data
@@ -10,6 +11,7 @@ namespace Truelch.Data
     public class GearData
     {
         #region ATTRIBUTES
+        public GearSO SO; //I use that to compare Gear (because cloned Gear isn't equal to its "source")
         public bool IsReal = false; //Null stuff, when displayed in the inspector, isn't null anymore.
         public Color Color = Color.white;
         public Sprite Icon;
@@ -19,6 +21,7 @@ namespace Truelch.Data
         public UnitType UnitType;
         public List<MegafigCategory> RestrictedMegaCategories; //if empty, no restriction
         public List<MegafigSize> RestrictedMegaSizes; //if empty, no restriction
+        public bool IsSingleton = true;
         [Range(1, 2)] public int SlotSize = 1; //Simple: 1, Double: 2 (wait, transport can take more?)
         public bool TurretPossible = false;
 
@@ -34,6 +37,8 @@ namespace Truelch.Data
         public GearData GetClone()
         {
             GearData clone = new GearData();
+
+            clone.SO = SO;
 
             clone.IsReal = IsReal;
 

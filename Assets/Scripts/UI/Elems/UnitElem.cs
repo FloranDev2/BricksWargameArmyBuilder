@@ -58,7 +58,6 @@ namespace Truelch.UI
         #region Misc
         IEnumerator CR_RefreshClass()
         {
-            //Debug.Log("CR_RefreshClass()");
             if (_gameMgr == null) yield return new WaitUntil(() => _gameMgr != null);
 
             //Name
@@ -163,6 +162,16 @@ namespace Truelch.UI
                 }
             }                
         }
+
+        public void RefreshGear()
+        {
+            //Debug.Log("RefreshGear()");
+            int max = Mathf.Min(_gearElems.Count, UnitData.GearList.Count);
+            for (int i = 0; i < max; i++)
+            {
+                _gearElems[i].UpdateGear(UnitData.GearList[i], false);
+            }
+        }
         #endregion Misc
 
         #region Public
@@ -232,15 +241,18 @@ namespace Truelch.UI
 
         public void OnMegaCatChanged(MegafigCategory newMegaCat)
         {
-            Debug.Log("OnMegaCatChanged(newMegaCat: " + newMegaCat + ")");
+            //Debug.Log("OnMegaCatChanged(newMegaCat: " + newMegaCat + ")");
             int index = _gameMgr.ArmyUnits.IndexOf(UnitData);
             _gameMgr.ChangeUnitMegaCategory(index, newMegaCat);
         }
 
-        public void OnGearChanged(int gearIndex, GearData newGear)
+        public void OnGearChanged(int gearIndex, GearData newGear/*, GearData oldGear*/)
         {
+            //Debug.Log("OnGearChanged");
+            int index = _gameMgr.ArmyUnits.IndexOf(UnitData); //I should move that into a separate function
             GearData clonedGear = newGear.GetClone();
             UnitData.GearList[gearIndex] = clonedGear;
+            _gameMgr.ChangeGear(index, gearIndex, clonedGear/*, oldGear*/);
         }
 
         public void OnDestroyGear(GearExpBtn gear)
