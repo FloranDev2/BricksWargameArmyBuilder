@@ -23,10 +23,8 @@ namespace Truelch.Managers
         public delegate void OnUnitAdded(UnitData unitData);
         public static OnUnitAdded onUnitAdded;
 
-        //TODO --->
         public delegate void OnUnitRemoved(UnitData unitData);
         public static OnUnitRemoved onUnitRemoved;
-        //<--- TODO
 
         public delegate void OnUnitClassChanged(int unitIndex, UnitData newClass);
         public static OnUnitClassChanged onUnitClassChanged;
@@ -36,6 +34,9 @@ namespace Truelch.Managers
 
         public delegate void OnGearChanged(int unitIndex, int gearIndex, GearData newGear/*, GearData oldGear*/);
         public static OnGearChanged onGearChanged;
+
+        public delegate void OnGearRemoved(int unitIndex, int gearIndex, GearData removedGear);
+        public static OnGearRemoved onGearRemoved;
 
         //Public (Will certainly be moved to a DataManager)
         // - Constant Data (units stats, gear, ...)
@@ -349,6 +350,13 @@ namespace Truelch.Managers
             //Debug.Log("ChangeGear(unitIndex: " + unitIndex + ", gearIndex : " + gearIndex + ", newGear: " + newGear.LocNames[0].Txt + ")");
             ComputeArmySpecialization();
             onGearChanged?.Invoke(unitIndex, gearIndex, newGear/*, oldGear*/);
+        }
+
+        public void RemoveGear(int unitIndex, int gearIndex, GearData removedGear)
+        {
+            Debug.Log("RemoveGear(unitIndex: " + unitIndex + ", gearIndex : " + gearIndex + ", removedGear: " + removedGear.LocNames[0].Txt + ")");
+            ComputeArmySpecialization();
+            onGearRemoved?.Invoke(unitIndex, gearIndex, removedGear);
         }
 
         /// <summary>

@@ -36,6 +36,7 @@ namespace Truelch.UI
 
         //Hidden
         // - Managers
+        private CanvasManager _canvasMgr;
         private GameManager _gameMgr; //only useful for tests?
 
         // - Misc
@@ -50,8 +51,11 @@ namespace Truelch.UI
         #region Init
         IEnumerator Start()
         {
-            yield return new WaitUntil(() => GameManager.Instance != null);
-            _gameMgr = GameManager.Instance;
+            yield return new WaitUntil(() =>
+                CanvasManager.Instance != null &&
+                GameManager.Instance != null);
+            _canvasMgr = CanvasManager.Instance;
+            _gameMgr   = GameManager.Instance;
         }
         #endregion Init
 
@@ -263,7 +267,22 @@ namespace Truelch.UI
         // --- OTHER BUTTONS ---
         public void OnShowInfosClick()
         {
-
+            Language language = _gameMgr.GetCurrentLanguage();
+            string msg = "";
+            //foreach (var ability in UnitData.Abilities)
+            for (int i = 0; i < UnitData.Abilities.Count; i++)
+            {
+                var ability = UnitData.Abilities[i];
+                foreach (var loc in ability.LocDescriptions)
+                {
+                    if (loc.Language == language)
+                    {
+                        if (i != 0) msg += "\n\n";
+                        msg += loc.Txt;
+                    }
+                }
+            }
+            _canvasMgr.FeedbackUI.ShowPopUp(msg);
         }
 
         public void OnDuplicateClick()
