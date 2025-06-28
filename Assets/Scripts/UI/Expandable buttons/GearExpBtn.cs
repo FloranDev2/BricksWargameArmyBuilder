@@ -27,6 +27,7 @@ namespace Truelch.UI
 
         //Hidden
         private UnitElem _unitElem;
+        private GearData _gearData;
         #endregion ATTRIBUTES
 
 
@@ -41,6 +42,8 @@ namespace Truelch.UI
                 return;
             }
 
+            _gearData = gearData;
+
             //_nameTxt.text = ""; //or set active false?
             _nameTxt.gameObject.SetActive(false); //because text loc will write over this
             _gearImg.gameObject.SetActive(true);
@@ -54,6 +57,7 @@ namespace Truelch.UI
 
         public void ClearGear()
         {
+            _gearData = null;
             _nameTxt.gameObject.SetActive(true);
             _nameTxt.GetComponent<TextLoc>().UpdateLoc(); //this will reset to the "Choose an option" text
             _gearImg.gameObject.SetActive(false);
@@ -64,6 +68,7 @@ namespace Truelch.UI
         public void Init(UnitElem unitElem, int index, GearData gearData)
         {
             _unitElem = unitElem;
+            _gearData = gearData;
             Index = index;
 
             //Long story short: Gear Data has been displayed somewhere in an inspector, instantiating an initially null ref. Gah
@@ -131,7 +136,18 @@ namespace Truelch.UI
 
         public void OnInfosClick()
         {
-
+            if (_gearData != null & _gearData.IsReal)
+            {
+                Language language = _gameMgr.GetCurrentLanguage();
+                foreach (var locDesc in _gearData.LocDescriptions)
+                {
+                    if (locDesc.Language == language)
+                    {
+                        _canvasMgr.FeedbackUI.ShowPopUp(locDesc.Txt);
+                        break;
+                    }
+                }
+            }
         }
         #endregion Public
 

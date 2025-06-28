@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: MegaGear - Wp AoE
+  m_Name: B13 MegaGear - Wp AoE (Souffle)
   m_EditorClassIdentifier: 
   Data:
     SO: {fileID: 11400000}
@@ -34,7 +34,14 @@ MonoBehaviour:
     LocDescriptions:
     - _name: FR
       Language: 0
-      Txt: "(description \xE0 venir)"
+      Txt: "En d\xE9but de partie, choisisez 1 sortil\xE8ge entre \xAB br\xFBlure
+        \xBB, \xAB poison \xBB ou \xAB paralysie \xBB. D\xE8s lors que votre attaque
+        blesse, appliquez les effets correspondants.\n\nIgnorez les effets de couverts
+        et les \xE9quipements d\xE9fensifs.\n\nVotre attaque cible TOUTES les unit\xE9s
+        \xE0 port\xE9e et dans votre arc de tir. Si des unit\xE9s alli\xE9es sont
+        impact\xE9es, lancez 1D pour chacune d'entre elles. Sur un \xE9chec, l'unit\xE9
+        subit 1 blessure ainsi que l'effet de votre sortil\xE8ge.\n\nApr\xE8s avoir
+        utilis\xE9 cette arme, prenez un pion de contrainte."
     - _name: EN
       Language: 1
       Txt: (coming soon)

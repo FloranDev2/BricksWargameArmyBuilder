@@ -23,7 +23,7 @@ MonoBehaviour:
 
         Megafig'
     Type: 1
-    Icon: {fileID: 21300000, guid: 4ab3d8c9cf5fe2343a777d0087f1de48, type: 3}
+    Icon: {fileID: 21300000, guid: 0366ebd4b5f947744b515a8b5da217e9, type: 3}
     Color: {r: 0.75294125, g: 0, b: 0, a: 1}
     MaxAmount: 0
     MinUnitIntegration: 0

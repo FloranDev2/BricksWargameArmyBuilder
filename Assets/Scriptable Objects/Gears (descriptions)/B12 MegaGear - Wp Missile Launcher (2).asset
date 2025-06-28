@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: MegaGear - Wp Missile Launcher (2)
+  m_Name: B12 MegaGear - Wp Missile Launcher (2)
   m_EditorClassIdentifier: 
   Data:
     SO: {fileID: 11400000}
@@ -34,8 +34,20 @@ MonoBehaviour:
     LocDescriptions:
     - _name: FR
       Language: 0
-      Txt: "(description \xE0 venir)"
+      Txt: "Vous pouvez utiliser jusqu'\xE0 2PA suppl\xE9mentaires pour ajouter 1D
+        par PA utilis\xE9 \xE0 votre attaque (Ex: 2PA = 2D en plus).\n\nSi vous le
+        faites, prenez imm\xE9diatement un pion de contrainte.\n\nSi votre attaque
+        cible une m\xE9gafigurine, diminuez de 2 sa valeur de r\xE9sistance."
     - _name: EN
       Language: 1
-      Txt: (coming soon)
+      Txt: 'You can use up to 2 additionnal AP to add 1 die per AP spent to this
+        attack (E.g.: 2AP = 2 additionnal dice).
+
+
+        If you do so, take a stress
+        token.
+
+
+        If your attack targets a megafig, reduce its sturdiness
+        by 2.'
     ExportString: ':purple_square:'

@@ -35,8 +35,17 @@ MonoBehaviour:
     - _name: FR
       Language: 0
       Txt: "En d\xE9but de partie, choisissez l'une de ces options pour l'appliquer
-        sur toutes vos attaques :\n- Explosif : En plus des effets d'une "
+        sur toutes vos attaques :\n- Explosif : En plus des effets d'une \xAB grenade
+        \xBB classique, retirez aussi 1 \xE0 la valeur de r\xE9sistance des m\xE9gafigurines.\n-
+        Explosif : En plus des effets d'une \xAB grenade \xBB classique, retirez
+        aussi 1 \xE0 la valeur de r\xE9sistance des m\xE9gafigurines.\n- Paralysie
+        : Infligez 1 pion paralysie pour chaque r\xE9sultat 5 ou 6 obtenu (3 maximum).\nApr\xE8s
+        avoir utilis\xE9 cette arme, prenez un pion de contrainte."
     - _name: EN
       Language: 1
-      Txt: (coming soon)
+      Txt: "Before the game begins, choose one of these options to apply to all your
+        attacks:\n- Explosive: In addition to \xAB grenade \xBB effects, you may
+        reduce the sturdiness of the targeted megafig by 1.\n- Paralyzing: Give 1
+        paralysis token for each 5 or 6 results (max 3).\nAfter using this weapon,
+        add a stress token to your megafig."
     ExportString: ':purple_square:'

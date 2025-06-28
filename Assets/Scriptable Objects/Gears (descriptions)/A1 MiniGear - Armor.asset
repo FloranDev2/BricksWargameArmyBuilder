@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: MiniGear - Heal
+  m_Name: A1 MiniGear - Armor
   m_EditorClassIdentifier: 
   Data:
     SO: {fileID: 11400000}
     IsReal: 1
-    Color: {r: 1, g: 1, b: 1, a: 1}
-    Icon: {fileID: 21300000, guid: a9bb8f55b2bd71a4c9b61ec61fb2889d, type: 3}
+    Color: {r: 1, g: 0, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: 6b54911fd1dc1ad4a88317d752c1e664, type: 3}
     Period: 0
     UnitType: 0
     RestrictedMegaCategories: 
@@ -27,15 +27,21 @@ MonoBehaviour:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Soin
+      Txt: Armure
     - _name: EN
       Language: 1
-      Txt: Heal
+      Txt: Armor
     LocDescriptions:
     - _name: FR
       Language: 0
-      Txt: "(description \xE0 venir)"
+      Txt: "Lorsqu\u2019un adversaire vous attaque, annulez automatiquement un r\xE9sultat
+        4 de son jet de d\xE9s.\n\n/!\\ R\xE9duisez votre distance maximale de d\xE9placement
+        de 1 zone."
     - _name: EN
       Language: 1
-      Txt: (coming soon)
-    ExportString: ':white_large_square:'
+      Txt: 'When an enemy is attacking you, you may remove one 4 result from their
+        attack dice roll.
+
+
+        /!\ Reduce your maximum move distance by 1 area.'
+    ExportString: ':red_square:'
