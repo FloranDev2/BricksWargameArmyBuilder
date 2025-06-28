@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
+  m_Name: B4 MegaGear - Banner
+  m_EditorClassIdentifier: 
+  Data:
+    SO: {fileID: 11400000}
+    IsReal: 1
+    Color: {r: 0, g: 0, b: 1, a: 1}
+    Icon: {fileID: 21300000, guid: 4dd9d17dfac3f0a4c8797bb7f7e79805, type: 3}
+    Period: 1
+    UnitType: 1
+    RestrictedMegaCategories: 
+    RestrictedMegaSizes: 
+    IsSingleton: 1
+    SlotSize: 1
+    TurretPossible: 0
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: "Banni\xE8re"
+    - _name: EN
+      Language: 1
+      Txt: Banner
+    LocDescriptions:
+    - _name: FR
+      Language: 0
+      Txt: "Lorsque vous attaquez une cible \xE0 distance, vous pouvez utiliser maximum
+        1PA d\u2019une autre unit\xE9 alli\xE9e \xE9quip\xE9e d\u2019une radio \xE0
+        la place du v\xF4tre, \xE0 condition que cette unit\xE9 soit \xE0\r\nport\xE9e
+        de tir et en vue de votre cible. Cette attaque doit \xEAtre comptabilis\xE9e
+        dans la valeur de contrainte de l\u2019unit\xE9 active.\n\nCOMBINAISON AVEC
+        \xAB EFFET DE CHEF \xBB : Si votre chef est \xE9quip\xE9 d\u2019une radio,
+        alors son effet de chef pourra \xEAtre aussi appliqu\xE9 \xE0 distance bleue
+        \xE0 toutes les unit\xE9s \xE9quip\xE9es de radio."
+    - _name: EN
+      Language: 1
+      Txt: "When you do a ranged attack, you may use 1AP from an allied equipped
+        with a radio, if this unit is in range and has a line of sight on the target.\nThis
+        attack is counted for the constraint value of the active unit.\n\nCombo with
+        \xAB LEADER EFFECT \xBB: if your leader is equipped with a radio, then his
+        leader effect may be applied at blue range to all allies equipped with a
+        radio."
+    ExportString: ':blue_square:'

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
+  m_Name: B10 MegaGear - Wp Close Combat (2)
+  m_EditorClassIdentifier: 
+  Data:
+    SO: {fileID: 11400000}
+    IsReal: 1
+    Color: {r: 1, g: 1, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: c5df8529e33d11047846c4ff677d5add, type: 3}
+    Period: 0
+    UnitType: 1
+    RestrictedMegaCategories: 020000000400000003000000
+    RestrictedMegaSizes: 
+    IsSingleton: 1
+    SlotSize: 2
+    TurretPossible: 0
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: "Combat Rapproch\xE9 (double)"
+    - _name: EN
+      Language: 1
+      Txt: Close Combat (two slots)
+    LocDescriptions:
+    - _name: FR
+      Language: 0
+      Txt: "Lorsque vous attaquez, consid\xE9rez les r\xE9sultats 3 comme des r\xE9ussites.\n\nSi
+        vous ciblez une m\xE9gafigurine au C\xE0C, retirez 1 \xE0 sa valeur de r\xE9sistance."
+    - _name: EN
+      Language: 1
+      Txt: 'When you attack, you may consider 3 results as successes.
+
+
+        If
+        you target a megafig in close combat, you may reduce by 1 their sturdiness
+        value.'
+    ExportString: ':yellow_square:'

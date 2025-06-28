@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
+  m_Name: MiniGear - Explo Incendiary
+  m_EditorClassIdentifier: 
+  Data:
+    SO: {fileID: 11400000}
+    IsReal: 1
+    Color: {r: 1, g: 0.5019608, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: 0a4e2e27e2f1bfa4fa31e37432780fc9, type: 3}
+    Period: 2
+    UnitType: 0
+    RestrictedMegaCategories: 
+    RestrictedMegaSizes: 
+    IsSingleton: 1
+    SlotSize: 1
+    TurretPossible: 0
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Explosif Incendiaire
+    - _name: EN
+      Language: 1
+      Txt: Incendiary Explosive
+    LocDescriptions:
+    - _name: FR
+      Language: 0
+      Txt: "(description \xE0 venir)"
+    - _name: EN
+      Language: 1
+      Txt: (coming soon)
+    ExportString: ':orange_square:'

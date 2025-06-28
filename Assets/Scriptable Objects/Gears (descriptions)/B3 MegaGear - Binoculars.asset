@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
+  m_Name: B3 MegaGear - Binoculars
+  m_EditorClassIdentifier: 
+  Data:
+    SO: {fileID: 11400000}
+    IsReal: 1
+    Color: {r: 0.2264151, g: 0.9056604, b: 0.39871162, a: 1}
+    Icon: {fileID: 21300000, guid: ae15eccad7bdb5946a4961d93d9e6f20, type: 3}
+    Period: 0
+    UnitType: 1
+    RestrictedMegaCategories: 
+    RestrictedMegaSizes: 
+    IsSingleton: 1
+    SlotSize: 1
+    TurretPossible: 0
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Jumelles
+    - _name: EN
+      Language: 1
+      Txt: Binoculars
+    LocDescriptions:
+    - _name: FR
+      Language: 0
+      Txt: "Utilisez 1PA pour cibler une unit\xE9 visible, m\xEAme hors de port\xE9e,
+        ne poss\xE9dant aucun marqueur \xAB cible \xBB et lancer 2D. L\u2019unit\xE9
+        cibl\xE9e re\xE7oit ensuite 1 marqueur \xAB cible \xBB pour chaque r\xE9ussite
+        obtenue."
+    - _name: EN
+      Language: 1
+      Txt: "You may use 1AP to target a unit in line of sight, even out of range,
+        if it doesn't have any \xAB target \xBB token. If you do, roll 2 dice. The
+        targeted unit then receive a \xAB target \xBB token for each success result
+        you get.\nWhen a unit attacks a unit with a \xAB target \xBB token, "
+    ExportString: ':green_square:'

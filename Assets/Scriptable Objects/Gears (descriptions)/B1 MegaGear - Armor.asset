@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
+  m_Name: B1 MegaGear - Armor
+  m_EditorClassIdentifier: 
+  Data:
+    SO: {fileID: 11400000}
+    IsReal: 1
+    Color: {r: 1, g: 0, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: 6b54911fd1dc1ad4a88317d752c1e664, type: 3}
+    Period: 0
+    UnitType: 1
+    RestrictedMegaCategories: 
+    RestrictedMegaSizes: 
+    IsSingleton: 1
+    SlotSize: 1
+    TurretPossible: 0
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Armure
+    - _name: EN
+      Language: 1
+      Txt: Armor
+    LocDescriptions:
+    - _name: FR
+      Language: 0
+      Txt: "Lorsqu'un adversaire vous attaque, annulez automatiquement un r\xE9sultat
+        4 de son jet de d\xE9s."
+    - _name: EN
+      Language: 1
+      Txt: When an opponent is attacking you, you may cancel one result 4 of their
+        attack roll.
+    ExportString: ':red_square:'
