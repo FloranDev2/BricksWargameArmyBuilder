@@ -35,7 +35,7 @@ namespace Truelch.Managers
         public delegate void OnGearChanged(int unitIndex, int gearIndex, GearData newGear/*, GearData oldGear*/);
         public static OnGearChanged onGearChanged;
 
-        public delegate void OnGearRemoved(int unitIndex, int gearIndex, GearData removedGear);
+        public delegate void OnGearRemoved(int unitIndex, int gearIndex);
         public static OnGearRemoved onGearRemoved;
 
         //Public (Will certainly be moved to a DataManager)
@@ -93,7 +93,7 @@ namespace Truelch.Managers
         #region Misc
         private void ComputeArmySpecialization()
         {
-            Debug.Log("ComputeArmySpecialization()");
+            //Debug.Log("ComputeArmySpecialization()");
 
             //Prepare data
             List<SpecializationGearData> speList = new List<SpecializationGearData>();
@@ -189,7 +189,7 @@ namespace Truelch.Managers
                 {
                     if (gear != null && gear.IsReal)
                     {
-                        Debug.Log(" -> gear: " + gear.LocNames[0].Txt);
+                        //Debug.Log(" -> gear: " + gear.LocNames[0].Txt);
                     }
                 }
 
@@ -354,9 +354,17 @@ namespace Truelch.Managers
 
         public void RemoveGear(int unitIndex, int gearIndex, GearData removedGear)
         {
-            Debug.Log("RemoveGear(unitIndex: " + unitIndex + ", gearIndex : " + gearIndex + ", removedGear: " + removedGear.LocNames[0].Txt + ")");
-            ComputeArmySpecialization();
-            onGearRemoved?.Invoke(unitIndex, gearIndex, removedGear);
+            for (int i = 0; i < ArmyUnits[unitIndex].GearList.Count; i++)
+            {
+                var gear = ArmyUnits[unitIndex].GearList[i];
+                if (gear != null && gear.IsReal && gear.SO == removedGear.SO)
+                {
+                    ArmyUnits[unitIndex].GearList[i] = null;
+                }
+            }
+
+            //ComputeArmySpecialization(); //to update gear icons?
+            onGearRemoved?.Invoke(unitIndex, gearIndex);
         }
 
         /// <summary>

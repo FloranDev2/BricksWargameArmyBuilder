@@ -6,7 +6,6 @@ using Truelch.Data;
 using Truelch.Enums;
 using Truelch.Localization;
 using Truelch.Managers;
-using Truelch.ScriptableObjects;
 using UnityEngine;
 
 namespace Truelch.UI
@@ -57,6 +56,7 @@ namespace Truelch.UI
             GameManager.onUnitRemoved        += OnUnitRemoved;
             GameManager.onUnitClassChanged   += OnUnitClassChanged;
             GameManager.onGearChanged        += OnGearChanged;
+            GameManager.onGearRemoved        += OnGearRemoved;
             GameManager.onUnitMegaCatChanged += OnUnitMegaCatChanged;
         }
 
@@ -66,6 +66,7 @@ namespace Truelch.UI
             GameManager.onUnitRemoved        -= OnUnitRemoved;
             GameManager.onUnitClassChanged   -= OnUnitClassChanged;
             GameManager.onGearChanged        -= OnGearChanged;
+            GameManager.onGearRemoved        -= OnGearRemoved;
             GameManager.onUnitMegaCatChanged -= OnUnitMegaCatChanged;
         }
 
@@ -132,7 +133,13 @@ namespace Truelch.UI
         //TODO: I'm moving the data analyze to the game manager
         private void OnGearChanged(int unitIndex, int gearIndex, GearData newGear/*, GearData oldGear*/)
         {
-            _unitElems[unitIndex].RefreshGear();            
+            _unitElems[unitIndex].RefreshGear();
+        }
+
+        private void OnGearRemoved(int unitIndex, int gearIndex)
+        {
+            //Debug.Log("OnGearRemoved(unitIndex: " + unitIndex + ", gearIndex: " + gearIndex + ")");
+            _unitElems[unitIndex].RefreshGear();
         }
         #endregion Delegate Event
 

@@ -27,7 +27,7 @@ namespace Truelch.UI
 
         //Hidden
         private UnitElem _unitElem;
-        private GearData _gearData;
+        [NonSerialized] public GearData Data;
         #endregion ATTRIBUTES
 
 
@@ -38,11 +38,12 @@ namespace Truelch.UI
         {
             if (gearData == null || !gearData.IsReal)
             {
-                //Debug.Log("Not real gear!");
+                _nameTxt.gameObject.SetActive(true);
+                _gearImg.gameObject.SetActive(false);
                 return;
             }
 
-            _gearData = gearData;
+            Data = gearData;
 
             //_nameTxt.text = ""; //or set active false?
             _nameTxt.gameObject.SetActive(false); //because text loc will write over this
@@ -57,7 +58,7 @@ namespace Truelch.UI
 
         public void ClearGear()
         {
-            _gearData = null;
+            Data = null;
             _nameTxt.gameObject.SetActive(true);
             _nameTxt.GetComponent<TextLoc>().UpdateLoc(); //this will reset to the "Choose an option" text
             _gearImg.gameObject.SetActive(false);
@@ -68,7 +69,7 @@ namespace Truelch.UI
         public void Init(UnitElem unitElem, int index, GearData gearData)
         {
             _unitElem = unitElem;
-            _gearData = gearData;
+            Data = gearData;
             Index = index;
 
             //Long story short: Gear Data has been displayed somewhere in an inspector, instantiating an initially null ref. Gah
@@ -115,13 +116,7 @@ namespace Truelch.UI
 
         public override void OnElemClick(int index)
         {
-            //Debug.Log("GearExpBtn.OnElemClick(index: " + index + ")");
-
-            //Old
             List<GearSO> availableGears = _gameMgr.GetGearSOs(_unitElem.UnitData);
-            //UpdateGear(availableGears[index].Data, true); //I'll keep it
-
-            //New already done in UpdateGear
             _unitElem.OnGearChanged(Index, availableGears[index].Data);
         }
 
@@ -136,10 +131,10 @@ namespace Truelch.UI
 
         public void OnInfosClick()
         {
-            if (_gearData != null & _gearData.IsReal)
+            if (Data != null & Data.IsReal)
             {
                 Language language = _gameMgr.GetCurrentLanguage();
-                foreach (var locDesc in _gearData.LocDescriptions)
+                foreach (var locDesc in Data.LocDescriptions)
                 {
                     if (locDesc.Language == language)
                     {

@@ -169,7 +169,6 @@ namespace Truelch.UI
 
         public void RefreshGear()
         {
-            //Debug.Log("RefreshGear()");
             int max = Mathf.Min(_gearElems.Count, UnitData.GearList.Count);
             for (int i = 0; i < max; i++)
             {
@@ -187,11 +186,13 @@ namespace Truelch.UI
             StartCoroutine(CR_RefreshClass());
         }
 
+        // --- From ArmyBuilderUI ---
         public void SetMegaCatText(string name)
         {
             _megaTypeTxt.text = name;
         }
 
+        // --- From Children (GearExpBtn, ChooseMegaCatExpBtn, ...) ---
         public void OnChangeClassClick(UnitSO newUnitSO)
         {
             if (_gameMgr.ArmyUnits.Contains(UnitData))
@@ -252,16 +253,17 @@ namespace Truelch.UI
 
         public void OnGearChanged(int gearIndex, GearData newGear/*, GearData oldGear*/)
         {
-            //Debug.Log("OnGearChanged");
             int index = _gameMgr.ArmyUnits.IndexOf(UnitData); //I should move that into a separate function
             GearData clonedGear = newGear.GetClone();
             UnitData.GearList[gearIndex] = clonedGear;
             _gameMgr.ChangeGear(index, gearIndex, clonedGear/*, oldGear*/);
         }
 
-        public void OnDestroyGear(GearExpBtn gear)
+        public void OnDestroyGear(GearExpBtn gearBtn)
         {
-            UnitData.GearList[gear.Index] = null;
+            int index = _gameMgr.ArmyUnits.IndexOf(UnitData); //I should move that into a separate function
+            UnitData.GearList[gearBtn.Index] = null;
+            _gameMgr.RemoveGear(index, gearBtn.Index, gearBtn.Data);
         }
 
         // --- OTHER BUTTONS ---
