@@ -34,25 +34,25 @@ namespace Truelch.UI
         #region METHODS
 
         #region Misc
-        public void UpdateGear(GearData gearData, bool callEvent)
+        public void UpdateGear(GearData newGearData, GearData oldGearData, bool callEvent)
         {
-            if (gearData == null || !gearData.IsReal)
+            if (newGearData == null || !newGearData.IsReal)
             {
                 _nameTxt.gameObject.SetActive(true);
                 _gearImg.gameObject.SetActive(false);
                 return;
             }
 
-            Data = gearData;
+            Data = newGearData;
 
             //_nameTxt.text = ""; //or set active false?
             _nameTxt.gameObject.SetActive(false); //because text loc will write over this
             _gearImg.gameObject.SetActive(true);
-            _gearImg.sprite = gearData.Icon;
+            _gearImg.sprite = newGearData.Icon;
 
             if (callEvent) //to prevent infinite loop
             {
-                _unitElem.OnGearChanged(Index, gearData); //this might create infinite loop, no?
+                _unitElem.OnGearChanged(Index, newGearData, oldGearData); //this might create infinite loop, no?
             }            
         }
 
@@ -84,7 +84,7 @@ namespace Truelch.UI
             {
                 //Debug.Log("Gear Data exists!");
                 //init after duplicating a unit with existing gear
-                UpdateGear(gearData, false); //wouldn't cause an infinite loop, but is unnecessary anyway (I think?)
+                UpdateGear(gearData, null, false); //wouldn't cause an infinite loop, but is unnecessary anyway (I think?)
             }
         }
 
@@ -117,7 +117,7 @@ namespace Truelch.UI
         public override void OnElemClick(int index)
         {
             List<GearSO> availableGears = _gameMgr.GetGearSOs(_unitElem.UnitData);
-            _unitElem.OnGearChanged(Index, availableGears[index].Data);
+            _unitElem.OnGearChanged(Index, availableGears[index].Data, Data);
         }
 
         public void OnDeleteClick()

@@ -172,7 +172,7 @@ namespace Truelch.UI
             int max = Mathf.Min(_gearElems.Count, UnitData.GearList.Count);
             for (int i = 0; i < max; i++)
             {
-                _gearElems[i].UpdateGear(UnitData.GearList[i], false);
+                _gearElems[i].UpdateGear(UnitData.GearList[i], null, false); //idk for null
             }
         }
         #endregion Misc
@@ -251,12 +251,23 @@ namespace Truelch.UI
             _gameMgr.ChangeUnitMegaCategory(index, newMegaCat);
         }
 
-        public void OnGearChanged(int gearIndex, GearData newGear/*, GearData oldGear*/)
+        //old gear is likely to be null
+        public void OnGearChanged(int gearIndex, GearData newGear, GearData oldGear)
         {
+            //Debug.Log("OnGearChanged(gearIndex: " + gearIndex + ", newGear: " + newGear.LocNames[0].Txt + ", oldGear: " + oldGear.LocNames[0].Txt);
+            /*
+            Debug.Log("OnGearChanged()");
+            Debug.Log("gearIndex: " + gearIndex);
+            Debug.Log("newGear: " + newGear);
+            Debug.Log("oldGear: " + oldGear);
+            Debug.Log("newGear name: " + newGear.LocNames[0].Txt);
+            Debug.Log("oldGear name: " + oldGear.LocNames[0].Txt);
+            */
+
             int index = _gameMgr.ArmyUnits.IndexOf(UnitData); //I should move that into a separate function
             GearData clonedGear = newGear.GetClone();
             UnitData.GearList[gearIndex] = clonedGear;
-            _gameMgr.ChangeGear(index, gearIndex, clonedGear/*, oldGear*/);
+            _gameMgr.ChangeGear(index, gearIndex, clonedGear, oldGear);
         }
 
         public void OnDestroyGear(GearExpBtn gearBtn)

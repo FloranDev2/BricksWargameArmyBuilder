@@ -32,7 +32,7 @@ namespace Truelch.Managers
         public delegate void OnUnitMegaCatChanged(int unitIndex, MegafigCategory newCat);
         public static OnUnitMegaCatChanged onUnitMegaCatChanged;
 
-        public delegate void OnGearChanged(int unitIndex, int gearIndex, GearData newGear/*, GearData oldGear*/);
+        public delegate void OnGearChanged(int unitIndex, int gearIndex, GearData newGear, GearData oldGear);
         public static OnGearChanged onGearChanged;
 
         public delegate void OnGearRemoved(int unitIndex, int gearIndex);
@@ -91,11 +91,82 @@ namespace Truelch.Managers
         #endregion Initialization
 
         #region Misc
-        private void ComputeArmySpecialization()
+        /// <summary>
+        /// gearSO to only compute for the gear that changed (so we don't have to go through all)
+        /// </summary>
+        /// <param name="changedGear"></param>
+        /// 
+        //private void ComputeArmySpecialization(GearSO newGear, GearSO oldGear)
+        private void ComputeArmySpecialization(GearData newGear, GearData oldGear)
         {
-            //Debug.Log("ComputeArmySpecialization()");
+            Debug.Log("ComputeArmySpecialization()");
+            CheckForGear(newGear);
+            CheckForGear(oldGear);
+        }
 
-            //Prepare data
+        //private void CheckForGear(GearSO changedGearSO)
+        private void CheckForGear(GearData changedGear)
+        {
+            Debug.Log("CheckForGear(changedGear: " + changedGear + ")");
+
+            if (changedGear == null || !changedGear.IsReal)
+            {
+                Debug.Log("WTF! ChangedGear is null or not real!");
+                return;
+            }
+
+            //SpecializationGearData spe = new SpecializationGearData(changedGearSO.Data);
+            SpecializationGearData spe = new SpecializationGearData(changedGear);
+
+            foreach (var unit in ArmyUnits)
+            {
+                spe.IsOk = false;
+                foreach (var gear in unit.GearList)
+                {
+                    //if (gear != null && gear.IsReal && gear.SO == changedGearSO)
+                    if (gear != null && gear.IsReal && gear.SO == changedGear.SO)
+                    {
+                        Debug.Log("Here!");
+                        spe.IsOk = true;
+                    }
+                }
+            }
+
+            //2nd loop
+            foreach (var unit in ArmyUnits)
+            {
+                //foreach (var gear in unit.GearList)
+                for (int i = 0; i < unit.GearList.Count; i++)
+                {
+                    var gear = unit.GearList[i];
+                    int count = 0;
+                    //if (gear != null && gear.IsReal && gear.SO == changedGearSO)
+                    if (gear != null && gear.IsReal && gear.SO == changedGear.SO)
+                    {
+                        if (spe.IsOk)
+                        {
+                            count++;
+                            if (count > 1)
+                            {
+                                //Remove this Gear
+                                unit.GearList[i] = null; //should be ok?
+                                Debug.Log(">>>>> Yay!");
+                            }                            
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                }
+            }
+        }
+
+        private void OldComputeArmySpecialization()
+        {
+            Debug.Log("ComputeArmySpecialization()");
+
+            //[OLD]Prepare data
             List<SpecializationGearData> speList = new List<SpecializationGearData>();
             foreach (GearSO gearSO in GearSOs)
             {
@@ -105,7 +176,7 @@ namespace Truelch.Managers
                 }
             }
 
-            //Check for army specialization
+            //[OLD]Check for army specialization
             foreach (UnitData unit in ArmyUnits)
             {
                 //Set to false again...
@@ -345,11 +416,13 @@ namespace Truelch.Managers
             onUnitMegaCatChanged?.Invoke(unitIndex, newCat);
         }
 
-        public void ChangeGear(int unitIndex, int gearIndex, GearData newGear/*, GearData oldGear*/)
+        //public void ChangeGear(int unitIndex, int gearIndex, GearDataSO newGearSO, GearDataSO oldGearSO)
+        public void ChangeGear(int unitIndex, int gearIndex, GearData newGear, GearData oldGear)
         {
             //Debug.Log("ChangeGear(unitIndex: " + unitIndex + ", gearIndex : " + gearIndex + ", newGear: " + newGear.LocNames[0].Txt + ")");
-            ComputeArmySpecialization();
-            onGearChanged?.Invoke(unitIndex, gearIndex, newGear/*, oldGear*/);
+            //ComputeArmySpecialization(newGearSO, oldGearSO);
+            ComputeArmySpecialization(newGear, oldGear);
+            onGearChanged?.Invoke(unitIndex, gearIndex, newGear, oldGear);
         }
 
         public void RemoveGear(int unitIndex, int gearIndex, GearData removedGear)

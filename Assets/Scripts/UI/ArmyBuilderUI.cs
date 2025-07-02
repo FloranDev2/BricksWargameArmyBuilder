@@ -131,7 +131,7 @@ namespace Truelch.UI
         */
         //Move that logic to the GameManager?
         //TODO: I'm moving the data analyze to the game manager
-        private void OnGearChanged(int unitIndex, int gearIndex, GearData newGear/*, GearData oldGear*/)
+        private void OnGearChanged(int unitIndex, int gearIndex, GearData newGear, GearData oldGear)
         {
             _unitElems[unitIndex].RefreshGear();
         }
