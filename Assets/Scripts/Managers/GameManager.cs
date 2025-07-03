@@ -91,20 +91,67 @@ namespace Truelch.Managers
         #endregion Initialization
 
         #region Misc
-        /// <summary>
-        /// gearSO to only compute for the gear that changed (so we don't have to go through all)
-        /// </summary>
-        /// <param name="changedGear"></param>
-        /// 
-        //private void ComputeArmySpecialization(GearSO newGear, GearSO oldGear)
-        private void ComputeArmySpecialization(GearData newGear, GearData oldGear)
+        private void ComputeArmySpecialization()
         {
             Debug.Log("ComputeArmySpecialization()");
-            CheckForGear(newGear);
-            CheckForGear(oldGear);
+
+            //Step 1: prepare spe army data
+            List<SpecializationGearData> speList = new List<SpecializationGearData>();
+            foreach (var gearSO in GearSOs)
+            {
+                if (gearSO.Data.SlotSize > 1)
+                {
+                    SpecializationGearData spe = new SpecializationGearData(gearSO.Data/*.GetClone()*/);
+                    speList.Add(spe);
+                }
+            }            
+
+            //Step 2: go through all units
+            foreach (var unit in ArmyUnits)
+            {
+                //A: reset is ok (for spe)
+                foreach (var spe in speList)
+                {
+                    spe.IsOk = false;
+                }
+
+                //B: go through all gears and set is ok to true if we find the gear
+                foreach (var gear in unit.GearList)
+                {
+                    //if (gear.SO == spe.)
+                    //{
+
+                    //}
+                }
+            }
+
+            //Step 3: apply spe (or NON spe)
+            foreach (var unit in ArmyUnits)
+            {
+                foreach (var gear in unit.GearList)
+                {
+                    foreach (var spe in speList)
+                    {
+                        if (gear != null && gear.IsReal && spe.Gear.SO == gear.SO)
+                        {
+                            if (spe.IsOk)
+                            {
+                                Debug.Log("[A] Spe ok!");
+                                //TODO: reduce to 1 slot
+
+                            }
+                            else
+                            {
+                                Debug.Log("[B] Spe NOT ok!");
+
+                                //TODO: expand (if possible), otherwise, destroy
+                            }
+                        }
+                    }
+                }
+            }
         }
 
-        //private void CheckForGear(GearSO changedGearSO)
         private void CheckForGear(GearData changedGear)
         {
             Debug.Log("CheckForGear(changedGear: " + changedGear + ")");
@@ -115,7 +162,6 @@ namespace Truelch.Managers
                 return;
             }
 
-            //SpecializationGearData spe = new SpecializationGearData(changedGearSO.Data);
             SpecializationGearData spe = new SpecializationGearData(changedGear);
 
             foreach (var unit in ArmyUnits)
@@ -123,7 +169,6 @@ namespace Truelch.Managers
                 spe.IsOk = false;
                 foreach (var gear in unit.GearList)
                 {
-                    //if (gear != null && gear.IsReal && gear.SO == changedGearSO)
                     if (gear != null && gear.IsReal && gear.SO == changedGear.SO)
                     {
                         Debug.Log("Here!");
@@ -135,16 +180,17 @@ namespace Truelch.Managers
             //2nd loop
             foreach (var unit in ArmyUnits)
             {
-                //foreach (var gear in unit.GearList)
                 for (int i = 0; i < unit.GearList.Count; i++)
                 {
                     var gear = unit.GearList[i];
                     int count = 0;
-                    //if (gear != null && gear.IsReal && gear.SO == changedGearSO)
                     if (gear != null && gear.IsReal && gear.SO == changedGear.SO)
                     {
+                        Debug.Log("[OK] gear != null && gear.IsReal && gear.SO == changedGear.SO");
                         if (spe.IsOk)
                         {
+                            Debug.Log("[A] Is Army Spe");
+                            //IS army spe
                             count++;
                             if (count > 1)
                             {
@@ -155,119 +201,53 @@ namespace Truelch.Managers
                         }
                         else
                         {
+                            Debug.Log("[B] Is NOT Army Spe");
+                            //Not army spe
+                            List<GearData> newList = new List<GearData>();
 
-                        }
-                    }
-                }
-            }
-        }
-
-        private void OldComputeArmySpecialization()
-        {
-            Debug.Log("ComputeArmySpecialization()");
-
-            //[OLD]Prepare data
-            List<SpecializationGearData> speList = new List<SpecializationGearData>();
-            foreach (GearSO gearSO in GearSOs)
-            {
-                if (gearSO.Data.SlotSize == 2 && gearSO.Data.UnitType == UnitType.Minifig)
-                {
-                    speList.Add(new SpecializationGearData(gearSO.Data));
-                }
-            }
-
-            //[OLD]Check for army specialization
-            foreach (UnitData unit in ArmyUnits)
-            {
-                //Set to false again...
-                foreach (SpecializationGearData spe in speList)
-                {
-                    spe.IsOk = false;
-                }
-
-                foreach (GearData gear in unit.GearList)
-                {
-                    //...until we meet the gear and set it to true again!
-                    if (gear != null && gear.IsReal)
-                    {
-                        //Debug.Log("-> gear: " + gear.LocNames[0].Txt + ", gear.SlotSize: " + gear.SlotSize);
-                        if (gear.SlotSize == 2)
-                        {
-                            //Debug.Log(" -> here!");
-                            foreach (SpecializationGearData spe in speList)
+                            int index = 0;
+                            while (newList.Count < unit.MaxGear && index < unit.GearList.Count)
                             {
-                                if (spe.Gear.SO == gear.SO) //new
+                                Debug.Log("index: " + index + " / " + unit.GearList.Count);
+                                if (gear != null && gear.IsReal)
                                 {
-                                    //Debug.Log("Spe ok");
-                                    spe.IsOk = true;
-                                }
-                            }
-                        }
-                    }
-                }
+                                    if (newList.Count + gear.SlotSize <= unit.MaxGear)
+                                    {
+                                        for (int j = 0; j < gear.SlotSize; j++)
+                                        {
+                                            if (newList.Count < unit.MaxGear)
+                                            {
+                                                newList.Add(gear.GetClone());
+                                                Debug.Log("j: " + j + " -> add: " + gear.LocNames[0].Txt);
+                                            }
+                                            else
+                                            {
+                                                //And tell the UI
+                                                //Debug.Log("Maybe I should remove this Gear!");
+                                                _canvasMgr.FeedbackUI.ShowTempMsg("Maybe I should remove this Gear!");
 
-                //2nd loop: update specialized gear on units
-                //List<GearData> gearToClean = new List<GearData>();
-                List<GearData> newList = new List<GearData>();
-
-                int index = 0;
-                while (newList.Count < unit.MaxGear && index < unit.GearList.Count)
-                {
-                    //Debug.Log("index: " + index + " / " + unit.GearList.Count);
-                    GearData gear = unit.GearList[index];
-                    if (gear != null && gear.IsReal)
-                    {
-                        if (newList.Count + gear.SlotSize <= unit.MaxGear)
-                        {
-                            for (int j = 0; j < gear.SlotSize; j++)
-                            {
-                                if (newList.Count < unit.MaxGear)
-                                {
-                                    newList.Add(gear.GetClone());
-                                    //Debug.Log("j: " + j + " -> add: " + gear.LocNames[0].Txt);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //Instead, fill with empty stuff
+                                        for (int j = newList.Count; j < unit.MaxGear; j++)
+                                        {
+                                            newList.Add(null);
+                                        }
+                                        _canvasMgr.FeedbackUI.ShowTempMsg("Maybe I should remove this Gear!");
+                                    }
                                 }
                                 else
                                 {
-                                    //And tell the UI
-                                    //Debug.Log("Maybe I should remove this Gear!");
-                                    _canvasMgr.FeedbackUI.ShowTempMsg("Maybe I should remove this Gear!");
-
-                                    break;
+                                    newList.Add(null);
                                 }
+                                index++;
                             }
                         }
-                        else
-                        {
-                            //Instead, fill with empty stuff
-                            for (int i = newList.Count; i < unit.MaxGear; i++)
-                            {
-                                newList.Add(null);
-                            }
-                            _canvasMgr.FeedbackUI.ShowTempMsg("Maybe I should remove this Gear!");
-                        }                        
                     }
-                    else
-                    {
-                        newList.Add(null);
-                    }
-                    index++;
-                }
-
-                unit.GearList = newList; //test
-
-                //Debug
-                foreach (var gear in unit.GearList)
-                {
-                    if (gear != null && gear.IsReal)
-                    {
-                        //Debug.Log(" -> gear: " + gear.LocNames[0].Txt);
-                    }
-                }
-
-                //Clear extra
-                for (int i = unit.MaxGear; i < unit.GearList.Count; i++)
-                {
-
                 }
             }
         }
@@ -420,8 +400,9 @@ namespace Truelch.Managers
         public void ChangeGear(int unitIndex, int gearIndex, GearData newGear, GearData oldGear)
         {
             //Debug.Log("ChangeGear(unitIndex: " + unitIndex + ", gearIndex : " + gearIndex + ", newGear: " + newGear.LocNames[0].Txt + ")");
-            //ComputeArmySpecialization(newGearSO, oldGearSO);
-            ComputeArmySpecialization(newGear, oldGear);
+            ComputeArmySpecialization();
+            //CheckForGear(newGear);
+            //CheckForGear(oldGear);
             onGearChanged?.Invoke(unitIndex, gearIndex, newGear, oldGear);
         }
 
