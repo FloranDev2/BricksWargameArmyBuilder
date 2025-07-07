@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: MiniGear - Shield (2)
+  m_Name: A16 MiniGear - Shield (2)
   m_EditorClassIdentifier: 
   Data:
     SO: {fileID: 11400000}
@@ -34,7 +34,14 @@ MonoBehaviour:
     LocDescriptions:
     - _name: FR
       Language: 0
-      Txt: "(description \xE0 venir)"
+      Txt: "Lorsque vous d\xE9fendez contre une attaque \xE0 distance, consid\xE9rez
+        les r\xE9sultats 3 comme des r\xE9ussites. Contre une attaque au C\xE0C,
+        vous devez utiliser 1PA pour utiliser cet avantage \xE0 chaque jet de d\xE9fense.
+        Vous pouvez toujours relancez vos d\xE9s de d\xE9fense avec vos PA, mais
+        uniquement sur des r\xE9ussites classiques (4, 5 et 6).\r\nVotre unit\xE9
+        est consid\xE9r\xE9e comme un couvert lourd de taille \xE9quivalente \xE0
+        largeur du/des socle(s) de votre unit\xE9 pour toute autre unit\xE9 alli\xE9e.\n\n/!\\
+        Reduce you max move by 2 zones."
     - _name: EN
       Language: 1
       Txt: (coming soon)

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: MiniGear - Melee Weapon
+  m_Name: A14 MiniGear - Melee Weapon
   m_EditorClassIdentifier: 
   Data:
     SO: {fileID: 11400000}
@@ -34,8 +34,18 @@ MonoBehaviour:
     LocDescriptions:
     - _name: FR
       Language: 0
-      Txt: "(description \xE0 venir)"
+      Txt: "Lorsque vous attaquez au C\xE0C, ajoutez 2D. Si vous attaquez des cibles
+        diff\xE9rentes avec une troupe dot\xE9e de cet \xE9quipement, vous pouvez
+        r\xE9partir ces d\xE9s suppl\xE9mentaires comme bon vous semble sur les diff\xE9rentes
+        attaques.\n\n/!\\ Uniquement pour les unit\xE9s ne poss\xE9dant que 1D d\u2019attaque
+        par figurine au C\xE0C."
     - _name: EN
       Language: 1
-      Txt: (coming soon)
+      Txt: 'When you attack in melee range, add 2 dice. If you split your attack
+        between many targets with this gear, you may split these additional as you
+        wish between the attacks.
+
+
+        /!\ Only for units with only 1 die per
+        miniature in melee range.'
     ExportString: ':yellow_square:'

@@ -10,7 +10,7 @@ namespace Truelch.Localization
         #region ATTRIBUTES
         [SerializeField] private string _name;
         public Language Language;
-        [TextArea] public string Txt;
+        [TextArea(1, 10)] public string Txt;
         #endregion ATTRIBUTES
 
 

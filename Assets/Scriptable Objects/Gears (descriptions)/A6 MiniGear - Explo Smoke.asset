@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: MiniGear - Radio
+  m_Name: A6 MiniGear - Explo Smoke
   m_EditorClassIdentifier: 
   Data:
     SO: {fileID: 11400000}
     IsReal: 1
-    Color: {r: 0, g: 0, b: 1, a: 1}
-    Icon: {fileID: 21300000, guid: 32da202f8df4d3047abc65dd584392e4, type: 3}
+    Color: {r: 1, g: 0.5019608, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: cc51a72162f9cae48b790a5a65e8e23a, type: 3}
     Period: 2
     UnitType: 0
     RestrictedMegaCategories: 
@@ -27,10 +27,10 @@ MonoBehaviour:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Radio
+      Txt: "Explosif Fumig\xE8ne"
     - _name: EN
       Language: 1
-      Txt: Radio
+      Txt: Smoke Explosive
     LocDescriptions:
     - _name: FR
       Language: 0
@@ -38,4 +38,4 @@ MonoBehaviour:
     - _name: EN
       Language: 1
       Txt: (coming soon)
-    ExportString: ':blue_square:'
+    ExportString: :orange_square:(:cloud:)

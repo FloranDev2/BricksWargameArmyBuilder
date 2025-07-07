@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
+  m_Name: A15 MiniGear - Mount (2)
+  m_EditorClassIdentifier: 
+  Data:
+    SO: {fileID: 11400000}
+    IsReal: 1
+    Color: {r: 0.5019608, g: 0.2509804, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: 8965e17692690dd40a65c60da18d080a, type: 3}
+    Period: 0
+    UnitType: 0
+    RestrictedMegaCategories: 
+    RestrictedMegaSizes: 
+    IsSingleton: 1
+    SlotSize: 2
+    TurretPossible: 0
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Monture
+    - _name: EN
+      Language: 1
+      Txt: Mount
+    LocDescriptions:
+    - _name: FR
+      Language: 0
+      Txt: "Vous pouvez placer toutes vos figurines sur un socle de taille sup\xE9rieur
+        (6x6 tenons).\r\n\u2022Vous pouvez faire un d\xE9placement blanc gratuit
+        n\u2019importe quand durant votre activation, except\xE9 pour vous d\xE9sengager
+        d\u2019un C\xE0C.\r\n\u2022Si vous \xEAtes au C\xE0C, vous pouvez ignorer
+        l\u2019action \xAB se d\xE9sengager \xBB et vous d\xE9placer normalement.\r\n\u2022Vous
+        ne pouvez escalader/grimper/traverser un d\xE9cor que si sa hauteur est inf\xE9rieure
+        ou \xE9gale \xE0 celle d\u2019une minifigurine classique. Pour se faire,
+        proc\xE9dez de la m\xEAme fa\xE7on qu\u2019une unit\xE9 classique.\r\n\u2022Lorsque
+        vous traversez 1 ou 2 unit\xE9s ennemies durant un d\xE9placement de 5 zones
+        minimum et qui ne vous d\xE9sengage pas d\u2019un C\xE0C, lancez 2D pour
+        chacune de ces unit\xE9s. Chaque r\xE9ussite obtenue inflige une blessure
+        automatique \xE0 l\u2019unit\xE9 travers\xE9e.\r\n\u2022Si vous n\u2019\xEAtes
+        pas engag\xE9 au C\xE0C, que vous r\xE9alisez un d\xE9placement de 5 zones
+        minimum qui ne traverse aucune unit\xE9 ennemie, vous pouvez ajouter 1D suppl\xE9mentaire
+        pour chaque attaque au C\xE0C ou \xE0 proximit\xE9. De plus, votre premi\xE8re
+        attaque annule les effets d\u2019\xE9quipements d\xE9fensifs (bouclier et
+        armure).\r\n\u2022Une unit\xE9 peut monter ou descendre de sa monture pour
+        1PA. Toutes les figurines de l\u2019unit\xE9 devront alors \xEAtre replac\xE9es
+        sur un socle de 4x4 tenons, et en contact avec leur monture. La monture doit
+        rester \xE0 sa place tant que l\u2019unit\xE9 n\u2019est pas remont\xE9e
+        dessus.\r\nNote : pour les figurines d\u2019une troupe, veillez \xE0 bien
+        appliquer la coh\xE9sion une fois sur leur socle.\r\nParticularit\xE9s pour
+        un HEROS :\r\n\u2022Si votre figurine est mise hors combat depuis sa monture,
+        son socle en lieu et place, Puis, placez un socle de figurine au contact
+        de celui de sa monture. Si votre h\xE9ros est r\xE9anim\xE9, il devra remonter
+        sur sa monture. S\u2019il est d\xE9finitivement retir\xE9 de la partie, retirez
+        \xE9galement la monture.\r\n\u2022Tant que votre monture est sur le terrain,
+        elle est consid\xE9r\xE9e comme un couvert l\xE9ger d\u2019une largeur \xE9quivalente
+        \xE0 celle de son socle.\r\n\u2022Un h\xE9ros ne peut pas r\xE9animer ni
+        \xEAtre r\xE9anim\xE9 s\u2019il se trouve sur sa monture."
+    - _name: EN
+      Language: 1
+      Txt: (coming soon)
+    ExportString: ':brown_square:'

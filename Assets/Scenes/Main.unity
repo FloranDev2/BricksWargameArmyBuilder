@@ -122,168 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &21228195
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 21228196}
-  - component: {fileID: 21228197}
-  m_Layer: 0
-  m_Name: Game Manager (TEST)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &21228196
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21228195}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &21228197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21228195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 978c4de1c16a3f94eb533040e3b60559, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UnitSOs:
-  - {fileID: 11400000, guid: da8bc4b1ae3208f419b881d89c9e99fc, type: 2}
-  - {fileID: 11400000, guid: cc714a229df04ca4fbea763fde9ce8ce, type: 2}
-  - {fileID: 11400000, guid: b52ab53e42eb8e54c9587648b833b417, type: 2}
-  - {fileID: 11400000, guid: 39eea0c3946a89246a867d0ebaabb867, type: 2}
-  - {fileID: 11400000, guid: 7c6f0c92f47b5894d8f6a6c6a66a4303, type: 2}
-  - {fileID: 11400000, guid: e4bd95fa412a2cd48b5cfa5dc489e162, type: 2}
-  - {fileID: 11400000, guid: 21e3a95b74a0da54d99103ae5bbb400d, type: 2}
-  - {fileID: 11400000, guid: a7d49d60552dd254a877a2d068a11583, type: 2}
-  - {fileID: 11400000, guid: b87ef5662e868a74080d1ed1f7c37ae2, type: 2}
-  - {fileID: 11400000, guid: 1055dfe58be76a84e99e2416a736fc95, type: 2}
-  - {fileID: 11400000, guid: 8f84ec4c34787284988f46f436d1c9af, type: 2}
-  - {fileID: 11400000, guid: 59797dbae6d6a24448d83997ea4ce76a, type: 2}
-  GearSOs:
-  - {fileID: 11400000, guid: 5700cbf6a34ec004eace4dd18d0255dd, type: 2}
-  - {fileID: 11400000, guid: 751176efffd138b4daa4ac87eda5ec4f, type: 2}
-  - {fileID: 11400000, guid: 5e17d3222ce4ea14a8b96907c0212e24, type: 2}
-  - {fileID: 11400000, guid: 0164f14c638fe7e4e8673cb3dc4b8663, type: 2}
-  _periodIndex: 0
-  PeriodDataList:
-  - _name: Any
-    LocNames:
-    - _name: FR
-      Language: 0
-      Txt: "P\xE9riodes m\xE9lang\xE9es"
-    - _name: EN
-      Language: 1
-      Txt: Mixed periods
-    Period: 0
-    PeriodIcon: {fileID: 0}
-  - _name: MED/FAN
-    LocNames:
-    - _name: FR
-      Language: 0
-      Txt: MED / FAN
-    - _name: EN
-      Language: 1
-      Txt: 'MED /
-
-        FAN'
-    Period: 1
-    PeriodIcon: {fileID: 0}
-  - _name: MOD/FUT
-    LocNames:
-    - _name: FR
-      Language: 0
-      Txt: MOD / FUT
-    - _name: EN
-      Language: 1
-      Txt: 'MOD /
-
-        FUT'
-    Period: 2
-    PeriodIcon: {fileID: 0}
-  MegafigCategoryLocDataList:
-  - _name: Terrestre
-    MegafigCategory: 0
-    LocNames:
-    - _name: FR
-      Language: 0
-      Txt: Terrestre
-    - _name: EN
-      Language: 1
-      Txt: Ground
-  - _name: "A Gravit\xE9"
-    MegafigCategory: 1
-    LocNames:
-    - _name: FR
-      Language: 0
-      Txt: "A Gravit\xE9"
-    - _name: EN
-      Language: 1
-      Txt: Levitation
-  - _name: Marcheur
-    MegafigCategory: 2
-    LocNames:
-    - _name: FR
-      Language: 0
-      Txt: Marcheur
-    - _name: EN
-      Language: 1
-      Txt: Walker
-  - _name: Volante
-    MegafigCategory: 3
-    LocNames:
-    - _name: FR
-      Language: 0
-      Txt: Volante
-    - _name: EN
-      Language: 1
-      Txt: Flying
-  - _name: "Cr\xE9ature"
-    MegafigCategory: 4
-    LocNames:
-    - _name: FR
-      Language: 0
-      Txt: "Cr\xE9ature"
-    - _name: EN
-      Language: 1
-      Txt: Creature
-  - _name: De Soutien
-    MegafigCategory: 5
-    LocNames:
-    - _name: FR
-      Language: 0
-      Txt: De Soutien
-    - _name: EN
-      Language: 1
-      Txt: Support
-  _languageIndex: 0
-  LanguageDataList:
-  - _name: French
-    Language: 0
-    FlagIcon: {fileID: 21300000, guid: 43fe61ddad7dcb34aaad56294b454e8f, type: 3}
-  - _name: English
-    Language: 1
-    FlagIcon: {fileID: 21300000, guid: 7a8b01fb593c22f41a249022a2dbebba, type: 3}
-  ArmyUnits: []
 --- !u!1 &69653572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,7 +2281,7 @@ GameObject:
   - component: {fileID: 838076540}
   - component: {fileID: 838076539}
   m_Layer: 0
-  m_Name: Game Manager (BACK UP)
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2475,6 +2313,28 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f84ec4c34787284988f46f436d1c9af, type: 2}
   - {fileID: 11400000, guid: 59797dbae6d6a24448d83997ea4ce76a, type: 2}
   GearSOs:
+  - {fileID: 11400000, guid: e2711984494f5104f9102c338021ccc1, type: 2}
+  - {fileID: 11400000, guid: c629eb93f0797d248b6c1a8db3ef1d24, type: 2}
+  - {fileID: 11400000, guid: ea5ca0b48d314954795b0f15eeb791fa, type: 2}
+  - {fileID: 11400000, guid: 1b344a51f5cd9194fbb2e1b8b062d60e, type: 2}
+  - {fileID: 11400000, guid: 324a4b286af2add4faae47841d318be0, type: 2}
+  - {fileID: 11400000, guid: 134d7a7ca6ec0f74ebb811665ea1f797, type: 2}
+  - {fileID: 11400000, guid: 5f937b91fba43fb4abbc1ec26c5c1683, type: 2}
+  - {fileID: 11400000, guid: c9c7165f23efefa41946585d48454bc5, type: 2}
+  - {fileID: 11400000, guid: 8510bfc17fc2c3646945216164bcd770, type: 2}
+  - {fileID: 11400000, guid: 580f9aebf0911a447be8063d546c667b, type: 2}
+  - {fileID: 11400000, guid: a5854e660efd41544a19944eb1e97ce3, type: 2}
+  - {fileID: 11400000, guid: a209ae05ef8359847879729c1e7bc59e, type: 2}
+  - {fileID: 11400000, guid: 9ef5905dfb710ba4b8f8acfe18c0fb8e, type: 2}
+  - {fileID: 11400000, guid: f8169b74c88af784aa46f6ab84bb5535, type: 2}
+  - {fileID: 11400000, guid: 4feef48e29c462e418977c22c591748f, type: 2}
+  - {fileID: 11400000, guid: e5523603067187f4abcd93bf69df08d6, type: 2}
+  - {fileID: 11400000, guid: 3a599a8d51795c741bb9cbe47dcaf940, type: 2}
+  - {fileID: 11400000, guid: afd11435e223f3042b4f79142090f114, type: 2}
+  - {fileID: 11400000, guid: 813df9ae76de93046a0ce26d5d8c75eb, type: 2}
+  - {fileID: 11400000, guid: 00b4872be42845f4abb68e52137b8bd5, type: 2}
+  - {fileID: 11400000, guid: 230585bc0fe264845be87a8891d1ac38, type: 2}
+  - {fileID: 11400000, guid: 80a670e8bcd5ab742a1506a1314755a5, type: 2}
   - {fileID: 11400000, guid: 86956d12f04e033438e4648bf15b107a, type: 2}
   - {fileID: 11400000, guid: 534c212188a0290419fa5a784eb9a54f, type: 2}
   - {fileID: 11400000, guid: 10c460111b09f3142b5c0a3e2a28b88c, type: 2}
@@ -2488,29 +2348,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 70884a3477b61c148a6095294cf05be0, type: 2}
   - {fileID: 11400000, guid: 4da97c036945d884d8e885df43edb7d8, type: 2}
   - {fileID: 11400000, guid: 989a7cd4b5b61cf4c81777ec0379d114, type: 2}
-  - {fileID: 11400000, guid: 345b2fd20523f5443b4c1fdce268ab33, type: 2}
   - {fileID: 11400000, guid: d34ac3932b112d54dbb757e894a1d0d4, type: 2}
-  - {fileID: 11400000, guid: e2711984494f5104f9102c338021ccc1, type: 2}
-  - {fileID: 11400000, guid: 1b344a51f5cd9194fbb2e1b8b062d60e, type: 2}
-  - {fileID: 11400000, guid: 813df9ae76de93046a0ce26d5d8c75eb, type: 2}
-  - {fileID: 11400000, guid: 00b4872be42845f4abb68e52137b8bd5, type: 2}
-  - {fileID: 11400000, guid: 80a670e8bcd5ab742a1506a1314755a5, type: 2}
-  - {fileID: 11400000, guid: c9c7165f23efefa41946585d48454bc5, type: 2}
-  - {fileID: 11400000, guid: 324a4b286af2add4faae47841d318be0, type: 2}
-  - {fileID: 11400000, guid: 5f937b91fba43fb4abbc1ec26c5c1683, type: 2}
-  - {fileID: 11400000, guid: 8510bfc17fc2c3646945216164bcd770, type: 2}
-  - {fileID: 11400000, guid: 134d7a7ca6ec0f74ebb811665ea1f797, type: 2}
-  - {fileID: 11400000, guid: 3a599a8d51795c741bb9cbe47dcaf940, type: 2}
-  - {fileID: 11400000, guid: c629eb93f0797d248b6c1a8db3ef1d24, type: 2}
-  - {fileID: 11400000, guid: f8169b74c88af784aa46f6ab84bb5535, type: 2}
-  - {fileID: 11400000, guid: 4feef48e29c462e418977c22c591748f, type: 2}
-  - {fileID: 11400000, guid: ea5ca0b48d314954795b0f15eeb791fa, type: 2}
-  - {fileID: 11400000, guid: e5523603067187f4abcd93bf69df08d6, type: 2}
-  - {fileID: 11400000, guid: afd11435e223f3042b4f79142090f114, type: 2}
-  - {fileID: 11400000, guid: a5854e660efd41544a19944eb1e97ce3, type: 2}
-  - {fileID: 11400000, guid: 580f9aebf0911a447be8063d546c667b, type: 2}
-  - {fileID: 11400000, guid: a209ae05ef8359847879729c1e7bc59e, type: 2}
-  - {fileID: 11400000, guid: 9ef5905dfb710ba4b8f8acfe18c0fb8e, type: 2}
+  - {fileID: 11400000, guid: 345b2fd20523f5443b4c1fdce268ab33, type: 2}
+  - {fileID: 11400000, guid: 391342ef288a28d46a45b6ae21a7526e, type: 2}
   _periodIndex: 0
   PeriodDataList:
   - _name: Any
@@ -5153,6 +4993,5 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1182377666}
-  - {fileID: 21228196}
   - {fileID: 838076540}
   - {fileID: 1228339432}

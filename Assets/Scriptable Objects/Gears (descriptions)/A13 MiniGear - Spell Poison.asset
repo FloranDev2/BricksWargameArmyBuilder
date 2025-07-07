@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: MiniGear - Spell Poison
+  m_Name: A13 MiniGear - Spell Poison
   m_EditorClassIdentifier: 
   Data:
     SO: {fileID: 11400000}
@@ -38,4 +38,4 @@ MonoBehaviour:
     - _name: EN
       Language: 1
       Txt: (coming soon)
-    ExportString: ':orange_square:'
+    ExportString: :orange_square:(:test_tube:)

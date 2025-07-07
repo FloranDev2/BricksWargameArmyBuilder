@@ -8,7 +8,7 @@ namespace Truelch.Localization
     public class NameDescriptionLocData
     {
         public string Name;
-        [TextArea] public string Description;
+        [TextArea(1, 10)] public string Description;
         public Language Language;
     }
 }

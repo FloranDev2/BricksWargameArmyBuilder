@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: MiniGear - Explo Grenade
+  m_Name: B16 MegaGear - Transport
   m_EditorClassIdentifier: 
   Data:
     SO: {fileID: 11400000}
     IsReal: 1
-    Color: {r: 1, g: 0.5019608, b: 0, a: 1}
-    Icon: {fileID: 21300000, guid: 6bdc03605ec4e4b45b96988a053de4c4, type: 3}
-    Period: 2
-    UnitType: 0
+    Color: {r: 1, g: 0, b: 1, a: 1}
+    Icon: {fileID: 21300000, guid: 49ca210fe758f454e8d2566e10550837, type: 3}
+    Period: 0
+    UnitType: 1
     RestrictedMegaCategories: 
     RestrictedMegaSizes: 
     IsSingleton: 1
-    SlotSize: 1
+    SlotSize: 2
     TurretPossible: 0
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Explosif (Grenade)
+      Txt: Tir Indirect
     - _name: EN
       Language: 1
-      Txt: Explosive (Grenade)
+      Txt: Indirect
     LocDescriptions:
     - _name: FR
       Language: 0
@@ -38,4 +38,4 @@ MonoBehaviour:
     - _name: EN
       Language: 1
       Txt: (coming soon)
-    ExportString: ':orange_square:'
+    ExportString: ':purple_square:'

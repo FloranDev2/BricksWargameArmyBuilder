@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: MiniGear - Short Range Weapon
+  m_Name: A9 MiniGear - Explo Poison
   m_EditorClassIdentifier: 
   Data:
     SO: {fileID: 11400000}
     IsReal: 1
-    Color: {r: 0.8962264, g: 0.16487186, b: 0.70980275, a: 1}
-    Icon: {fileID: 21300000, guid: 49ca210fe758f454e8d2566e10550837, type: 3}
-    Period: 0
+    Color: {r: 1, g: 0.5019608, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: 4944003c286438f41996d0b2dec2c2a4, type: 3}
+    Period: 2
     UnitType: 0
     RestrictedMegaCategories: 
     RestrictedMegaSizes: 
@@ -27,10 +27,10 @@ MonoBehaviour:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: "Arme courte port\xE9e"
+      Txt: Explosif (Poison)
     - _name: EN
       Language: 1
-      Txt: Short range weapon
+      Txt: Explosive (Poison)
     LocDescriptions:
     - _name: FR
       Language: 0
@@ -38,4 +38,4 @@ MonoBehaviour:
     - _name: EN
       Language: 1
       Txt: (coming soon)
-    ExportString: ':purple_square:'
+    ExportString: :orange_square:(:test_tube:)

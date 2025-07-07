@@ -131,7 +131,7 @@ namespace Truelch.UI
 
         public void OnInfosClick()
         {
-            if (Data != null & Data.IsReal)
+            if (Data != null && Data.IsReal)
             {
                 Language language = _gameMgr.GetCurrentLanguage();
                 foreach (var locDesc in Data.LocDescriptions)

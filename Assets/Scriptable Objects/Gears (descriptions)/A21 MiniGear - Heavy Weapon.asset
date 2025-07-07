@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
+  m_Name: A21 MiniGear - Heavy Weapon
+  m_EditorClassIdentifier: 
+  Data:
+    SO: {fileID: 11400000}
+    IsReal: 1
+    Color: {r: 0, g: 0, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: 293fedb006f72224181562e3fe283c17, type: 3}
+    Period: 0
+    UnitType: 0
+    RestrictedMegaCategories: 
+    RestrictedMegaSizes: 
+    IsSingleton: 1
+    SlotSize: 1
+    TurretPossible: 0
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Capitaine
+    - _name: EN
+      Language: 1
+      Txt: Captain
+    LocDescriptions:
+    - _name: FR
+      Language: 0
+      Txt: "Ajoutez 1 figurine suppl\xE9mentaire \xE0 votre unit\xE9 pour repr\xE9senter
+        cet \xE9quipement. Cette figurine ne poss\xE8de pas de PV attitr\xE9, doit
+        rester en coh\xE9sion avec son unit\xE9 et est automatiquement \xE9limin\xE9e
+        avec la derni\xE8re figurine de son unit\xE9.\r\n\nPour 1PA, vous pouvez
+        lancer 1D d\u2019attaque sur une cible \xE0 port\xE9e rouge maximum et appliquer
+        l\u2019effet correspondant :\r\nVous pouvez utiliser cet \xE9quipement jusqu\u2019\xE0
+        port\xE9e rouge et une seule fois par activation.\r\n\u2022LA CIBLE EST UNE
+        TROUPE/UN HEROS : Le r\xE9sultat obtenu par votre d\xE9 indique le nombre
+        de touches r\xE9alis\xE9es par votre attaque (Ex : r\xE9sultat 4 = 4 touches).
+        Ignorez les \xE9quipements d\u2019armure et bouclier.\r\n\u2022LA CIBLE EST
+        UNE MEGAFIGURINE : Si vous obtenez un r\xE9sultat \xE9gal ou sup\xE9rieur
+        \xE0 la valeur de r\xE9sistance de base de la m\xE9gafigurine, infligez-lui
+        1 blessure. Ignorez les \xE9quipements d\u2019armure et bouclier.\n\r\nLorsque
+        vous r\xE9alisez un jet de renfort, ajoutez 1D suppl\xE9mentaire. Une arme
+        lourde ne peut \xEAtre r\xE9cup\xE9r\xE9 que si vos r\xE9sultats comportent
+        au moins 2 r\xE9ussites et minimum 1 r\xE9sultat 6. Cependant, vous \xEAtes
+        libre de choisir d\u2019ajouter une autre figurine d\u2019unit\xE9 ou d\u2019\xE9quipement
+        \xE0 la place.\n\n/!\\ Uniquement pour des unit\xE9s de type TROUPE et r\xE9duit
+        votre d\xE9placement de 1 zone."
+    - _name: EN
+      Language: 1
+      Txt: (coming soon)
+    ExportString: ':black_circle:'

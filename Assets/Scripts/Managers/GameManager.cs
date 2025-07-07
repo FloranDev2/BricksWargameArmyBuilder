@@ -96,55 +96,99 @@ namespace Truelch.Managers
             Debug.Log("ComputeArmySpecialization()");
 
             //Step 1: prepare spe army data
+            Debug.Log("--- Step 1: prepare spe army data ---");
             List<SpecializationGearData> speList = new List<SpecializationGearData>();
             foreach (var gearSO in GearSOs)
             {
-                if (gearSO.Data.SlotSize > 1)
+                if (gearSO.Data.SlotSize > 1 && gearSO.Data.UnitType == UnitType.Minifig)
                 {
                     SpecializationGearData spe = new SpecializationGearData(gearSO.Data/*.GetClone()*/);
                     speList.Add(spe);
                 }
-            }            
+            }
+
 
             //Step 2: go through all units
+            Debug.Log("--- Step 2: go through all units ---");
             foreach (var unit in ArmyUnits)
             {
-                //A: reset is ok (for spe)
-                foreach (var spe in speList)
+                Debug.Log(" -> unit: " + unit.CurrentName + "...");
+
+                //Megafig -> no need to check (spe is still ok)
+                if (unit.Type == UnitType.Minifig)
                 {
-                    spe.IsOk = false;
+                    //A: reset is ok (for spe)
+                    foreach (var spe in speList)
+                    {
+                        spe.IsOk = false;
+
+                        //B: go through all gears and set is ok to true if we find the gear
+                        foreach (var gear in unit.GearList)
+                        {
+                            if (gear != null && gear.IsReal && gear.SO == spe.Gear.SO)
+                            {
+                                spe.IsOk = true;
+                                break;
+                            }
+                        }
+
+                        Debug.Log("... is spe (" + spe.Gear.LocNames[0].Txt + ") ok: " + spe.IsOk);
+                    }
                 }
-
-                //B: go through all gears and set is ok to true if we find the gear
-                foreach (var gear in unit.GearList)
+                else
                 {
-                    //if (gear.SO == spe.)
-                    //{
-
-                    //}
+                    Debug.Log("It's a megafig, let's ignore it!");
                 }
             }
 
             //Step 3: apply spe (or NON spe)
+            Debug.Log("--- Step 3: apply spe (or NON spe) ---");
             foreach (var unit in ArmyUnits)
             {
-                foreach (var gear in unit.GearList)
+                Debug.Log(" -> unit: " + unit.CurrentName);
+                for (int i = 0; i < unit.GearList.Count; i++)
                 {
-                    foreach (var spe in speList)
+                    Debug.Log(" --> i: " + i);
+                    var gear = unit.GearList[i];
+                    foreach (SpecializationGearData spe in speList)
                     {
                         if (gear != null && gear.IsReal && spe.Gear.SO == gear.SO)
                         {
                             if (spe.IsOk)
                             {
-                                Debug.Log("[A] Spe ok!");
-                                //TODO: reduce to 1 slot
-
+                                Debug.Log("[A] Spe ok! (" + gear.LocNames[0].Txt + ")");
+                                spe.Occ++;
+                                if (spe.Occ > 1)
+                                {
+                                    Debug.Log("Need to remove!");
+                                    //i--;
+                                }
                             }
                             else
                             {
-                                Debug.Log("[B] Spe NOT ok!");
+                                Debug.Log("[B] Spe NOT ok! (" + gear.LocNames[0].Txt + ")");
 
-                                //TODO: expand (if possible), otherwise, destroy
+                                for (int j = 1; j < gear.SlotSize; j++)
+                                {
+                                    int index = i + j;
+                                    Debug.Log("index: " + index);
+                                    //If we can't fit the gear, let's remove it.
+                                    //I might do a "auto-re-arrange" later...
+                                    if (unit.GearList[index] == null || !unit.GearList[index].IsReal)
+                                    {
+                                        Debug.Log("-> Filling the slot!");
+                                        spe.Occ++;
+                                        if (spe.Occ < gear.SlotSize)
+                                        {
+                                            unit.GearList[index] = gear.GetClone();
+                                            Debug.Log(" ---> Added: " + gear.LocNames[0].Txt + " at: " + index);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Debug.Log("-> Can't fill, slot is occupied!");
+                                    }
+                                }
                             }
                         }
                     }

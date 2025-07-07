@@ -6,6 +6,7 @@ namespace Truelch.Data
         #region ATTRIBUTES
         public GearData Gear;
         public bool IsOk;
+        public int Occ;
         #endregion ATTRIBUTES
 
 
@@ -13,7 +14,9 @@ namespace Truelch.Data
         public SpecializationGearData(GearData gear)
         {
             Gear = gear;
+
             IsOk = true;
+            Occ = 0;
         }
         #endregion METHODS
     }

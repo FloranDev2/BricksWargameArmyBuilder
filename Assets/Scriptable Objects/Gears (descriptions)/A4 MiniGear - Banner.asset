@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: B5 MegaGear - Radio
+  m_Name: A4 MiniGear - Banner
   m_EditorClassIdentifier: 
   Data:
     SO: {fileID: 11400000}
     IsReal: 1
     Color: {r: 0, g: 0, b: 1, a: 1}
-    Icon: {fileID: 21300000, guid: 32da202f8df4d3047abc65dd584392e4, type: 3}
+    Icon: {fileID: 21300000, guid: 4dd9d17dfac3f0a4c8797bb7f7e79805, type: 3}
     Period: 2
-    UnitType: 1
+    UnitType: 0
     RestrictedMegaCategories: 
     RestrictedMegaSizes: 
     IsSingleton: 1
@@ -27,20 +27,23 @@ MonoBehaviour:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Radio
+      Txt: "Banni\xE8re"
     - _name: EN
       Language: 1
-      Txt: Radio
+      Txt: Banner
     LocDescriptions:
     - _name: FR
       Language: 0
       Txt: "Chaque unit\xE9 qui attaque \xE0 port\xE9e verte d\u2019une ou plusieurs
         banni\xE8res peut relancer 1D pour chacune d\u2019entre elle. L\u2019unit\xE9
-        \xE9quip\xE9e d\u2019une banni\xE8re ne peut pas utiliser cet effet sur elle-m\xEAme.\n\r\nCOMBINAISON
+        \xE9quip\xE9e d\u2019une banni\xE8re ne peut pas utiliser cet effet sur elle-m\xEAme.\n\nCOMBINAISON
         AVEC \xAB EFFET DE CHEF \xBB : Si votre chef est \xE9quip\xE9 d\u2019une
         banni\xE8re, alors son effet de chef pourra \xEAtre aussi appliqu\xE9 \xE0
         toutes les unit\xE9s situ\xE9es \xE0 distance jaune."
     - _name: EN
       Language: 1
-      Txt: (coming soon)
+      Txt: "Units may reroll 1 attack die per friendly banner within green range.\nA
+        unit equipped with a banner cannot benefit from its own banner.\n\nCombo
+        with \xAB LEADER EFFECT \xBB: If your leader is equipped with a banner, then
+        their may be applied to all friendly units within yellow range."
     ExportString: ':blue_square:'
