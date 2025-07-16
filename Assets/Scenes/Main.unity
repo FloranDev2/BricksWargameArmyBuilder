@@ -2313,6 +2313,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f84ec4c34787284988f46f436d1c9af, type: 2}
   - {fileID: 11400000, guid: 59797dbae6d6a24448d83997ea4ce76a, type: 2}
   GearSOs:
+  - {fileID: 11400000, guid: e5523603067187f4abcd93bf69df08d6, type: 2}
   - {fileID: 11400000, guid: e2711984494f5104f9102c338021ccc1, type: 2}
   - {fileID: 11400000, guid: c629eb93f0797d248b6c1a8db3ef1d24, type: 2}
   - {fileID: 11400000, guid: ea5ca0b48d314954795b0f15eeb791fa, type: 2}
@@ -2328,7 +2329,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ef5905dfb710ba4b8f8acfe18c0fb8e, type: 2}
   - {fileID: 11400000, guid: f8169b74c88af784aa46f6ab84bb5535, type: 2}
   - {fileID: 11400000, guid: 4feef48e29c462e418977c22c591748f, type: 2}
-  - {fileID: 11400000, guid: e5523603067187f4abcd93bf69df08d6, type: 2}
   - {fileID: 11400000, guid: 3a599a8d51795c741bb9cbe47dcaf940, type: 2}
   - {fileID: 11400000, guid: afd11435e223f3042b4f79142090f114, type: 2}
   - {fileID: 11400000, guid: 813df9ae76de93046a0ce26d5d8c75eb, type: 2}

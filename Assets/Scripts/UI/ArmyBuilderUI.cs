@@ -76,16 +76,19 @@ namespace Truelch.UI
             unitElem.Init(this, unitData);
             _unitElems.Add(unitElem);
             UpdateIntegrationValue();
+            RefreshAllGears(); //test
         }
 
         private void OnUnitRemoved(UnitData unitData)
         {
             UpdateIntegrationValue();
+            RefreshAllGears(); //test
         }
 
         private void OnUnitClassChanged(int unitIndex, UnitData newClass)
         {
             UpdateIntegrationValue();
+            RefreshAllGears(); //test
         }
 
         private void OnUnitMegaCatChanged(int unitIndex, MegafigCategory newCat)
@@ -117,7 +120,11 @@ namespace Truelch.UI
             {
                 Debug.Log("Oh no");
             }
+
+            RefreshAllGears(); //test
         }
+
+
 
         /*
         //Optimization idea: only do this logic if the old / new gear is a 2 slot gear (and the unit is a minifig!)
@@ -133,17 +140,28 @@ namespace Truelch.UI
         //TODO: I'm moving the data analyze to the game manager
         private void OnGearChanged(int unitIndex, int gearIndex, GearData newGear, GearData oldGear)
         {
-            _unitElems[unitIndex].RefreshGear();
+            //_unitElems[unitIndex].RefreshGear(); //was functional btw
+            RefreshAllGears(); //test
         }
 
         private void OnGearRemoved(int unitIndex, int gearIndex)
         {
             //Debug.Log("OnGearRemoved(unitIndex: " + unitIndex + ", gearIndex: " + gearIndex + ")");
-            _unitElems[unitIndex].RefreshGear();
+            //_unitElems[unitIndex].RefreshGear(); //was functional btw
+            RefreshAllGears(); //test
         }
         #endregion Delegate Event
 
         #region Misc
+        //TEST
+        public void RefreshAllGears()
+        {
+            for (int unitIndex = 0; unitIndex < _unitElems.Count; unitIndex++)
+            {
+                _unitElems[unitIndex].RefreshGear();
+            }
+        }
+
         void UpdateIntegrationValue()
         {
             //Compute integration value

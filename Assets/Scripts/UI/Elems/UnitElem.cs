@@ -169,6 +169,7 @@ namespace Truelch.UI
 
         public void RefreshGear()
         {
+            Debug.Log("RefreshGear()");
             int max = Mathf.Min(_gearElems.Count, UnitData.GearList.Count);
             for (int i = 0; i < max; i++)
             {
