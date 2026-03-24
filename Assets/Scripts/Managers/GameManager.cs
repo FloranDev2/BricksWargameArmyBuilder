@@ -91,10 +91,9 @@ namespace Truelch.Managers
         #endregion Initialization
 
         #region Misc
-        private void ComputeArmySpecialization()
+        //Not used anymore
+        private void OLD_ComputeArmySpecialization()
         {
-            Debug.Log("ComputeArmySpecialization()");
-
             //Step 1: prepare spe army data
             //Debug.Log("--- Step 1: prepare spe army data ---");
             List<SpecializationGearData> speList = new List<SpecializationGearData>();
@@ -127,68 +126,66 @@ namespace Truelch.Managers
                     spe.IsOk = spe.IsOk && unitSpeOk;
                     //Debug.Log(" ---> unit: " + unit + " -> unitSpeOk: " + unitSpeOk);
                 }
-                Debug.Log("-> spe: " + spe.Gear.LocNames[0].Txt + " -> is ok: " + spe.IsOk);
+                //Debug.Log("-> spe: " + spe.Gear.LocNames[0].Txt + " -> is ok: " + spe.IsOk);
             }
 
-            //Step 3: apply spe (or NON spe)
-            Debug.Log("--- Step 3: apply spe (or NON spe) ---");
-            foreach (var unit in ArmyUnits)
+            //Step3: apply spe (or NON spe)
+            foreach (SpecializationGearData spe in speList)
             {
-                Debug.Log(">>> UNIT: " + unit.CurrentName + " <<<");
-                for (int i = 0; i < unit.GearList.Count; i++)
+                //Debug.Log(">>> spe: " + spe.Gear.LocNames[0].Txt);
+                spe.Occ = 0;
+                foreach (var unit in ArmyUnits)
                 {
-                    Debug.Log(" --> gear i: " + i + "...");
-                    var gear = unit.GearList[i];
-                    if (gear != null && gear.IsReal)
+                    //Debug.Log("unit: " + unit.CurrentName);
+                    for (int i = 0; i < unit.GearList.Count; i++)
                     {
-                        Debug.Log("... gear: " + gear.LocNames[0].Txt);
-                        foreach (SpecializationGearData spe in speList)
-                        {
-                            spe.Occ = 0; //otherwise, it'll cumulate between units!
-                            if (spe.Gear.SO == gear.SO)
-                            {
-                                if (spe.IsOk)
-                                {
-                                    Debug.Log("[A] Spe ok! (" + gear.LocNames[0].Txt + ")");
-                                    spe.Occ++;
-                                    if (spe.Occ > 1)
-                                    {
-                                        Debug.Log("Need to remove!"); //not remove but set to null actually
-                                        unit.GearList[i] = null;
-                                    }
-                                }
-                                else
-                                {
-                                    Debug.Log("[B] Spe NOT ok! (" + gear.LocNames[0].Txt + ")");
-                                    int max = Mathf.Min(gear.SlotSize, unit.MaxGear) - i; //test
+                        //Debug.Log("-> i: " + i);
+                        var gear = unit.GearList[i];
 
-                                    for (int j = 1; j < max; j++)
+                        // --- A
+
+                        if (gear != null && gear.IsReal && gear == spe.Gear)
+                        {
+                            Debug.Log(" - gear: " + gear.LocNames[0].Txt);
+                            //spe.Occ++;
+                            if (spe.IsOk)
+                            {
+                                Debug.Log("Spe ok! (A)");
+                                spe.Occ++;
+                                if (spe.Occ > 1)
+                                {
+                                    Debug.Log(" ---> found something to remove! i: " + i + ", spe.Occ: " + spe.Occ);
+                                }
+                            }
+                            else
+                            {
+                                int max = Mathf.Min(gear.SlotSize, unit.MaxGear) - i;
+                                Debug.Log("- Spe NOT ok! (B) need to fill -> max: " + max);
+                                for (int j = 1; j < max; j++)
+                                {
+                                    int index2 = i + j;
+                                    Debug.Log(" - j: " + j + " -> index2: " + index2);
+                                    if (unit.GearList[index2] == null || !unit.GearList[index2].IsReal)
                                     {
-                                        int index2 = i + j;
-                                        Debug.Log("j: " + j + " -> index2: " + index2);
-                                        //If we can't fit the gear, let's remove it.
-                                        //I might do a "auto-re-arrange" later...
-                                        if (unit.GearList[index2] == null || !unit.GearList[index2].IsReal)
+                                        Debug.Log(" ---> filling the slot!");
+                                        spe.Occ++;
+                                        if (spe.Occ < gear.SlotSize)
                                         {
-                                            //Debug.Log("-> Filling the slot!");
-                                            spe.Occ++;
-                                            if (spe.Occ < gear.SlotSize)
-                                            {
-                                                unit.GearList[index2] = gear.GetClone();
-                                                Debug.Log(" ---> Added: " + gear.LocNames[0].Txt + " at: " + index2);
-                                            }
+                                            unit.GearList[index2] = gear.GetClone();
+                                            Debug.Log(" ---> added: " + gear.LocNames[0].Txt + " at: " + index2);
                                         }
-                                        else
-                                        {
-                                            Debug.Log("-> Can't fill, slot is occupied!");
-                                        }
+                                    }
+                                    else
+                                    {
+                                        // -----------------> TODO !!! <-----------------
+                                        //Debug.Log(" ---> can't fill, slot is occupied!");
                                     }
                                 }
                             }
+
+                            // --- A
                         }
-
                     }
-
                 }
             }
         }
@@ -327,7 +324,7 @@ namespace Truelch.Managers
         {
             //Debug.Log("ChangeUnitClass(unitIndex: " + unitIndex + ", newClass: " + newClass + ")");
             ArmyUnits[unitIndex] = newClass;
-            ComputeArmySpecialization(); //test (not needed?)
+            //ComputeArmySpecialization(); //test (not needed?)
             onUnitClassChanged?.Invoke(unitIndex, newClass);
         }
 
@@ -335,13 +332,13 @@ namespace Truelch.Managers
         {
             Debug.Log("ChangeUnitMegaCategory(unitIndex: " + unitIndex + ", newCat: " + newCat + ")");
             ArmyUnits[unitIndex].MegaCategory = newCat;
-            ComputeArmySpecialization(); //test
+            //ComputeArmySpecialization(); //test
             onUnitMegaCatChanged?.Invoke(unitIndex, newCat);
         }
 
         public void ChangeGear(int unitIndex, int gearIndex, GearData newGear, GearData oldGear)
         {
-            ComputeArmySpecialization();
+            //ComputeArmySpecialization();
             onGearChanged?.Invoke(unitIndex, gearIndex, newGear, oldGear);
         }
 
@@ -356,7 +353,7 @@ namespace Truelch.Managers
                 }
             }
 
-            ComputeArmySpecialization(); //to update gear icons?
+            //ComputeArmySpecialization(); //to update gear icons?
             onGearRemoved?.Invoke(unitIndex, gearIndex);
         }
 
@@ -380,7 +377,7 @@ namespace Truelch.Managers
 
             ArmyUnits.Add(unitData);
 
-            ComputeArmySpecialization(); //test
+            //ComputeArmySpecialization(); //test
 
             //Event
             onUnitAdded?.Invoke(unitData);
@@ -393,7 +390,7 @@ namespace Truelch.Managers
             if (ArmyUnits.Contains(data))
             {
                 ArmyUnits.Remove(data);
-                ComputeArmySpecialization(); //test
+                //ComputeArmySpecialization(); //test
                 onUnitRemoved?.Invoke(data);
             }
             else

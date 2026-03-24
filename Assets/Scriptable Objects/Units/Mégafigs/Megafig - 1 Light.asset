@@ -10,31 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ac211420a121eb4c955f3ab79a07618, type: 3}
-  m_Name: Megafig - Heavy
+  m_Name: Megafig - 1 Light
   m_EditorClassIdentifier: 
   Data:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: "M\xE9gafigurine\nLourde"
+      Txt: "M\xE9gafigurine\nL\xE9g\xE8re"
     - _name: EN
       Language: 1
-      Txt: 'Heavy
+      Txt: 'Light
 
         Megafig'
     Type: 1
-    Icon: {fileID: 21300000, guid: 0366ebd4b5f947744b515a8b5da217e9, type: 3}
-    Color: {r: 0.75294125, g: 0, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: d3d320cc68a421740acdd858eab7495d, type: 3}
+    Color: {r: 0, g: 0.6901961, b: 0.94117653, a: 1}
+    TextColor: {r: 1, g: 1, b: 1, a: 1}
     MaxAmount: 0
     MinUnitIntegration: 0
-    IntegrationCost: 3
-    MaxGear: 6
+    IntegrationCost: 1
+    MaxGear: 4
     MiniType: 0
     Abilities: []
-    MegaSize: 3
+    MegaSize: 1
     MegaCategory: 0
-    Sturdiness: 5
-    Recuperation: 2
-    Speed: 1
+    Sturdiness: 3
+    Recuperation: 4
+    Speed: 3
     CurrentName: 
     GearList: []

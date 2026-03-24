@@ -23,6 +23,7 @@ MonoBehaviour:
     Type: 0
     Icon: {fileID: 21300000, guid: 4312a34141fa42c4aa7211ec1d34e622, type: 3}
     Color: {r: 0.53333336, g: 0.19607845, b: 0, a: 1}
+    TextColor: {r: 0, g: 0, b: 0, a: 1}
     MaxAmount: 0
     MinUnitIntegration: 0
     IntegrationCost: -1

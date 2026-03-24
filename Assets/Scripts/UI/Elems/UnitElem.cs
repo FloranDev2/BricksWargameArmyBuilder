@@ -98,6 +98,8 @@ namespace Truelch.UI
             //Icon
             _classIconImg.sprite = UnitData.Icon;
             _bgColorImg.color = UnitData.Color;
+            _finalTxt.color = UnitData.TextColor;
+            _placeHolderTxt.color = UnitData.TextColor;
 
             if (UnitData.GearList == null || UnitData.GearList.Count == 0)
             {
@@ -169,7 +171,7 @@ namespace Truelch.UI
 
         public void RefreshGear()
         {
-            Debug.Log("RefreshGear()");
+            //Debug.Log("RefreshGear()");
             int max = Mathf.Min(_gearElems.Count, UnitData.GearList.Count);
             for (int i = 0; i < max; i++)
             {
@@ -247,7 +249,6 @@ namespace Truelch.UI
 
         public void OnMegaCatChanged(MegafigCategory newMegaCat)
         {
-            //Debug.Log("OnMegaCatChanged(newMegaCat: " + newMegaCat + ")");
             int index = _gameMgr.ArmyUnits.IndexOf(UnitData);
             _gameMgr.ChangeUnitMegaCategory(index, newMegaCat);
         }
@@ -255,16 +256,7 @@ namespace Truelch.UI
         //old gear is likely to be null
         public void OnGearChanged(int gearIndex, GearData newGear, GearData oldGear)
         {
-            //Debug.Log("OnGearChanged(gearIndex: " + gearIndex + ", newGear: " + newGear.LocNames[0].Txt + ", oldGear: " + oldGear.LocNames[0].Txt);
-            /*
-            Debug.Log("OnGearChanged()");
-            Debug.Log("gearIndex: " + gearIndex);
-            Debug.Log("newGear: " + newGear);
-            Debug.Log("oldGear: " + oldGear);
-            Debug.Log("newGear name: " + newGear.LocNames[0].Txt);
-            Debug.Log("oldGear name: " + oldGear.LocNames[0].Txt);
-            */
-
+            Debug.Log("OnGearChanged(gearIndex: " + gearIndex + ", newGear: " + newGear + ", oldGear: " + oldGear + ")");
             int index = _gameMgr.ArmyUnits.IndexOf(UnitData); //I should move that into a separate function
             GearData clonedGear = newGear.GetClone();
             UnitData.GearList[gearIndex] = clonedGear;

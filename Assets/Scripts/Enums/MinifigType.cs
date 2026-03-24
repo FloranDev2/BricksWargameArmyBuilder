@@ -3,6 +3,7 @@ namespace Truelch.Enums
     public enum MinifigType
     {
         Hero,
-        Troop
+        Troop,
+        Both, //only for Gear Data limitation
     }
 }

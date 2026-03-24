@@ -15,6 +15,7 @@ namespace Truelch.Data
         public UnitType Type;
         public Sprite Icon;
         public Color Color;
+        public Color TextColor = Color.white;
 
         [Header("Gameplay")]
         //Below, maybe use an enum?
@@ -38,7 +39,7 @@ namespace Truelch.Data
 
         [Header("Dynamic Data")]
         public string CurrentName;
-        public List<GearData> GearList;
+        /*[System.NonSerialized]*/ public List<GearData> GearList;
         #endregion ATTRIBUTES
 
 
@@ -57,6 +58,7 @@ namespace Truelch.Data
             clone.Type = Type;
             clone.Icon = Icon;
             clone.Color = Color;
+            clone.TextColor = TextColor;
 
             //Gameplay
             clone.MaxAmount = MaxAmount;

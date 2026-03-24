@@ -110,7 +110,7 @@ namespace Truelch.UI
                         break;
                     }
                 }
-                _canvasMgr.DynamicScroller.CreateElem(i, name, gearSO.Data.Color);
+                _canvasMgr.DynamicScroller.CreateElem(i, name, gearSO.Data.Color, gearSO.Data.TextColor);
             }
         }
 

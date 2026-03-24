@@ -64,15 +64,6 @@ namespace Truelch.UI
             HideDynamicScroller();
         }
 
-        //private void Update()
-        //{
-        //    if (Input.GetKeyDown(KeyCode.Space))
-        //    {
-        //        Debug.Log("Here!");
-        //        TestDynScroll();
-        //    }
-        //}
-
         //If I use the context menu, for some reason, the screen size will be incorrect...
         [ContextMenu("Test dynamic scroll")]
         private void TestDynScroll()
@@ -143,10 +134,12 @@ namespace Truelch.UI
             return elem;
         }
 
-        public DynScrollElem CreateElem(int index, string msg, Color color)
+        public DynScrollElem CreateElem(int index, string msg, Color color, Color txtColor)
         {
             DynScrollElem elem = CreateElem(index, msg);
             elem.Image.color = color;
+            elem.Text.color = txtColor;
+            //elem.Text.outlineColor = 
             return elem;
         }
         #endregion Public

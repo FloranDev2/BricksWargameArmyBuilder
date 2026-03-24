@@ -10,37 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: A2 MiniGear - Heal
+  m_Name: A2 MiniGear - Super Heal
   m_EditorClassIdentifier: 
   Data:
+    Id: super_heal
     SO: {fileID: 11400000}
     IsReal: 1
     Color: {r: 1, g: 1, b: 1, a: 1}
+    TextColor: {r: 0, g: 0, b: 0, a: 1}
     Icon: {fileID: 21300000, guid: a9bb8f55b2bd71a4c9b61ec61fb2889d, type: 3}
+    IsSingleton: 1
     Period: 0
     UnitType: 0
+    IncompatibleGears: []
+    MiniType: 2
+    RangeType: 3
     RestrictedMegaCategories: 
     RestrictedMegaSizes: 
-    IsSingleton: 1
     SlotSize: 1
     TurretPossible: 0
+    Cost: 0
+    Limit: 0
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Soin
+      Txt: Super Soin
     - _name: EN
       Language: 1
       Txt: Heal
     LocDescriptions:
     - _name: FR
       Language: 0
-      Txt: "Ciblez votre unit\xE9 ou une unit\xE9 alli\xE9e en contact avec vous
-        et non engag\xE9e au C\xE0C. 1 soin co\xFBte 1PA et vous autorise \xE0 lancer
-        1D pour soigner 1PV en cas de r\xE9ussite. Si vous ciblez une troupe, aucune
-        figurine ne peut revenir en jeu gr\xE2ce \xE0 cet \xE9quipement. Seul une
-        figurine bless\xE9e peut \xEAtre soign\xE9e. Une unit\xE9 ne peut pas recevoir
-        plus de 2 soins dans une m\xEAme activation.\n\n/!\\ Uniquement pour des
-        unit\xE9s de type HEROS."
+      Txt: "Toutes tes actions SOIN et REANIMATION co\xFBtent 1 PA de moins."
     - _name: EN
       Language: 1
       Txt: 'Target yourself a friendly unit in contact that is not engaged in melee

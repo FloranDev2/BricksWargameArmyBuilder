@@ -124,8 +124,6 @@ namespace Truelch.UI
             RefreshAllGears(); //test
         }
 
-
-
         /*
         //Optimization idea: only do this logic if the old / new gear is a 2 slot gear (and the unit is a minifig!)
         UnitData triggeringUnit = _gameMgr.ArmyUnits[unitIndex];
