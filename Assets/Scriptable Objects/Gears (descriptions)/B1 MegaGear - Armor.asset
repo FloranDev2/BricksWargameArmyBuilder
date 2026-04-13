@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: B1 MegaGear - Armor
   m_EditorClassIdentifier: 
   Data:
+    Id: armor
     SO: {fileID: 11400000}
     IsReal: 1
     Color: {r: 1, g: 0, b: 0, a: 1}
@@ -21,6 +22,9 @@ MonoBehaviour:
     IsSingleton: 1
     Period: 0
     UnitType: 1
+    IncompatibleGears: []
+    MiniType: 2
+    AuthorizedRangeTypes: 
     RestrictedMegaCategories: 
     RestrictedMegaSizes: 
     SlotSize: 1

@@ -22,6 +22,7 @@ namespace Truelch.UI
         [SerializeField] protected Transform _arrowTf;
         [SerializeField] protected Vector3 _arrowDefaultRot = new Vector3(0f, 0f, 0f);
         [SerializeField] protected Vector3 _arrowExpandedRot = new Vector3(0f, 0f, 180f);
+        [SerializeField] [Min(100)] protected float _expHeight = 500f;
 
         //Hidden
         // - Misc
@@ -30,7 +31,7 @@ namespace Truelch.UI
 
         // - Managers
         protected CanvasManager _canvasMgr;
-        protected GameManager _gameMgr;
+        protected DataManager _gameMgr;
         #endregion ATTRIBUTES
 
 
@@ -43,11 +44,11 @@ namespace Truelch.UI
 
             yield return new WaitUntil(() =>
                 CanvasManager.Instance != null &&
-                GameManager.Instance != null
+                DataManager.Instance != null
             );
 
             _canvasMgr = CanvasManager.Instance;
-            _gameMgr = GameManager.Instance;
+            _gameMgr = DataManager.Instance;
 
             _isReady = true;
 
@@ -84,7 +85,7 @@ namespace Truelch.UI
 
             //Relocate dynamic scroller
             //(filling it is done by the children class)
-            _canvasMgr.DynamicScroller.ShowDynamicScroller(this, _parentRt);
+            _canvasMgr.DynamicScroller.ShowDynamicScroller(this, _parentRt, _expHeight);
         }
 
         //It is basically the opposite of "Expand".

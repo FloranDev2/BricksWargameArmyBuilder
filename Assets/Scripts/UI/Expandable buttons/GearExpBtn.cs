@@ -36,6 +36,7 @@ namespace Truelch.UI
         #region Misc
         public void UpdateGear(GearData newGearData, GearData oldGearData, bool callEvent)
         {
+            //Debug.Log("UpdateGear(newGearData: " + GearData.DebugMe(newGearData) + ", oldGearData: " + GearData.DebugMe(oldGearData) + ")");
             if (newGearData == null || !newGearData.IsReal)
             {
                 _nameTxt.gameObject.SetActive(true);
@@ -52,7 +53,7 @@ namespace Truelch.UI
 
             if (callEvent) //to prevent infinite loop
             {
-                _unitElem.OnGearChanged(Index, newGearData, oldGearData); //this might create infinite loop, no?
+                _unitElem.OnAttemptingToChangeGear(Index, newGearData, oldGearData); //this might create infinite loop, no?
             }            
         }
 
@@ -117,7 +118,7 @@ namespace Truelch.UI
         public override void OnElemClick(int index)
         {
             List<GearSO> availableGears = _gameMgr.GetGearSOs(_unitElem.UnitData);
-            _unitElem.OnGearChanged(Index, availableGears[index].Data, Data);
+            _unitElem.OnAttemptingToChangeGear(Index, availableGears[index].Data, Data);
         }
 
         public void OnDeleteClick()

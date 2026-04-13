@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: B12 MegaGear - Wp Missile Launcher (2)
   m_EditorClassIdentifier: 
   Data:
+    Id: megafig_missile_launcher
     SO: {fileID: 11400000}
     IsReal: 1
     Color: {r: 1, g: 0, b: 1, a: 1}
@@ -21,6 +22,9 @@ MonoBehaviour:
     IsSingleton: 1
     Period: 0
     UnitType: 1
+    IncompatibleGears: []
+    MiniType: 2
+    AuthorizedRangeTypes: 
     RestrictedMegaCategories: 
     RestrictedMegaSizes: 
     SlotSize: 2

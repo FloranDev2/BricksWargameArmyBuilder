@@ -26,7 +26,7 @@ namespace Truelch.UI
 
         //Hidden
         // - Managers
-        private GameManager _gameMgr;
+        private DataManager _dataMgr;
 
         // - Misc
         private bool _isReady = false;
@@ -41,8 +41,8 @@ namespace Truelch.UI
         #region Initialization
         IEnumerator Start()
         {
-            yield return new WaitUntil(() => GameManager.Instance);
-            _gameMgr = GameManager.Instance;
+            yield return new WaitUntil(() => DataManager.Instance);
+            _dataMgr = DataManager.Instance;
             _isReady = true;
 
             UpdateIntegrationValue();
@@ -52,22 +52,20 @@ namespace Truelch.UI
         #region Delegate Event
         private void OnEnable()
         {
-            GameManager.onUnitAdded          += OnUnitAdded;
-            GameManager.onUnitRemoved        += OnUnitRemoved;
-            GameManager.onUnitClassChanged   += OnUnitClassChanged;
-            GameManager.onGearChanged        += OnGearChanged;
-            GameManager.onGearRemoved        += OnGearRemoved;
-            GameManager.onUnitMegaCatChanged += OnUnitMegaCatChanged;
+            DataManager.onUnitAdded          += OnUnitAdded;
+            DataManager.onUnitRemoved        += OnUnitRemoved;
+            DataManager.onUnitClassChanged   += OnUnitClassChanged;
+            DataManager.onUnitMegaCatChanged += OnUnitMegaCatChanged;
+            DataManager.onRefreshed          += RefreshAll;
         }
 
         private void OnDisable()
         {
-            GameManager.onUnitAdded          -= OnUnitAdded;
-            GameManager.onUnitRemoved        -= OnUnitRemoved;
-            GameManager.onUnitClassChanged   -= OnUnitClassChanged;
-            GameManager.onGearChanged        -= OnGearChanged;
-            GameManager.onGearRemoved        -= OnGearRemoved;
-            GameManager.onUnitMegaCatChanged -= OnUnitMegaCatChanged;
+            DataManager.onUnitAdded          -= OnUnitAdded;
+            DataManager.onUnitRemoved        -= OnUnitRemoved;
+            DataManager.onUnitClassChanged   -= OnUnitClassChanged;
+            DataManager.onUnitMegaCatChanged -= OnUnitMegaCatChanged;
+            DataManager.onRefreshed          -= RefreshAll;
         }
 
         private void OnUnitAdded(UnitData unitData)
@@ -76,27 +74,26 @@ namespace Truelch.UI
             unitElem.Init(this, unitData);
             _unitElems.Add(unitElem);
             UpdateIntegrationValue();
-            RefreshAllGears(); //test
         }
 
         private void OnUnitRemoved(UnitData unitData)
         {
             UpdateIntegrationValue();
-            RefreshAllGears(); //test
         }
 
         private void OnUnitClassChanged(int unitIndex, UnitData newClass)
         {
+            _unitElems[unitIndex].UnitData = newClass;
+            _unitElems[unitIndex].RefreshMe();
             UpdateIntegrationValue();
-            RefreshAllGears(); //test
         }
 
         private void OnUnitMegaCatChanged(int unitIndex, MegafigCategory newCat)
         {
-            Language language = _gameMgr.GetCurrentLanguage();
+            Language language = _dataMgr.GetCurrentLanguage();
 
             MegafigCategoryLocData data = null;
-            foreach (MegafigCategoryLocData megaCatLoc in _gameMgr.MegafigCategoryLocDataList)
+            foreach (MegafigCategoryLocData megaCatLoc in _dataMgr.MegafigCategoryLocDataList)
             {
                 if (megaCatLoc.MegafigCategory == newCat)
                 {
@@ -121,41 +118,18 @@ namespace Truelch.UI
                 Debug.Log("Oh no");
             }
 
-            RefreshAllGears(); //test
-        }
-
-        /*
-        //Optimization idea: only do this logic if the old / new gear is a 2 slot gear (and the unit is a minifig!)
-        UnitData triggeringUnit = _gameMgr.ArmyUnits[unitIndex];
-        bool mustContinue = triggeringUnit.Type == UnitType.Minifig;
-        if (mustContinue == false)
-        {
-            Debug.Log("Useless to update gear on the army!");
-            return;
-        }
-        */
-        //Move that logic to the GameManager?
-        //TODO: I'm moving the data analyze to the game manager
-        private void OnGearChanged(int unitIndex, int gearIndex, GearData newGear, GearData oldGear)
-        {
-            //_unitElems[unitIndex].RefreshGear(); //was functional btw
-            RefreshAllGears(); //test
-        }
-
-        private void OnGearRemoved(int unitIndex, int gearIndex)
-        {
-            //Debug.Log("OnGearRemoved(unitIndex: " + unitIndex + ", gearIndex: " + gearIndex + ")");
-            //_unitElems[unitIndex].RefreshGear(); //was functional btw
-            RefreshAllGears(); //test
+            RefreshAll();
         }
         #endregion Delegate Event
 
         #region Misc
-        //TEST
-        public void RefreshAllGears()
+        public void RefreshAll()
         {
+            UpdateIntegrationValue();
+
             for (int unitIndex = 0; unitIndex < _unitElems.Count; unitIndex++)
             {
+                _unitElems[unitIndex].RefreshMe();
                 _unitElems[unitIndex].RefreshGear();
             }
         }
@@ -166,7 +140,7 @@ namespace Truelch.UI
             int minifigVal = 0;
             int megafigVal = 0;
 
-            foreach (var unit in _gameMgr.ArmyUnits)
+            foreach (var unit in _dataMgr.ArmyUnits)
             {
                 if (unit.IntegrationCost > 0)
                 {
@@ -179,9 +153,9 @@ namespace Truelch.UI
             }
 
             string prefix = "";
-            if (_gameMgr != null)
+            if (_dataMgr != null)
             {
-                Language language = _gameMgr.GetCurrentLanguage();
+                Language language = _dataMgr.GetCurrentLanguage();
                 foreach (var intValLoc in _integrationValLoc.Data)
                 {
                     if (intValLoc.Language == language)
@@ -209,17 +183,17 @@ namespace Truelch.UI
         public void OnSaveClick()
         {
             if (!_isReady) return;
-            _gameMgr.OnSaveClick();
+            _dataMgr.OnSaveClick();
         }
 
         public void OnPrintExportClick()
         {
             if (!_isReady) return;
 
-            Language language = _gameMgr.GetCurrentLanguage();
+            Language language = _dataMgr.GetCurrentLanguage();
 
             string export = "";
-            foreach (UnitData unit in _gameMgr.ArmyUnits)
+            foreach (UnitData unit in _dataMgr.ArmyUnits)
             {
                 string unitName = "";
                 foreach (var locName in unit.LocNames)
@@ -255,7 +229,7 @@ namespace Truelch.UI
 
         public void OnRemoveUnitClick(UnitElem btn)
         {
-            _gameMgr.RemoveUnit(btn.UnitData);
+            _dataMgr.RemoveUnit(btn.UnitData);
             _unitElems.Remove(btn);
             Destroy(btn.gameObject);
         }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: A21 MiniGear - Heavy Weapon
   m_EditorClassIdentifier: 
   Data:
+    Id: heavy_weapon
     SO: {fileID: 11400000}
     IsReal: 1
     Color: {r: 0, g: 0, b: 0, a: 1}
@@ -21,6 +22,9 @@ MonoBehaviour:
     IsSingleton: 1
     Period: 0
     UnitType: 0
+    IncompatibleGears: []
+    MiniType: 1
+    AuthorizedRangeTypes: 
     RestrictedMegaCategories: 
     RestrictedMegaSizes: 
     SlotSize: 1

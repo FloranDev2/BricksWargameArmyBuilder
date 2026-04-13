@@ -21,13 +21,12 @@ namespace Truelch.Data
 
         [Header("Limitations (Common)")]
         public bool IsSingleton = true;
-        public Period Period; //Useless now?
         public UnitType UnitType; //Minifig / Megafig
         public List<string> IncompatibleGears = new List<string>();
 
         [Header("Limitations (Minifig)")]
         public MinifigType MiniType = MinifigType.Both; //Hero, Troop or Both
-        public RangeType RangeType = RangeType.All; //should I rather make a list? And if empty, no limitation then. NO
+        public List<RangeType> AuthorizedRangeTypes; //if empty, no need to check
 
         [Header("Limitations (Megafig)")]
         public List<MegafigCategory> RestrictedMegaCategories; //if empty, no restriction
@@ -44,10 +43,92 @@ namespace Truelch.Data
         public List<TextLocData> LocNames;
         public List<TextLocData> LocDescriptions;
         public string ExportString;
+
+        [Header("New")]
+        [System.NonSerialized] public List<GearData> BindedGears = new List<GearData>(); //For Gears that occupy multiple slots
         #endregion ATTRIBUTES
 
 
         #region METHODS
+        public GearData()
+        {
+            Id = "";
+            SO = null; //????
+            IsReal = false; //Most important!
+            Color = Color.white;
+            TextColor = Color.black;
+            Icon = null;
+
+            //Limitations (Common)
+            IsSingleton = true;
+            UnitType = UnitType.Minifig;
+            if (IncompatibleGears != null)
+            {
+                IncompatibleGears.Clear();
+            }
+            else
+            {
+                IncompatibleGears = new List<string>();
+            }
+
+            //Limitations (Minifig)
+            MiniType = MinifigType.Both;
+            if (AuthorizedRangeTypes != null)
+            { 
+                AuthorizedRangeTypes.Clear();
+            }
+            else
+            {
+                AuthorizedRangeTypes = new List<RangeType>();
+            }
+
+            //Limitations (Minifig)
+            if (RestrictedMegaCategories != null)
+            {
+                RestrictedMegaCategories.Clear();
+            }
+            else
+            {
+                RestrictedMegaCategories = new List<MegafigCategory>();
+            }
+
+            if (RestrictedMegaSizes != null)
+            {
+                RestrictedMegaSizes.Clear();
+            }
+            else
+            {
+                RestrictedMegaSizes = new List<MegafigSize>();
+            }
+
+            SlotSize = 1;
+            TurretPossible = false;
+
+            //Usage
+            Cost = 0;
+            Limit = 0;
+
+            //Strings
+            if (LocNames != null)
+            {
+                LocNames.Clear();
+            }
+            else
+            {
+                LocNames = new List<TextLocData>();
+            }
+
+            if (LocDescriptions != null)
+            {
+                LocDescriptions.Clear();
+            }
+            else
+            {
+                LocDescriptions = new List<TextLocData>();
+            }
+            ExportString = "";
+        }
+
         public GearData GetClone()
         {
             GearData clone = new GearData();
@@ -60,11 +141,11 @@ namespace Truelch.Data
 
             // --- Infos ---
             clone.Color = Color;
+            clone.TextColor = TextColor;
             clone.Icon = Icon;
 
             // --- Limitations (Common) ---
             clone.IsSingleton = IsSingleton;
-            clone.Period      = Period;
             clone.UnitType    = UnitType;
 
             foreach (string s in IncompatibleGears)
@@ -76,10 +157,19 @@ namespace Truelch.Data
             clone.MiniType = MiniType;
 
             // --- Limitations (Megafig) ---
-            foreach (var cat in RestrictedMegaCategories)
+            clone.RestrictedMegaCategories = new List<MegafigCategory>();
+            if (RestrictedMegaCategories != null)
             {
-                clone.RestrictedMegaCategories.Add(cat);
+                foreach (var cat in RestrictedMegaCategories)
+                {
+                    clone.RestrictedMegaCategories.Add(cat);
+                }
             }
+            else
+            {
+                Debug.Log("RestrictedMegaCategories is null!");
+            }
+            clone.RestrictedMegaSizes = new List<MegafigSize>();
             foreach (var size in RestrictedMegaSizes)
             {
                 clone.RestrictedMegaSizes.Add(size);
@@ -111,9 +201,51 @@ namespace Truelch.Data
             }
 
             clone.ExportString = ExportString;
-            clone.SlotSize = SlotSize;
 
             return clone;
+        }
+
+        //I'm not sure I want to nullify
+        public void ClearMe()
+        {
+            Debug.Log("ClearMe()");
+
+            //Infos
+            Id = "";
+            SO = null;
+            IsReal = false; //Most important!
+            Color = Color.white;
+            TextColor = Color.black;
+            Icon = null;
+
+            //Limitations (Common)
+            IsSingleton = true;
+            UnitType = UnitType.Minifig;
+            if (IncompatibleGears != null) IncompatibleGears.Clear();
+
+            //Limitations (Minifig)
+            MiniType = MinifigType.Both;
+            if (AuthorizedRangeTypes != null) AuthorizedRangeTypes.Clear();
+
+            //Limitations (Minifig)
+            if (RestrictedMegaCategories != null) RestrictedMegaCategories.Clear();
+            if (RestrictedMegaSizes != null) RestrictedMegaSizes.Clear();
+            SlotSize = 1;
+            TurretPossible = false;
+
+            //Usage
+            Cost = 0;
+            Limit = 0;
+
+            //Strings
+            if (LocNames != null) LocNames.Clear();
+            if (LocDescriptions != null) LocDescriptions.Clear();
+            ExportString = "";
+        }
+
+        public static string GetId(GearData gear)
+        {
+            return gear != null ? gear.Id : "";
         }
         #endregion METHODS
     }

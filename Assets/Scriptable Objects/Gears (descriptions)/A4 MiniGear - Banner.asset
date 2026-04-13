@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: A4 MiniGear - Banner
   m_EditorClassIdentifier: 
   Data:
-    Id: 
+    Id: banner
     SO: {fileID: 11400000}
     IsReal: 1
     Color: {r: 0, g: 1, b: 1, a: 1}
@@ -24,7 +24,7 @@ MonoBehaviour:
     UnitType: 0
     IncompatibleGears: []
     MiniType: 2
-    RangeType: 3
+    AuthorizedRangeTypes: 
     RestrictedMegaCategories: 
     RestrictedMegaSizes: 
     SlotSize: 1

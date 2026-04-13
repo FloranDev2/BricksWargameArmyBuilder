@@ -21,7 +21,7 @@ namespace Truelch.Localization
         [SerializeField] private bool _showLogs = false;
 
         //Hidden
-        private GameManager _gameManager;
+        private DataManager _gameManager;
         private TextMeshProUGUI _textUI;
         private TextMeshPro _textWorldSPace;
         #endregion ATTRIBUTES
@@ -35,10 +35,10 @@ namespace Truelch.Localization
             _textUI = GetComponent<TextMeshProUGUI>();
             _textWorldSPace = GetComponent<TextMeshPro>();
 
-            if (GameManager.Instance == null)
-                yield return new WaitUntil(() => GameManager.Instance != null);
+            if (DataManager.Instance == null)
+                yield return new WaitUntil(() => DataManager.Instance != null);
 
-            _gameManager = GameManager.Instance;
+            _gameManager = DataManager.Instance;
 
             UpdateLoc(_gameManager.GetCurrentLanguage());
         }
@@ -90,12 +90,12 @@ namespace Truelch.Localization
         #region Delegate Event
         private void OnEnable()
         {
-            GameManager.onLanguageChanged += UpdateLoc;
+            DataManager.onLanguageChanged += UpdateLoc;
         }
 
         private void OnDisable()
         {
-            GameManager.onLanguageChanged -= UpdateLoc;
+            DataManager.onLanguageChanged -= UpdateLoc;
         }
         #endregion Delegate Event
 

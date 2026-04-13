@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: B4 MegaGear - Banner
   m_EditorClassIdentifier: 
   Data:
+    Id: megafig_banner
     SO: {fileID: 11400000}
     IsReal: 1
-    Color: {r: 0, g: 0, b: 1, a: 1}
+    Color: {r: 0, g: 1, b: 1, a: 1}
     TextColor: {r: 0, g: 0, b: 0, a: 1}
-    Icon: {fileID: 21300000, guid: 4dd9d17dfac3f0a4c8797bb7f7e79805, type: 3}
+    Icon: {fileID: 21300000, guid: 1a80dec90092f0746970f88f0e6b4d62, type: 3}
     IsSingleton: 1
     Period: 1
     UnitType: 1
+    IncompatibleGears: []
+    MiniType: 2
+    AuthorizedRangeTypes: 
     RestrictedMegaCategories: 
     RestrictedMegaSizes: 
     SlotSize: 1

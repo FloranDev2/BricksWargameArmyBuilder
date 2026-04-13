@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
-  m_Name: B2 MegaGear - Heal
+  m_Name: B3 MegaGear - Targeting
   m_EditorClassIdentifier: 
   Data:
-    Id: heal
+    Id: targeting
     SO: {fileID: 11400000}
     IsReal: 1
-    Color: {r: 1, g: 1, b: 1, a: 1}
+    Color: {r: 0.90588236, g: 0.22745098, b: 0.8666667, a: 1}
     TextColor: {r: 0, g: 0, b: 0, a: 1}
-    Icon: {fileID: 21300000, guid: a9bb8f55b2bd71a4c9b61ec61fb2889d, type: 3}
+    Icon: {fileID: 21300000, guid: 49ca210fe758f454e8d2566e10550837, type: 3}
     IsSingleton: 1
     Period: 0
     UnitType: 1
@@ -34,18 +34,21 @@ MonoBehaviour:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Soin
+      Txt: Jumelles
     - _name: EN
       Language: 1
-      Txt: Heal
+      Txt: Binoculars
     LocDescriptions:
     - _name: FR
       Language: 0
-      Txt: "2 fois par activation, vous pouvez utiliser 1PA pour lancer 1D et vous
-        r\xE9parer de 1PV si le r\xE9sultat obtenu est \xE9gal ou sup\xE9rieur \xE0
-        votre valeur de r\xE9sistance de base. 1PV en cas de r\xE9ussite."
+      Txt: "Utilisez 1PA pour cibler une unit\xE9 visible, m\xEAme hors de port\xE9e,
+        ne poss\xE9dant aucun marqueur \xAB cible \xBB et lancer 2D. L\u2019unit\xE9
+        cibl\xE9e re\xE7oit ensuite 1 marqueur \xAB cible \xBB pour chaque r\xE9ussite
+        obtenue."
     - _name: EN
       Language: 1
-      Txt: Twice per activation, you may use 1AP to roll a die and repair 1HP if
-        you get a result equal of superior to the base resistance value.
-    ExportString: ':white_large_square:'
+      Txt: "You may use 1AP to target a unit in line of sight, even out of range,
+        if it doesn't have any \xAB target \xBB token. If you do, roll 2 dice. The
+        targeted unit then receive a \xAB target \xBB token for each success result
+        you get.\nWhen a unit attacks a unit with a \xAB target \xBB token, "
+    ExportString: ':purple_square:'

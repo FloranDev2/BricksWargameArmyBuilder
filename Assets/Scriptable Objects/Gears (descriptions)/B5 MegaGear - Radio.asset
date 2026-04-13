@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: B5 MegaGear - Radio
   m_EditorClassIdentifier: 
   Data:
+    Id: megafig_radio
     SO: {fileID: 11400000}
     IsReal: 1
     Color: {r: 0, g: 0, b: 1, a: 1}
     TextColor: {r: 0, g: 0, b: 0, a: 1}
-    Icon: {fileID: 21300000, guid: 32da202f8df4d3047abc65dd584392e4, type: 3}
+    Icon: {fileID: 21300000, guid: ef1e0c64276cd51449d1e3150741b874, type: 3}
     IsSingleton: 1
     Period: 2
     UnitType: 1
+    IncompatibleGears: []
+    MiniType: 2
+    AuthorizedRangeTypes: 
     RestrictedMegaCategories: 
     RestrictedMegaSizes: 
     SlotSize: 1

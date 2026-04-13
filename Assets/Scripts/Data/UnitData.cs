@@ -27,11 +27,12 @@ namespace Truelch.Data
 
         [Header("Minifig only")]
         public MinifigType MiniType;
+        public RangeType RangeType;
         public List<MinifigAbility> Abilities;
 
         [Header("Megafig only")]
         public MegafigSize MegaSize;
-        public MegafigCategory MegaCategory;
+        public MegafigCategory MegaCategory = MegafigCategory.Creature; //tmp
         [Min(0)] public int Sturdiness = 3;
         [Min(0)] public int Recuperation = 4; //Salvage, Reclamation?
         //[Min(0)] public int Load = 4; //We'll use the MaxGear stat instead
@@ -46,6 +47,8 @@ namespace Truelch.Data
         #region METHODS
         public UnitData GetClone()
         {
+            //Debug.Log("UnitData.GetClone()");
+
             //Create a fresh clone
             UnitData clone = new UnitData();
 
@@ -61,6 +64,7 @@ namespace Truelch.Data
             clone.TextColor = TextColor;
 
             //Gameplay
+            //Example: you can't deploy more than 1 Commando (in 1.8, all heroes have max amount == 1 and troops is infinite. But maybe it's different in Epic format)
             clone.MaxAmount = MaxAmount;
             clone.MinUnitIntegration = MinUnitIntegration;
             clone.IntegrationCost = IntegrationCost;
@@ -75,31 +79,40 @@ namespace Truelch.Data
             }
 
             //Megafig only
-            clone.MegaSize = MegaSize;
+            clone.MegaSize     = MegaSize;
             clone.MegaCategory = MegaCategory;
-            clone.Sturdiness = Sturdiness;
+            clone.Sturdiness   = Sturdiness;
             clone.Recuperation = Recuperation;
-            clone.Speed = Speed;
+            clone.Speed        = Speed;
 
             //Dynamic data
             clone.CurrentName = CurrentName;
             clone.GearList = new List<GearData>();
-            //Debug.Log("Here");
-            foreach (GearData gear in GearList)
+            for (int i = 0; i < MaxGear; i++)
             {
-                if (gear != null)
+                if (GearList != null && GearList.Count > i)
                 {
+                    var gear = GearList[i];
                     clone.GearList.Add(gear.GetClone());
                 }
                 else
                 {
-                    //Debug.Log("Gear is null!");
-                    clone.GearList.Add(null);
+                    //Debug.Log("SAFETY WORKED, GEAR ADDED");
+                    clone.GearList.Add(new GearData());
                 }
             }
 
             //Return
             return clone;
+        }
+
+        public void DebugGears()
+        {
+            Debug.Log("DebugGears (gear count: " + GearList.Count + ")");
+            foreach (var gear in GearList)
+            {
+                Debug.Log(" -> gear: " + GearData.GetId(gear));
+            }
         }
         #endregion METHODS
     }

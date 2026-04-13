@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: A5 MiniGear - Explo Incendiary
   m_EditorClassIdentifier: 
   Data:
+    Id: explo_fire
     SO: {fileID: 11400000}
     IsReal: 1
     Color: {r: 1, g: 0.19607843, b: 0, a: 1}
@@ -21,6 +22,9 @@ MonoBehaviour:
     IsSingleton: 1
     Period: 2
     UnitType: 0
+    IncompatibleGears: []
+    MiniType: 2
+    AuthorizedRangeTypes: 
     RestrictedMegaCategories: 
     RestrictedMegaSizes: 
     SlotSize: 1
@@ -44,4 +48,4 @@ MonoBehaviour:
     - _name: EN
       Language: 1
       Txt: (coming soon)
-    ExportString: :orange_square:(:fire:)
+    ExportString: :red_circle:(:fire:)
