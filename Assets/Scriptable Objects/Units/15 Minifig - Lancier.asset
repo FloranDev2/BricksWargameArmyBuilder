@@ -10,45 +10,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ac211420a121eb4c955f3ab79a07618, type: 3}
-  m_Name: Minifig - Heavy Trooper
+  m_Name: 15 Minifig - Lancier
   m_EditorClassIdentifier: 
   Data:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Soldat Lourd
+      Txt: Lancier
     - _name: EN
       Language: 1
-      Txt: Heavy Trooper
+      Txt: Lancer
     Type: 0
-    Icon: {fileID: 21300000, guid: b1472f546e960f64d92ea41a2ab45465, type: 3}
-    Color: {r: 0, g: 0, b: 0, a: 1}
-    TextColor: {r: 1, g: 1, b: 1, a: 1}
-    MaxAmount: 2
+    Icon: {fileID: 21300000, guid: 282804f486d6c8540bee98fa599c756a, type: 3}
+    Color: {r: 0.03529412, g: 0.427451, b: 1, a: 1}
+    TextColor: {r: 0, g: 0, b: 0, a: 1}
+    MaxAmount: 1
     MinUnitIntegration: 0
     IntegrationCost: -1
     MaxGear: 3
     MiniType: 0
+    RangeType: 0
     Abilities:
     - Icon: {fileID: 21300000, guid: 1f86062a221ec00499eb4f2eee782020, type: 3}
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: "Lorsque vous attaquez, avant que le d\xE9fenseur de lance ses d\xE9s,
-          ajoutez 1 touche suppl\xE9mentaire pour chaque r\xE9sultat 6 obtenu."
+        Txt: "Lorsque vous attaquez, vous pouvez relancer une fois tous vos r\xE9sultats
+          1."
       - _name: EN
         Language: 1
-        Txt: When you attack, before the defender roll his dice, you may add 1 additional
-          hit for each of your 6 results.
+        Txt: When you attack, yo may reroll all you 1 results.
     - Icon: {fileID: 21300000, guid: d0730acac4069ed4488914379c947756, type: 3}
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: "Si vous \xEAtes \xE9quip\xE9 d'une armure et/ou d'un bouclier, ignorez
-          le malus de d\xE9placement de ces \xE9quipements."
+        Txt: Vous pouvez retirer un pion fatigue pour 1PA de moins.
       - _name: EN
         Language: 1
-        Txt: You may ignore the movement malus given by armor and shield.
+        Txt: You may remove one strain token for 1 less AP.
     MegaSize: 0
     MegaCategory: 0
     Sturdiness: 0

@@ -225,7 +225,6 @@ namespace Truelch.UI
         public void OnDestroyGear(GearExpBtn gearBtn)
         {
             int index = _gameMgr.ArmyUnits.IndexOf(UnitData); //I should move that into a separate function
-            //UnitData.GearList[gearBtn.Index] = null; //NO NO NO
             _gameMgr.RemoveGear(index, gearBtn.Index, gearBtn.Data);
         }
 
@@ -263,6 +262,7 @@ namespace Truelch.UI
         // --- UI Events ---
         public void OnEndEdit(string name)
         {
+            Debug.Log("OnEndEdit(name: " + name + ")");
             UnitData.CurrentName = name;
         }
         #endregion Public

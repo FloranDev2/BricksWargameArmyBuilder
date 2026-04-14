@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ac211420a121eb4c955f3ab79a07618, type: 3}
-  m_Name: Minifig - Troop - Scouts
+  m_Name: 8 Minifig - Troop - Body Guards
   m_EditorClassIdentifier: 
   Data:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Eclaireurs
+      Txt: Escorte
     - _name: EN
       Language: 1
-      Txt: Scouts
+      Txt: Body Guards
     Type: 0
-    Icon: {fileID: 21300000, guid: 7fd149b5e487cff47b2d828d65337337, type: 3}
+    Icon: {fileID: 21300000, guid: 4312a34141fa42c4aa7211ec1d34e622, type: 3}
     Color: {r: 0.4433962, g: 0.16301331, b: 0, a: 1}
     TextColor: {r: 1, g: 1, b: 1, a: 1}
     MaxAmount: 0
@@ -35,26 +35,18 @@ MonoBehaviour:
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: "Lorsque vous attaquez, si aucune unit\xE9 alli\xE9e ne se trouve \xE0
-          port\xE9e verte, vous pouvez relancer 1D."
+        Txt: "(description \xE0 venir)"
       - _name: EN
         Language: 1
-        Txt: When you attack, if there is no allied unit within green range, you
-          may reroll 1 die.
+        Txt: (coming soon)
     - Icon: {fileID: 21300000, guid: d0730acac4069ed4488914379c947756, type: 3}
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: "En d\xE9but de tour, si vous n'avez pas l'initiative et que votre adversaire
-          n'a pas encore activ\xE9 d'unit\xE9, vous pouvez lancer 1D. Sur une r\xE9ussite,
-          vous pouvez jouer une unit\xE9 d'\xE9claireurs avant le tour de votre adversaire.
-          Vous ne pouvez utiliser cet effet qu'une fois par tour."
+        Txt: "(description \xE0 venir)"
       - _name: EN
         Language: 1
-        Txt: When a new turn starts, if you don't have the initiative and that your
-          opponent hasn't activated a unit yet, you may roll a die. On a success,
-          you may play a scouts unit before your opponent's activation. You can only
-          use that effect once per turn.
+        Txt: (coming soon)
     MegaSize: 0
     MegaCategory: 0
     Sturdiness: 0

@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ac211420a121eb4c955f3ab79a07618, type: 3}
-  m_Name: Minifig - Medic
+  m_Name: 13 Minifig - Wizard
   m_EditorClassIdentifier: 
   Data:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: "M\xE9decin"
+      Txt: Sorcier
     - _name: EN
       Language: 1
-      Txt: Medic
+      Txt: Wizard
     Type: 0
-    Icon: {fileID: 21300000, guid: 32abe68ec1f8b004f919aab45c8b1ac6, type: 3}
+    Icon: {fileID: 21300000, guid: 69b02001ab6f9e64bb6043027f096356, type: 3}
     Color: {r: 1, g: 1, b: 1, a: 1}
     TextColor: {r: 0, g: 0, b: 0, a: 1}
-    MaxAmount: 2
+    MaxAmount: 1
     MinUnitIntegration: 0
     IntegrationCost: -1
     MaxGear: 3
     MiniType: 0
-    RangeType: 0
+    RangeType: 1
     Abilities:
     - Icon: {fileID: 21300000, guid: d0730acac4069ed4488914379c947756, type: 3}
       LocDescriptions:

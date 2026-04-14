@@ -59,7 +59,7 @@ namespace Truelch.UI
 
         public void ClearGear()
         {
-            Data = null;
+            Data = null; //uuuuhhh
             _nameTxt.gameObject.SetActive(true);
             _nameTxt.GetComponent<TextLoc>().UpdateLoc(); //this will reset to the "Choose an option" text
             _gearImg.gameObject.SetActive(false);

@@ -17,7 +17,6 @@ namespace Truelch.UI
         [SerializeField] private GameObject _dynScrollParentGo; //Activate / disable
         [SerializeField] private RectTransform _dynScrollerTf; //Relocate and change size
 
-
         [Header("Elems")]
         [SerializeField] private DynScrollElem _elemPrefab;
         [SerializeField] private Transform _dynScrollerWrapper;

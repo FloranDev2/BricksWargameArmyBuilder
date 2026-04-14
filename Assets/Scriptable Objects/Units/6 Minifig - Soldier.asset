@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ac211420a121eb4c955f3ab79a07618, type: 3}
-  m_Name: Minifig - Commando
+  m_Name: 6 Minifig - Soldier
   m_EditorClassIdentifier: 
   Data:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Commando
+      Txt: Soldat
     - _name: EN
       Language: 1
-      Txt: Commando
+      Txt: Soldier
     Type: 0
-    Icon: {fileID: 21300000, guid: cdb40e8bf962c124f82999769107ecd0, type: 3}
-    Color: {r: 1, g: 0, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: 4237c915b4827694996d96080c8eb45f, type: 3}
+    Color: {r: 0.03529412, g: 0.427451, b: 1, a: 1}
     TextColor: {r: 0, g: 0, b: 0, a: 1}
-    MaxAmount: 2
+    MaxAmount: 3
     MinUnitIntegration: 0
     IntegrationCost: -1
     MaxGear: 3
@@ -34,21 +34,19 @@ MonoBehaviour:
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: "Lorsque vous attaquez \xE0 distance, vous pouvez relancer 1D par figurine
-          dans l'unit\xE9 cibl\xE9e."
+        Txt: "Lorsque vous attaquez, vous pouvez relancer une fois tous vos r\xE9sultats
+          1."
       - _name: EN
         Language: 1
-        Txt: When you use a ranged attack, you may reroll up to 1 die per model in
-          the targeted unit.
+        Txt: When you attack, yo may reroll all you 1 results.
     - Icon: {fileID: 21300000, guid: d0730acac4069ed4488914379c947756, type: 3}
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: "Vous pouvez attaquer m\xEAme si vous effectuez deux d\xE9placements
-          durant votre activation."
+        Txt: Vous pouvez retirer un pion fatigue pour 1PA de moins.
       - _name: EN
         Language: 1
-        Txt: You can attack even if you moved twice during your activation.
+        Txt: You may remove one strain token for 1 less AP.
     MegaSize: 0
     MegaCategory: 0
     Sturdiness: 0

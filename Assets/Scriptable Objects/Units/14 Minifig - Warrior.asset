@@ -10,43 +10,46 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ac211420a121eb4c955f3ab79a07618, type: 3}
-  m_Name: Minifig - Troop - Infantry
+  m_Name: 14 Minifig - Warrior
   m_EditorClassIdentifier: 
   Data:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Infanterie
+      Txt: Guerrier
     - _name: EN
       Language: 1
-      Txt: Infantry
+      Txt: Warrior
     Type: 0
-    Icon: {fileID: 21300000, guid: 7880aad632c27d74e82c28cb78bc607f, type: 3}
-    Color: {r: 0.4433962, g: 0.16301331, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: 94535288c20a5214e9b8d20482aa4524, type: 3}
+    Color: {r: 0, g: 0, b: 0, a: 1}
     TextColor: {r: 1, g: 1, b: 1, a: 1}
-    MaxAmount: 0
+    MaxAmount: 1
     MinUnitIntegration: 0
     IntegrationCost: -1
     MaxGear: 3
-    MiniType: 1
+    MiniType: 0
     RangeType: 0
     Abilities:
     - Icon: {fileID: 21300000, guid: 1f86062a221ec00499eb4f2eee782020, type: 3}
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: "(description \xE0 venir)"
+        Txt: "Lorsque vous attaquez, avant que le d\xE9fenseur de lance ses d\xE9s,
+          ajoutez 1 touche suppl\xE9mentaire pour chaque r\xE9sultat 6 obtenu."
       - _name: EN
         Language: 1
-        Txt: (coming soon)
+        Txt: When you attack, before the defender roll his dice, you may add 1 additional
+          hit for each of your 6 results.
     - Icon: {fileID: 21300000, guid: d0730acac4069ed4488914379c947756, type: 3}
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: "(description \xE0 venir)"
+        Txt: "Si vous \xEAtes \xE9quip\xE9 d'une armure et/ou d'un bouclier, ignorez
+          le malus de d\xE9placement de ces \xE9quipements."
       - _name: EN
         Language: 1
-        Txt: (coming soon)
+        Txt: You may ignore the movement malus given by armor and shield.
     MegaSize: 0
     MegaCategory: 0
     Sturdiness: 0

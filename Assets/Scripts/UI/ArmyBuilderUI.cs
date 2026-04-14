@@ -32,7 +32,7 @@ namespace Truelch.UI
         private bool _isReady = false;
 
         // - Units
-        [SerializeField] private List<UnitElem> _unitElems = new List<UnitElem>();
+        /*[SerializeField]*/ private List<UnitElem> _unitElems = new List<UnitElem>();
         #endregion ATTRIBUTES
 
 
@@ -86,6 +86,8 @@ namespace Truelch.UI
             _unitElems[unitIndex].UnitData = newClass;
             _unitElems[unitIndex].RefreshMe();
             UpdateIntegrationValue();
+
+            RefreshAll(); //test
         }
 
         private void OnUnitMegaCatChanged(int unitIndex, MegafigCategory newCat)

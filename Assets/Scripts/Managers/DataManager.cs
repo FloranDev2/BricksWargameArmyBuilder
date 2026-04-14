@@ -20,6 +20,9 @@ namespace Truelch.Managers
         public delegate void OnLanguageChanged(Language newLanguage);
         public static OnLanguageChanged onLanguageChanged;
 
+        public delegate void OnArmyAdded(/*ArmyData armyData*/);
+        public static OnArmyAdded onArmyAdded;
+
         public delegate void OnUnitAdded(UnitData unitData);
         public static OnUnitAdded onUnitAdded;
 
@@ -31,12 +34,6 @@ namespace Truelch.Managers
 
         public delegate void OnUnitMegaCatChanged(int unitIndex, MegafigCategory newCat);
         public static OnUnitMegaCatChanged onUnitMegaCatChanged;
-
-        //public delegate void OnGearChanged(int unitIndex, int gearIndex, GearData newGear, GearData oldGear);
-        //public static OnGearChanged onGearChanged;
-
-        //public delegate void OnGearRemoved(int unitIndex, int gearIndex);
-        //public static OnGearRemoved onGearRemoved;
 
         public delegate void OnGearsRefreshed();
         public static OnGearsRefreshed onRefreshed;
@@ -56,6 +53,7 @@ namespace Truelch.Managers
         public List<LanguageData> LanguageDataList;
 
         [Header("Unit data")] //Will be hidden, but I'm showing it in the inspector for debug purpose
+
         public List<UnitData> ArmyUnits = new List<UnitData>();
 
         //Hidden
@@ -134,15 +132,17 @@ namespace Truelch.Managers
                         //Heavy : ABCDEE
                         //Medium: ABCDE-
 
-                        if (gearIndex + gear.SlotSize > unit.GearList.Count)
-                        {
-                            Debug.Log("HERE!!! gearIndex: " + gearIndex);
-                            unit.GearList[gearIndex].ClearMe();
-                        }
+                        //Debug.Log("gearIndex: " + gearIndex + ", gear.SlotSize: " + gear.SlotSize + ", unit.GearList.Count: " + unit.GearList.Count);
+                        //if (gearIndex + gear.SlotSize > unit.GearList.Count)
+                        //{
+                        //    Debug.Log("HERE!!! gearIndex: " + gearIndex);
+                        //    unit.GearList[gearIndex].ClearMe();
+                        //}
 
                         if (!IsGearOk(unit, gear.SO, true))
                         {
                             Debug.Log("HERE! :D :D :D");
+                            unit.GearList[gearIndex].ClearMe();
                         }
                     }
                 }
@@ -151,9 +151,6 @@ namespace Truelch.Managers
             {
                 Debug.Log("unit.GearList is null!");
             }
-
-            //Event?
-            //onRefreshed?.Invoke();
         }
         #endregion Misc
 
@@ -216,17 +213,17 @@ namespace Truelch.Managers
             //Singleton
             //New: don't allow a gear that's already equipped on the unit (if the gear is singleton, which is almost all gears?)
             //Woops, it'll detect itself, making it ALWAYS false?
-            //foreach (var unitGear in unitData.GearList)
-            //{
-            //    if (unitGear != null && unitGear.IsReal)
-            //    {
-            //        if (unitGear.SO == gearSO && unitGear.IsSingleton)
-            //        {
-            //            if (isDebug) Debug.Log("(unitGear.SO == gearSO && unitGear.IsSingleton ===> isOk = false");
-            //            isOk = false;
-            //        }
-            //    }
-            //}
+            foreach (var unitGear in unitData.GearList)
+            {
+                if (unitGear != null && unitGear.IsReal)
+                {
+                    if (unitGear.SO == gearSO && unitGear.IsSingleton)
+                    {
+                        if (isDebug) Debug.Log("(unitGear.SO == gearSO && unitGear.IsSingleton ===> isOk = false");
+                        isOk = false;
+                    }
+                }
+            }
 
             //Incompatible Gears (flying vs mounted)
             foreach (string s in gearSO.Data.IncompatibleGears)
@@ -319,6 +316,27 @@ namespace Truelch.Managers
 
             int index = ArmyUnits.IndexOf(changingUnit);
 
+            //Check if we need to remove a multi slot item if one of them is removed
+            Debug.Log("changingUnit.MaxGear: " + changingUnit.MaxGear + ", newClassSO.Data.MaxGear: " + newClassSO.Data.MaxGear);
+            if (changingUnit.MaxGear > newClassSO.Data.MaxGear)
+            {
+                Debug.Log("Here");
+                //for (int i = changingUnit.MaxGear; i <= newClassSO.Data.MaxGear; i++)
+                for (int i = newClassSO.Data.MaxGear; i < changingUnit.MaxGear; i++)
+                {
+                    Debug.Log("i: " + i);
+                    //changingUnit.GearList[i].ClearMe();
+
+                    var gear = changingUnit.GearList[i];
+                    foreach (var gear2 in gear.BindedGears)
+                    {
+                        //Debug.Log("gear2 index: " + gear.BindedGears.IndexOf(gear2));
+                        Debug.Log("gear2 index: " + changingUnit.GearList.IndexOf(gear2));
+                        gear2.ClearMe();
+                    }
+                }
+            }
+
             //Keep gears when applicable
             List<GearData> gears = new List<GearData>();
             if (changingUnit.Type == newClassSO.Data.Type)
@@ -352,7 +370,8 @@ namespace Truelch.Managers
             
         public void ChangeUnitMegaCategory(int unitIndex, MegafigCategory newCat)
         {
-            //Debug.Log("ChangeUnitMegaCategory(unitIndex: " + unitIndex + ", newCat: " + newCat + ")");
+            Debug.Log("ChangeUnitMegaCategory(unitIndex: " + unitIndex + ", newCat: " + newCat + ")");
+
             var changingUnit = ArmyUnits[unitIndex];
             changingUnit.MegaCategory = newCat;
 
@@ -361,16 +380,9 @@ namespace Truelch.Managers
             for (int i = 0; i < changingUnit.MaxGear; i++)
             {
                 GearData gear = new GearData();
-
                 bool cond1 = i < changingUnit.GearList.Count;
                 bool cond2 = changingUnit.GearList[i] != null;
                 bool cond3 = IsGearOk(changingUnit, changingUnit.GearList[i].SO/*, true*/);
-
-                //Debug.Log(" i: " + i + ", cond1: " + cond1 + ", cond2: " + cond2 + ", cond3: " + cond3);
-
-                //if (i < changingUnit.GearList.Count &&
-                //    changingUnit.GearList[i] != null &&
-                //    IsGearOk(changingUnit, changingUnit.GearList[i].SO))
                 if (cond1 && cond2 && cond3)
                 {
                     gear = changingUnit.GearList[i].GetClone();
@@ -380,7 +392,7 @@ namespace Truelch.Managers
             changingUnit.GearList = gears;
 
             //New
-            ClearUnfitGears(changingUnit);
+            //ClearUnfitGears(changingUnit);
 
             //int unitIndex, MegafigCategory newCat
             onUnitMegaCatChanged?.Invoke(unitIndex, newCat);
@@ -389,36 +401,16 @@ namespace Truelch.Managers
         //This can be unsuccessful
         public void TryToChangeGear(int unitIndex, int gearIndex, GearData newGear, GearData oldGear)
         {
-            //Debug.Log("TryToChangeGear(unitIndex: " + unitIndex + ", gearIndex: " + gearIndex + ", newGear: " + GearData.DebugMe(newGear) + ", oldGear: " + GearData.DebugMe(oldGear) + ")");
+            Debug.Log("TryToChangeGear(unitIndex: " + unitIndex + ", gearIndex: " + gearIndex + ", newGear: " + GearData.GetId(newGear) + ", oldGear: " + GearData.GetId(oldGear) + ")");
 
             var unit = ArmyUnits[unitIndex];
 
-            //Clear all the slots used by this.
-            //NOTE: DO IT ONLY IF IT'S A MULTI SLOTS
-            //Otherwise, we could remove something like an explosive that can be in multiple
             if (oldGear != null && oldGear.SlotSize > 1)
             {
-                //Debug.Log("Remove old slots");                
-
-                int max = Mathf.Min(gearIndex + oldGear.SlotSize + 1, unit.GearList.Count);
-                for (int index = gearIndex + 1; index < max; index++)
+                foreach (var gear in oldGear.BindedGears)
                 {
-                    //Debug.Log(" -> index: " + index);
-                    var gear2 = unit.GearList[index];
-
-                    //Debug.Log("gear2: " + GearData.DebugMe(gear2));
-
-                    //if (gear2 != null)
-                    //{
-                    //    Debug.Log("gear2.SO: " + gear2.SO);
-                    //}
-
-                    if (gear2 != null && oldGear != null && gear2.SO == oldGear.SO)
-                    {
-                        //Debug.Log("It's the same! DESTROY");
-                        gear2.ClearMe(); //test
-                    }
-                }                
+                    gear.ClearMe();
+                }
             }
 
             //If we have space, fill with the needed.
@@ -446,9 +438,10 @@ namespace Truelch.Managers
 
             //Link gears together
             //Debug.Log("Link gears together:");
-            for (int index = gearIndex; index < unit.GearList.Count; index++)
+            //for (int index = gearIndex; index < unit.GearList.Count; index++)
+            for (int index = gearIndex; index < gearIndex + newGear.SlotSize; index++)
             {
-                Debug.Log("index: " + index);
+                //Debug.Log("index: " + index);
                 var gear2 = unit.GearList[index];
 
                 if (gear2 == null)
@@ -473,7 +466,7 @@ namespace Truelch.Managers
 
         public void RemoveGear(int unitIndex, int gearIndex, GearData removedGear)
         {
-            //Debug.Log("RemoveGear(unitIndex: " + unitIndex + ", gearIndex: " + gearIndex + ", removedGear: " + GearData.DebugMe(removedGear));
+            //Debug.Log("RemoveGear(unitIndex: " + unitIndex + ", gearIndex: " + gearIndex + ", removedGear: " + GearData.GetId(removedGear) + ")");
 
             var gear1 = ArmyUnits[unitIndex].GearList[gearIndex];
             //Debug.Log("gear1: " + GearData.DebugMe(gear1));

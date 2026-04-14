@@ -10,43 +10,52 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ac211420a121eb4c955f3ab79a07618, type: 3}
-  m_Name: Minifig - Soldier
+  m_Name: 10 Minifig - Assassin
   m_EditorClassIdentifier: 
   Data:
     LocNames:
     - _name: FR
       Language: 0
-      Txt: Soldat
+      Txt: Assassin
     - _name: EN
       Language: 1
-      Txt: Soldier
+      Txt: Assassin
     Type: 0
-    Icon: {fileID: 21300000, guid: 4237c915b4827694996d96080c8eb45f, type: 3}
-    Color: {r: 0.03529412, g: 0.427451, b: 1, a: 1}
+    Icon: {fileID: 21300000, guid: dbd69b70336211f4b861fa60e8caf5d1, type: 3}
+    Color: {r: 0.9960785, g: 0.8862746, b: 0.043137256, a: 1}
     TextColor: {r: 0, g: 0, b: 0, a: 1}
-    MaxAmount: 3
+    MaxAmount: 1
     MinUnitIntegration: 0
     IntegrationCost: -1
     MaxGear: 3
     MiniType: 0
+    RangeType: 0
     Abilities:
     - Icon: {fileID: 21300000, guid: 1f86062a221ec00499eb4f2eee782020, type: 3}
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: "Lorsque vous attaquez, vous pouvez relancer une fois tous vos r\xE9sultats
-          1."
+        Txt: "Chacune de vos attaques peut cibler deux unit\xE9s ennemies distinctes,
+          m\xEAme si elles se trouvent \xE0 une distance diff\xE9rente.\nDans ce
+          cas, consid\xE9rez la valeur d'attaque la plus basse et prenez un pion
+          fatigue apr\xE8s 2 attaques au lieu de 3."
       - _name: EN
         Language: 1
-        Txt: When you attack, yo may reroll all you 1 results.
+        Txt: 'Your attacks may target two different enemy units, even if they are
+          at different ranges.
+
+          In this case, you must use the lowest attack
+          value and take a strain token after attacking twice instead of thrice.'
     - Icon: {fileID: 21300000, guid: d0730acac4069ed4488914379c947756, type: 3}
       LocDescriptions:
       - _name: FR
         Language: 0
-        Txt: Vous pouvez retirer un pion fatigue pour 1PA de moins.
+        Txt: "Si aucune unit\xE9 ennemie ne se trouve \xE0 port\xE9e verte de la
+          v\xF4tre, vous ne pouvez pas \xEAtre cibl\xE9 par une attaque."
       - _name: EN
         Language: 1
-        Txt: You may remove one strain token for 1 less AP.
+        Txt: If no enemy unit is within green range from you, you cannot be targeted
+          by an attack.
     MegaSize: 0
     MegaCategory: 0
     Sturdiness: 0
