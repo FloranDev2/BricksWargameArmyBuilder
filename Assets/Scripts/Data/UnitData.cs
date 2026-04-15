@@ -39,9 +39,26 @@ namespace Truelch.Data
         [Range(1, 3)] public int Speed = 3; //1: White, 2: White + Grey, 3: White, Grey and Black)
 
         [Header("Dynamic Data")]
-        public string CurrentName;
+        //public string CurrentName;
+        [SerializeField] private string _currentName;
         /*[System.NonSerialized]*/ public List<GearData> GearList;
         #endregion ATTRIBUTES
+
+
+        #region PROPERTIES
+        public string CurrentName
+        {
+            get
+            {
+                return _currentName;
+            }
+            set
+            {
+                //Debug.Log("CurrentName -> set value: " + value);
+                _currentName = value;
+            }
+        }
+        #endregion PROPERTIES
 
 
         #region METHODS
@@ -86,7 +103,8 @@ namespace Truelch.Data
             clone.Speed        = Speed;
 
             //Dynamic data
-            clone.CurrentName = CurrentName;
+            clone.CurrentName = CurrentName; //maybe? YES!!
+            //clone.CurrentName = ""; //!!!
             clone.GearList = new List<GearData>();
             for (int i = 0; i < MaxGear; i++)
             {
@@ -101,6 +119,8 @@ namespace Truelch.Data
                     clone.GearList.Add(new GearData());
                 }
             }
+
+            //Debug.Log("clone.CurrentName: " + clone.CurrentName);
 
             //Return
             return clone;

@@ -2117,12 +2117,13 @@ MonoBehaviour:
     Sturdiness: 3
     Recuperation: 4
     Speed: 3
-    CurrentName: 
+    _currentName: 
     GearList: []
   _bgColorImg: {fileID: 563237086990354268}
   _classIconImg: {fileID: 2500426593735563004}
   _placeHolderTxt: {fileID: 1778349169407997680}
   _finalTxt: {fileID: 7820895700847730263}
+  _recolorArrow: {fileID: 5114057041806923775}
   _megaTypeTxt: {fileID: 4463593546812949266}
   _chooseMegaCatGo: {fileID: 2995428162370175550}
   _gearWrapper: {fileID: 9025244920625559923}
@@ -2561,7 +2562,7 @@ GameObject:
   - component: {fileID: 6576749353536228337}
   - component: {fileID: 5114057041806923775}
   m_Layer: 5
-  m_Name: Image - Arrow
+  m_Name: Image - Arrow (RECOLOR ME)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

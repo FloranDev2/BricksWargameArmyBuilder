@@ -43,9 +43,6 @@ namespace Truelch.Data
         public List<TextLocData> LocNames;
         public List<TextLocData> LocDescriptions;
         public string ExportString;
-
-        [Header("New")]
-        [System.NonSerialized] public List<GearData> BindedGears = new List<GearData>(); //For Gears that occupy multiple slots
         #endregion ATTRIBUTES
 
 
@@ -208,7 +205,7 @@ namespace Truelch.Data
         //I'm not sure I want to nullify
         public void ClearMe()
         {
-            Debug.Log("ClearMe()");
+            //Debug.Log("ClearMe()");
 
             //Infos
             Id = "";

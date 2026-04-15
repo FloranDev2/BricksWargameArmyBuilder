@@ -25,6 +25,7 @@ namespace Truelch.UI
         [SerializeField] private Image _classIconImg; //Commando, Medic, etc.
         [SerializeField] private TextMeshProUGUI _placeHolderTxt;
         [SerializeField] private TextMeshProUGUI _finalTxt; //I may not use it
+        [SerializeField] private Image _recolorArrow; //recolor the same as the name
 
         [SerializeField] private TextMeshProUGUI _megaTypeTxt;
         [SerializeField] private GameObject _chooseMegaCatGo;
@@ -78,6 +79,7 @@ namespace Truelch.UI
                 if (locName.Language == language)
                 {
                     name = locName.Txt;
+                    //Debug.Log("name: " + name);
                     break;
                 }
             }
@@ -107,6 +109,7 @@ namespace Truelch.UI
             //Debug.Log("New color: " + UnitData.Color);
             _finalTxt.color = UnitData.TextColor;
             _placeHolderTxt.color = UnitData.TextColor;
+            _recolorArrow.color = UnitData.TextColor;
 
             if (UnitData.GearList == null || UnitData.GearList.Count == 0)
             {
@@ -225,7 +228,7 @@ namespace Truelch.UI
         public void OnDestroyGear(GearExpBtn gearBtn)
         {
             int index = _gameMgr.ArmyUnits.IndexOf(UnitData); //I should move that into a separate function
-            _gameMgr.RemoveGear(index, gearBtn.Index, gearBtn.Data);
+            _gameMgr.RemoveGear(index, gearBtn.Index/*, gearBtn.Data*/);
         }
 
         // --- OTHER BUTTONS ---
@@ -262,8 +265,18 @@ namespace Truelch.UI
         // --- UI Events ---
         public void OnEndEdit(string name)
         {
-            Debug.Log("OnEndEdit(name: " + name + ")");
             UnitData.CurrentName = name;
+
+            //Debug.Log("OnEndEdit(name: " + name + ")");
+            //if (!string.IsNullOrEmpty(name))
+            //{
+            //    UnitData.CurrentName = name;
+            //}
+            //else
+            //{
+            //    Debug.Log(" -> prevented empty name!");
+            //    UnitData.CurrentName = "";
+            //}
         }
         #endregion Public
 
