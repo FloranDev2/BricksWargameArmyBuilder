@@ -92,7 +92,7 @@ namespace Truelch.Managers
                     if (gear != null && gear.SO != null)
                     {
                         //if (!IsGearOk(unit, gear.SO, true))
-                        if (!IsGearOk(unit, gear, true))
+                        if (!IsGearOk(unit, gear, false, true))
                         {
                             Debug.Log("HERE! :D :D :D");
                             unit.GearList[gearIndex].ClearMe();
@@ -109,6 +109,12 @@ namespace Truelch.Managers
         //We are using it only if the gear isn't a singleton.
         private void ClearSimilarGears(UnitData unitData, GearData gearData)
         {
+            if (gearData == null) //should NOT happen
+            {
+                Debug.Log("WTF");
+                return;
+            }
+
             if (!gearData.IsSingleton) return;
 
             //Oooh, the issue is that the gear is clear in the mean time.
@@ -134,7 +140,7 @@ namespace Truelch.Managers
             //_saveMgr.
         }
 
-        public bool IsGearOk(UnitData unitData, GearData gearData, bool isDebug = false)
+        public bool IsGearOk(UnitData unitData, GearData gearData, bool checkSingleton, bool isDebug)
         {
             //gearSO can be null
             if (gearData == null || gearData.SO == null)
@@ -178,13 +184,24 @@ namespace Truelch.Managers
             isOk = isOk && isMegaSizeOk;
 
             //Singleton (TODO)
-            foreach (var gear in unitData.GearList)
+            if (checkSingleton)
             {
-                if (gear.IsSingleton && gear.Id == gearData.Id)
+                //foreach (var gear in unitData.GearList)
+                for (int i = 0; i < unitData.GearList.Count; i++)
                 {
-                    //Debug.Log("Here! (singleton)");
-                    isOk = false;
-                    break;
+                    var gear = unitData.GearList[i];
+                    //Debug.Log("[bug] gear: " + GearData.GetId(gear)); //this one happens to be null when changing class
+                    if (gear == null)
+                    {
+                        gear = new GearData();
+                    }
+                    //Debug.Log("[bug] gearData: " + GearData.GetId(gearData));
+                    if (gear.IsSingleton && gear.Id == gearData.Id)
+                    {
+                        //if (isDebug) Debug.Log("Here! (singleton)");
+                        isOk = false;
+                        break;
+                    }
                 }
             }
 
@@ -217,7 +234,6 @@ namespace Truelch.Managers
             }
 
             //Minifig type (Companion for heroes / Captain and heavy weapon for troops)
-            //if (gearSO.Data.MiniType != MinifigType.Both && gearSO.Data.MiniType != unitData.MiniType)
             if (gearData.MiniType != MinifigType.Both && gearData.MiniType != unitData.MiniType)
             {
                 if (isDebug) Debug.Log("Minifig type ===> isOk = false");
@@ -232,8 +248,7 @@ namespace Truelch.Managers
             List<GearSO> availableGears = new List<GearSO>();
             foreach (GearSO gearSO in GearSOs)
             {
-                //bool isOk = IsGearOk(unitData, gearSO);
-                bool isOk = IsGearOk(unitData, gearSO.Data);
+                bool isOk = IsGearOk(unitData, gearSO.Data, true, false);
 
                 //End: Is Ok -> add
                 if (isOk)
@@ -262,7 +277,12 @@ namespace Truelch.Managers
 
         public void ChangeUnitClass(UnitData changingUnit, UnitSO newClassSO)
         {
-            Debug.Log("===== ChangeUnitClass(changingUnit: " + changingUnit.CurrentName + ", newClassSO: " + newClassSO.name + ") =====");
+            if (changingUnit == null)
+            {
+                Debug.Log("ChangeUnitClass -> WTF changingUnit == null");
+            }
+
+            Debug.Log("===== ChangeUnitClass(changingUnit: " + changingUnit?.CurrentName + ", newClassSO: " + newClassSO.name + ") =====");
 
             string currName = changingUnit.CurrentName;
             var newUnit = newClassSO.Data.GetClone();
@@ -338,7 +358,7 @@ namespace Truelch.Managers
                 GearData gear = new GearData();
                 bool cond1 = i < changingUnit.GearList.Count;
                 bool cond2 = changingUnit.GearList[i] != null;
-                bool cond3 = IsGearOk(changingUnit, changingUnit.GearList[i], true);
+                bool cond3 = IsGearOk(changingUnit, changingUnit.GearList[i], false, true);
                 if (cond1 && cond2 && cond3)
                 {
                     gear = changingUnit.GearList[i].GetClone();

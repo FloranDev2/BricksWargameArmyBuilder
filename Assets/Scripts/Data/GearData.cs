@@ -242,7 +242,7 @@ namespace Truelch.Data
 
         public static string GetId(GearData gear)
         {
-            return gear != null ? gear.Id : "";
+            return gear != null ? gear.Id : "(null)";
         }
         #endregion METHODS
     }
