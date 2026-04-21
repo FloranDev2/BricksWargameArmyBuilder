@@ -12,7 +12,10 @@ namespace Truelch.Managers
         //Public
         // - UIs
         [Header("UIs")]
+        public ArmiesManagingUI ArmiesManagingUI;
         public ArmyBuilderUI ArmyBuilderUI;
+
+        [Space(15)]
         public FeedbackUI FeedbackUI;
 
         [Space(15)]

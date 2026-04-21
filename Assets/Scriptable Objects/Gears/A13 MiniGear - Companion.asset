@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
+  m_Name: A13 MiniGear - Companion
+  m_EditorClassIdentifier: 
+  Data:
+    Id: companion
+    SO: {fileID: 11400000}
+    IsReal: 1
+    Color: {r: 0.5882353, g: 0.8627451, b: 0.33681917, a: 1}
+    TextColor: {r: 0, g: 0, b: 0, a: 1}
+    Icon: {fileID: 21300000, guid: 232ae9661bc85d74fa40fd5f56c572cd, type: 3}
+    IsSingleton: 1
+    UnitType: 0
+    IncompatibleGears: []
+    MiniType: 0
+    AuthorizedRangeTypes: 
+    RestrictedMegaCategories: 
+    RestrictedMegaSizes: 
+    SlotSize: 1
+    TurretPossible: 0
+    Cost: 0
+    Limit: 0
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Compagnon
+    - _name: EN
+      Language: 1
+      Txt: Companion
+    LocDescriptions:
+    - _name: FR
+      Language: 0
+      Txt: "<color=purple>Condition : <sprite name=hero> uniquement.</color>\n\nUn
+        compagnon est une nouvelle figurine ajout\xE9e \xE0 ton unit\xE9. Il doit
+        \xEAtre plac\xE9 sur un socle de taille classique (4x4 tenons) et peut \xEAtre
+        jou\xE9 de fa\xE7on ind\xE9pendante en utilisant les <sprite name=action_point>
+        de son unit\xE9. Les effets d'\xE9quipements et comp\xE9tences de son h\xE9ros
+        ne lui sont <u>pas appliqu\xE9s</u>.\n\nAvant le d\xE9but de la partie, tu
+        dois choisir le type de compagnon \xE0 \xE9quiper :\nGARDIEN\nLorsqu'une
+        unit\xE9 ennemie commence ou termine un d\xE9placement en ligne de vue et
+        \xE0 port\xE9e de tir de ton compagnon, tu peux imm\xE9diatement et gratuitement
+        attaquer cette unit\xE9, m\xEAme si le pion <sprite name=fatigue> de ton
+        unit\xE9 est activ\xE9.\nPROTECTEUR\nLorsque l'adversaire d\xE9clare un d\xE9placement
+        avec une unit\xE9 \xE0 port\xE9e verte du compagnon, tu peux le d\xE9placer
+        \xE0 distance blanche vers cette unit\xE9 avant qu'elle ne se d\xE9place."
+    - _name: EN
+      Language: 1
+      Txt: (coming soon)
+    ExportString: ':green_circle:'

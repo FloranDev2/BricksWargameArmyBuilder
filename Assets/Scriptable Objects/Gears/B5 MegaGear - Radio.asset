@@ -20,7 +20,6 @@ MonoBehaviour:
     TextColor: {r: 0, g: 0, b: 0, a: 1}
     Icon: {fileID: 21300000, guid: ef1e0c64276cd51449d1e3150741b874, type: 3}
     IsSingleton: 1
-    Period: 2
     UnitType: 1
     IncompatibleGears: []
     MiniType: 2
@@ -41,12 +40,14 @@ MonoBehaviour:
     LocDescriptions:
     - _name: FR
       Language: 0
-      Txt: "Chaque unit\xE9 qui attaque \xE0 port\xE9e verte d\u2019une ou plusieurs
-        banni\xE8res peut relancer 1D pour chacune d\u2019entre elle. L\u2019unit\xE9
-        \xE9quip\xE9e d\u2019une banni\xE8re ne peut pas utiliser cet effet sur elle-m\xEAme.\n\r\nCOMBINAISON
-        AVEC \xAB EFFET DE CHEF \xBB : Si votre chef est \xE9quip\xE9 d\u2019une
-        banni\xE8re, alors son effet de chef pourra \xEAtre aussi appliqu\xE9 \xE0
-        toutes les unit\xE9s situ\xE9es \xE0 distance jaune."
+      Txt: "Lorsque vous attaquez une cible \xE0 distance, vous pouvez utiliser maximum
+        <b>1PA</b> d\u2019une autre unit\xE9 alli\xE9e \xE9quip\xE9e d\u2019une radio
+        \xE0 la place du v\xF4tre, \xE0 condition que cette unit\xE9 soit \xE0\r\nport\xE9e
+        de tir et en vue de votre cible. Cette attaque doit \xEAtre comptabilis\xE9e
+        dans la valeur de contrainte de l\u2019unit\xE9 active.\r\n\r\n<color=blue><u>COMBINAISON
+        AVEC \xAB EFFET DE CHEF \xBB :</u> Si votre chef est \xE9quip\xE9 d\u2019une
+        radio, alors son effet de chef pourra \xEAtre aussi appliqu\xE9 \xE0 distance
+        bleue \xE0 toutes les unit\xE9s \xE9quip\xE9es de radio.</color>"
     - _name: EN
       Language: 1
       Txt: (coming soon)

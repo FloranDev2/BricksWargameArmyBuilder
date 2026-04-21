@@ -20,7 +20,6 @@ MonoBehaviour:
     TextColor: {r: 0, g: 0, b: 0, a: 1}
     Icon: {fileID: 21300000, guid: 49ca210fe758f454e8d2566e10550837, type: 3}
     IsSingleton: 1
-    Period: 0
     UnitType: 1
     IncompatibleGears: []
     MiniType: 2
@@ -41,10 +40,17 @@ MonoBehaviour:
     LocDescriptions:
     - _name: FR
       Language: 0
-      Txt: "Utilisez 1PA pour cibler une unit\xE9 visible, m\xEAme hors de port\xE9e,
-        ne poss\xE9dant aucun marqueur \xAB cible \xBB et lancer 2D. L\u2019unit\xE9
-        cibl\xE9e re\xE7oit ensuite 1 marqueur \xAB cible \xBB pour chaque r\xE9ussite
-        obtenue."
+      Txt: "Utilisez <b>1PA</b> pour cibler une unit\xE9 visible, m\xEAme hors de
+        port\xE9e, ne poss\xE9dant aucun marqueur \xAB cible \xBB et lancer <b>2D</b>.
+        L\u2019unit\xE9 cibl\xE9e re\xE7oit ensuite 1 marqueur \xAB cible \xBB pour
+        chaque r\xE9ussite obtenue.\n\nLorsqu'une unit\xE9 dot\xE9e d'au moins 1
+        marqueur \"cible\" est attaqu\xE9e, l'attaquant peut, apr\xE8s avoir lanc\xE9
+        ses d\xE9s, en d\xE9fausser autant qu'il le souhaite pour ajouter 1 modificateur
+        par marqueur.\n\n<color=orange><b>Note : ajouter un modificateur signifie
+        que vous pouvez ajouter +1 au d\xE9 de votre choix. Plusieurs modificateurs
+        peuvent \xEAtre utilis\xE9s sur un d\xE9.</b></color>\n\nEn fin d'activation,
+        une unit\xE9 marqu\xE9e peut lancer 1D par marqueur et en retirer 1 par r\xE9sultat
+        6 obtenu.\n\nUne unit\xE9 ne peut \xEAtre marqu\xE9e que 2 fois maximum."
     - _name: EN
       Language: 1
       Txt: "You may use 1AP to target a unit in line of sight, even out of range,

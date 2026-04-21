@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6875c65c245d1b4890b963a2e1d1fe6, type: 3}
+  m_Name: A12 MiniGear - Heavy Weapon
+  m_EditorClassIdentifier: 
+  Data:
+    Id: heavy_weapon
+    SO: {fileID: 11400000}
+    IsReal: 1
+    Color: {r: 0, g: 0, b: 0, a: 1}
+    TextColor: {r: 1, g: 1, b: 1, a: 1}
+    Icon: {fileID: 21300000, guid: 293fedb006f72224181562e3fe283c17, type: 3}
+    IsSingleton: 1
+    UnitType: 0
+    IncompatibleGears: []
+    MiniType: 1
+    AuthorizedRangeTypes: 
+    RestrictedMegaCategories: 
+    RestrictedMegaSizes: 
+    SlotSize: 1
+    TurretPossible: 0
+    Cost: 0
+    Limit: 0
+    LocNames:
+    - _name: FR
+      Language: 0
+      Txt: Arme Lourde
+    - _name: EN
+      Language: 1
+      Txt: Heavy Weapon
+    LocDescriptions:
+    - _name: FR
+      Language: 0
+      Txt: "Tu peux faire <b>1 attaque</b> par activation avec cette comp\xE9tence
+        suivante :\n1 d\xE9 \xE0 port\xE9e verte ou 1 d\xE9 \xE0 port\xE9e jaune\nSi
+        ton pion <sprite name=fatigue> est activ\xE9, tu peux utiliser cet \xE9quipement
+        pour 1 <sprite name=action_point> suppl\xE9mentaire.\nSi tu utilises cet
+        \xE9quipement, applique les effets suivants :\n- Le r\xE9sultat obtenu par
+        le <sprite name=die2> indique le nombre de touches faites \xE0 la cible.\n-
+        Ignore les \xE9quipements Armure et Bouclier.\n- Les touches obtenues ne
+        sont pas cumulables avec d'autres attaques."
+    - _name: EN
+      Language: 1
+      Txt: (coming soon)
+    ExportString: ':black_circle:'

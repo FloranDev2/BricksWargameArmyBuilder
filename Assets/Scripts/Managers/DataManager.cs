@@ -52,8 +52,10 @@ namespace Truelch.Managers
         [SerializeField] private int _languageIndex;
         public List<LanguageData> LanguageDataList;
 
-        [Header("Unit data")] //Will be hidden, but I'm showing it in the inspector for debug purpose
+        [Header("Armies")]
+        public List<ArmyData> Armies;
 
+        [Header("Unit data")] //Will be hidden, but I'm showing it in the inspector for debug purpose
         public List<UnitData> ArmyUnits = new List<UnitData>();
 
         //Hidden
@@ -282,7 +284,7 @@ namespace Truelch.Managers
                 Debug.Log("ChangeUnitClass -> WTF changingUnit == null");
             }
 
-            Debug.Log("===== ChangeUnitClass(changingUnit: " + changingUnit?.CurrentName + ", newClassSO: " + newClassSO.name + ") =====");
+            //Debug.Log("===== ChangeUnitClass(changingUnit: " + changingUnit?.CurrentName + ", newClassSO: " + newClassSO.name + ") =====");
 
             string currName = changingUnit.CurrentName;
             var newUnit = newClassSO.Data.GetClone();

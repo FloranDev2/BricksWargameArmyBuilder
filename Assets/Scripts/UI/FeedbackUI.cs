@@ -32,7 +32,7 @@ namespace Truelch.UI
 
         public void ShowPopUp(string msg)
         {
-            Debug.Log("ShowPopUp(msg: " + msg + ")");
+            //Debug.Log("ShowPopUp(msg: " + msg + ")");
             _popUpGo.SetActive(true);
             _txt.text = msg;
         }

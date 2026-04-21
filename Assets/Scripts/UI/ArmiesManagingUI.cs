@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Truelch.Data;
 using Truelch.Managers;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Truelch.UI
         #region ATTRIBUTES
         //Inspector
         [SerializeField] private Transform _wrapper;
+        [SerializeField] private ArmyElem _elemPrefab;
 
         //Hidden
         // - Managers
@@ -18,8 +20,8 @@ namespace Truelch.UI
         // - Misc
         private bool _isReady = false;
 
-        // - Units
-        //[SerializeField] private List<UnitElem> _unitElems = new List<UnitElem>();
+        // - Army Elems
+        [SerializeField] private List<ArmyElem> _armyElems = new List<ArmyElem>();
         #endregion ATTRIBUTES
 
 
@@ -31,6 +33,30 @@ namespace Truelch.UI
             yield return new WaitUntil(() => DataManager.Instance);
             _dataMgr = DataManager.Instance;
             _isReady = true;
+
+            //Load data
+
+            CreateArmyElems();
+        }
+
+        void CreateArmyElems()
+        {
+            if (!_isReady) return;
+
+            foreach (var army in _dataMgr.ArmyUnits)
+            {
+                var elem = Instantiate(_elemPrefab, _wrapper);
+                //elem.Init();
+            }
+        }
+
+        void DestroyArmyElems()
+        {
+            foreach (var elem in _armyElems)
+            {
+                Destroy(elem);
+            }
+            _armyElems.Clear();
         }
         #endregion Initialization
 
@@ -39,7 +65,7 @@ namespace Truelch.UI
         {
             if (!_isReady) return;
 
-
+            ArmyData army = new ArmyData();
         }
         #endregion Public
 
