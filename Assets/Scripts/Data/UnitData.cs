@@ -11,6 +11,7 @@ namespace Truelch.Data
     {
         #region ATTRIBUTES
         [Header("Infos")]
+        public string Id;
         public List<TextLocData> LocNames;
         public UnitType Type;
         public Sprite Icon;
@@ -39,7 +40,6 @@ namespace Truelch.Data
         [Range(1, 3)] public int Speed = 3; //1: White, 2: White + Grey, 3: White, Grey and Black)
 
         [Header("Dynamic Data")]
-        //public string CurrentName;
         [SerializeField] private string _currentName;
         /*[System.NonSerialized]*/ public List<GearData> GearList;
         #endregion ATTRIBUTES
@@ -70,6 +70,7 @@ namespace Truelch.Data
             UnitData clone = new UnitData();
 
             //Infos
+            clone.Id = Id;
             clone.LocNames = new List<TextLocData>();
             foreach (TextLocData locName in LocNames)
             {

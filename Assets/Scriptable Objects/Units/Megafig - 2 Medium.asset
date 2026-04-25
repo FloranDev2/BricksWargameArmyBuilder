@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Megafig - 2 Medium
   m_EditorClassIdentifier: 
   Data:
+    Id: megafig_medium
     LocNames:
     - _name: FR
       Language: 0
@@ -31,11 +32,12 @@ MonoBehaviour:
     IntegrationCost: 2
     MaxGear: 5
     MiniType: 0
+    RangeType: 0
     Abilities: []
     MegaSize: 2
     MegaCategory: 0
     Sturdiness: 4
     Recuperation: 3
     Speed: 2
-    CurrentName: 
+    _currentName: 
     GearList: []

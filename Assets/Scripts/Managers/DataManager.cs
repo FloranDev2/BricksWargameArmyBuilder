@@ -1,3 +1,4 @@
+using BayatGames.SaveGameFree;
 using System.Collections;
 using System.Collections.Generic;
 using Truelch.Data;
@@ -20,7 +21,7 @@ namespace Truelch.Managers
         public delegate void OnLanguageChanged(Language newLanguage);
         public static OnLanguageChanged onLanguageChanged;
 
-        public delegate void OnArmyAdded(/*ArmyData armyData*/);
+        public delegate void OnArmyAdded(ArmyData armyData);
         public static OnArmyAdded onArmyAdded;
 
         public delegate void OnUnitAdded(UnitData unitData);
@@ -39,6 +40,9 @@ namespace Truelch.Managers
         public static OnGearsRefreshed onRefreshed;
 
         //Public (Will certainly be moved to a DataManager)
+        [Header("App")]
+        public bool IsPublicVersion; //true: public version (hidden texts) / false: "briqueux" version (full content)
+        
         // - Constant Data (units stats, gear, ...)
         [Header("Const")]
         public List<UnitSO> UnitSOs;
@@ -53,32 +57,134 @@ namespace Truelch.Managers
         public List<LanguageData> LanguageDataList;
 
         [Header("Armies")]
-        public List<ArmyData> Armies;
-
-        [Header("Unit data")] //Will be hidden, but I'm showing it in the inspector for debug purpose
-        public List<UnitData> ArmyUnits = new List<UnitData>();
+        private ArmyData _currArmy;//IN A FUTURE VERSION: rather _tmpArmy; we need to confirm a save to change the data
+        public List<ArmyData> Armies = new List<ArmyData>();
 
         //Hidden
         // - Managers
-        private CanvasManager _canvasMgr;
-        private SaveManager   _saveMgr;
+        //private CanvasManager _canvasMgr;
+
+        // - Misc
+        private bool _isReady = false;
         #endregion ATTRIBUTES
+
+
+        #region PROPERTIES
+        public bool IsReady
+        {
+            get
+            {
+                return _isReady;
+            }
+        }
+
+        public ArmyData CurrArmy
+        {
+            get
+            {
+                return _currArmy;
+            }
+            set
+            {
+                _currArmy = value;
+            }
+        }
+
+        public List<UnitData> ArmyUnits
+        {
+            get
+            {
+                return CurrArmy.Units;
+            }
+        }
+        #endregion PROPERTIES
 
 
         #region METHODS
 
         #region Initialization
-        IEnumerator Start()
+        /*IEnumerator*/ void Start()
         {
-            yield return new WaitUntil(() =>
-                CanvasManager.Instance &&
-                SaveManager.Instance != null
-            );
-
-            _canvasMgr = CanvasManager.Instance;
-            _saveMgr   = SaveManager.Instance;
+            //yield return new WaitUntil(() => CanvasManager.Instance);
+            //_canvasMgr = CanvasManager.Instance;
+            Load();
+            _isReady = true;
         }
         #endregion Initialization
+
+        #region Misc
+        private GearSO FindGearSO(string id)
+        {
+            foreach (GearSO gearSO in GearSOs)
+            {
+                if (gearSO.Data.Id == id)
+                {
+                    return gearSO;
+                }
+            }
+            Debug.Log("Couldn't find gear's scriptable object for this id: " + id);
+            return null;
+        }
+
+        private UnitSO FindUnitSO(string id)
+        {
+            foreach (UnitSO unitSO in UnitSOs)
+            {
+                if (unitSO.Data.Id == id)
+                {
+                    return unitSO;
+                }
+            }
+            Debug.Log("Couldn't find unit's scriptable object for this id: " + id);
+            return null;
+        }
+        #endregion Misc
+
+        #region Save / Load
+        [ContextMenu("Load")]
+        private void Load()
+        {
+            //Debug.Log("Load"); //TODO: feedback pop up!
+            if (SaveGame.Exists("armies"))
+            {
+                Armies = SaveGame.Load<List<ArmyData>>("armies");
+
+                //Fix data
+                foreach (ArmyData army in Armies)
+                {
+                    foreach (UnitData unit in army.Units)
+                    {
+                        UnitSO unitSO = FindUnitSO(unit.Id);
+                        if (unitSO != null) //this one shouldn't be null
+                        {
+                            unit.Icon = unitSO.Data.Icon;
+                        }
+                        foreach (GearData gear in unit.GearList)
+                        {
+                            GearSO gearSO = FindGearSO(gear.Id);
+                            if (gearSO != null) //this one can be null if the gear slot is empty
+                            {
+                                gear.Icon = gearSO.Data.Icon;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        [ContextMenu("Save")]
+        private void Save()
+        {
+            Debug.Log("Save"); //TODO: feedback pop up!
+            SaveGame.Save("armies", Armies);
+        }
+
+        [ContextMenu("Clear Save Data")]
+        private void ClearSaveData()
+        {
+            SaveGame.DeleteAll();
+        }
+        #endregion Save / Load
 
         #region Misc
         //Why did I do that?
@@ -91,9 +197,8 @@ namespace Truelch.Managers
                 for (int gearIndex = 0; gearIndex < unit.GearList.Count; gearIndex++)
                 {
                     GearData gear = unit.GearList[gearIndex];
-                    if (gear != null && gear.SO != null)
+                    if (gear != null && !string.IsNullOrEmpty(gear.Id))
                     {
-                        //if (!IsGearOk(unit, gear.SO, true))
                         if (!IsGearOk(unit, gear, false, true))
                         {
                             Debug.Log("HERE! :D :D :D");
@@ -139,13 +244,13 @@ namespace Truelch.Managers
         // --- UI CALLBACKS ---
         public void OnSaveClick()
         {
-            //_saveMgr.
+            Save();
         }
 
         public bool IsGearOk(UnitData unitData, GearData gearData, bool checkSingleton, bool isDebug)
         {
             //gearSO can be null
-            if (gearData == null || gearData.SO == null)
+            if (gearData == null || string.IsNullOrEmpty(gearData.Id))
             {
                 if (isDebug) Debug.Log("gearData / SO == null ===> RETURN FALSE");
                 return false;
@@ -250,7 +355,7 @@ namespace Truelch.Managers
             List<GearSO> availableGears = new List<GearSO>();
             foreach (GearSO gearSO in GearSOs)
             {
-                bool isOk = IsGearOk(unitData, gearSO.Data, true, false);
+                bool isOk = IsGearOk(unitData, gearSO.Data, true, false /*true*/);
 
                 //End: Is Ok -> add
                 if (isOk)
@@ -467,6 +572,15 @@ namespace Truelch.Managers
             {
                 Debug.Log("Does NOT contain! :(");
             }
+        }
+
+        public void AddArmy()
+        {
+            var army = new ArmyData();
+            Armies.Add(army);
+
+            //Event
+            onArmyAdded?.Invoke(army);
         }
         #endregion Public
 

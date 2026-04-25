@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 12 Minifig - Archer
   m_EditorClassIdentifier: 
   Data:
+    Id: archer
     LocNames:
     - _name: FR
       Language: 0
@@ -58,5 +59,5 @@ MonoBehaviour:
     Sturdiness: 0
     Recuperation: 0
     Speed: 1
-    CurrentName: 
+    _currentName: 
     GearList: []

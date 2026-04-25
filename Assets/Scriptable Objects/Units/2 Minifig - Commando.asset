@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 2 Minifig - Commando
   m_EditorClassIdentifier: 
   Data:
+    Id: commando
     LocNames:
     - _name: FR
       Language: 0
@@ -29,6 +30,7 @@ MonoBehaviour:
     IntegrationCost: -1
     MaxGear: 3
     MiniType: 0
+    RangeType: 0
     Abilities:
     - Icon: {fileID: 21300000, guid: 1f86062a221ec00499eb4f2eee782020, type: 3}
       LocDescriptions:
@@ -54,5 +56,5 @@ MonoBehaviour:
     Sturdiness: 0
     Recuperation: 0
     Speed: 1
-    CurrentName: 
+    _currentName: 
     GearList: []

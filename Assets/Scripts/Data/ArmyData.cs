@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Truelch.Data
 {
+    [System.Serializable]
     public class ArmyData
     {
         #region ATTRIBUTES
@@ -13,10 +14,10 @@ namespace Truelch.Data
 
 
         #region METHODS
-        //public ArmyData()
-        //{
-
-        //}
+        public ArmyData()
+        {
+            Units = new List<UnitData>();
+        }
         #endregion METHODS
     }
 }

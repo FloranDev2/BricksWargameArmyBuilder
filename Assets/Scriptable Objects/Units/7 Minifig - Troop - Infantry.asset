@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 7 Minifig - Troop - Infantry
   m_EditorClassIdentifier: 
   Data:
+    Id: infantry
     LocNames:
     - _name: FR
       Language: 0
@@ -52,5 +53,5 @@ MonoBehaviour:
     Sturdiness: 0
     Recuperation: 0
     Speed: 1
-    CurrentName: 
+    _currentName: 
     GearList: []

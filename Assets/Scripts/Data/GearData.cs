@@ -13,11 +13,11 @@ namespace Truelch.Data
         #region ATTRIBUTES
         [Header("Infos")]
         public string Id;
-        public GearSO SO; //I use that to compare Gear (because cloned Gear isn't equal to its "source")
         public bool IsReal = false; //Null stuff, when displayed in the inspector, isn't null anymore.
         public Color Color = Color.white;
         public Color TextColor = Color.black;
-        public Sprite Icon;
+        public Sprite Icon; //won't work with save/load
+        public string IconName; //save/load
 
         [Header("Limitations (Common)")]
         public bool IsSingleton = true;
@@ -32,6 +32,7 @@ namespace Truelch.Data
         public List<MegafigCategory> RestrictedMegaCategories; //if empty, no restriction
         public List<MegafigSize> RestrictedMegaSizes; //if empty, no restriction
         [Range(1, 2)] public int SlotSize = 1; //Now, only used by Megafigs. Simple: 1, Double: 2 (wait, transport can take more?)
+        public bool IsTurret = false; //lol
         public bool TurretPossible = false;
 
         [Header("Usage")]
@@ -50,7 +51,6 @@ namespace Truelch.Data
         public GearData()
         {
             Id = "";
-            SO = null; //????
             IsReal = false; //Most important!
             Color = Color.white;
             TextColor = Color.black;
@@ -99,6 +99,7 @@ namespace Truelch.Data
             }
 
             SlotSize = 1;
+            IsTurret = false;
             TurretPossible = false;
 
             //Usage
@@ -129,8 +130,6 @@ namespace Truelch.Data
         public GearData GetClone()
         {
             GearData clone = new GearData();
-
-            clone.SO = SO;
 
             clone.Id = Id;
 
@@ -172,6 +171,7 @@ namespace Truelch.Data
                 clone.RestrictedMegaSizes.Add(size);
             }
             clone.SlotSize = SlotSize;
+            clone.IsTurret = IsTurret;
             clone.TurretPossible = TurretPossible;
 
             // --- Usage ---
@@ -209,7 +209,7 @@ namespace Truelch.Data
 
             //Infos
             Id = "";
-            SO = null;
+            //SO = null;
             IsReal = false; //Most important!
             Color = Color.white;
             TextColor = Color.black;
@@ -228,6 +228,7 @@ namespace Truelch.Data
             if (RestrictedMegaCategories != null) RestrictedMegaCategories.Clear();
             if (RestrictedMegaSizes != null) RestrictedMegaSizes.Clear();
             SlotSize = 1;
+            IsTurret = false;
             TurretPossible = false;
 
             //Usage

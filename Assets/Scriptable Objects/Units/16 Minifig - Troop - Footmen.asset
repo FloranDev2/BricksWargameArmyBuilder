@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 16 Minifig - Troop - Footmen
   m_EditorClassIdentifier: 
   Data:
+    Id: footmen
     LocNames:
     - _name: FR
       Language: 0
@@ -52,5 +53,5 @@ MonoBehaviour:
     Sturdiness: 0
     Recuperation: 0
     Speed: 1
-    CurrentName: 
+    _currentName: 
     GearList: []

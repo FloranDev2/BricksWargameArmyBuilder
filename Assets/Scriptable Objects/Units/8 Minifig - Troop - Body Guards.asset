@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 8 Minifig - Troop - Body Guards
   m_EditorClassIdentifier: 
   Data:
+    Id: body_guards
     LocNames:
     - _name: FR
       Language: 0
@@ -52,5 +53,5 @@ MonoBehaviour:
     Sturdiness: 0
     Recuperation: 0
     Speed: 1
-    CurrentName: 
+    _currentName: 
     GearList: []

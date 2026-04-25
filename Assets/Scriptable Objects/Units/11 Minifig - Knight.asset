@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 11 Minifig - Knight
   m_EditorClassIdentifier: 
   Data:
+    Id: knight
     LocNames:
     - _name: FR
       Language: 0
@@ -55,5 +56,5 @@ MonoBehaviour:
     Sturdiness: 0
     Recuperation: 0
     Speed: 1
-    CurrentName: 
+    _currentName: 
     GearList: []

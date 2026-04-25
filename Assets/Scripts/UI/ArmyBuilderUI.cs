@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Truelch.UI
 {
-    public class ArmyBuilderUI : MonoBehaviour
+    public class ArmyBuilderUI : FadePanel
     {
         #region ATTRIBUTES
         //Inspector
@@ -26,6 +26,7 @@ namespace Truelch.UI
 
         //Hidden
         // - Managers
+        private CanvasManager _canvasMgr;
         private DataManager _dataMgr;
 
         // - Misc
@@ -41,11 +42,17 @@ namespace Truelch.UI
         #region Initialization
         IEnumerator Start()
         {
-            yield return new WaitUntil(() => DataManager.Instance);
-            _dataMgr = DataManager.Instance;
-            _isReady = true;
+            HideInstantly();
 
-            UpdateIntegrationValue();
+            yield return new WaitUntil(() =>
+                CanvasManager.Instance &&
+                DataManager.Instance
+            );
+
+            _canvasMgr = CanvasManager.Instance;
+            _dataMgr = DataManager.Instance;
+
+            _isReady = true;
         }
         #endregion Initialization
 
@@ -178,15 +185,34 @@ namespace Truelch.UI
                 _integrationTxt.color = _incorrectColor;
             }
         }
+
+        void DestroyElems()
+        {
+            //Debug.Log("DestroyElems");
+            foreach (var elem in _unitElems)
+            {
+                Destroy(elem.gameObject);
+            }
+            _unitElems.Clear();
+        }
+
+        void CreateElems(ArmyData armyData)
+        {
+            //Debug.Log("CreateElems");
+            foreach (var unit in armyData.Units)
+            {
+                OnUnitAdded(unit); //TODO: refactor this
+            }
+        }
         #endregion Misc
 
         #region Public
         //Options
-        public void OnSaveClick()
-        {
-            if (!_isReady) return;
-            _dataMgr.OnSaveClick();
-        }
+        //public void OnSaveClick()
+        //{
+        //    if (!_isReady) return;
+        //    _dataMgr.OnSaveClick();
+        //}
 
         public void OnPrintExportClick()
         {
@@ -234,6 +260,40 @@ namespace Truelch.UI
             _dataMgr.RemoveUnit(btn.UnitData);
             _unitElems.Remove(btn);
             Destroy(btn.gameObject);
+        }
+
+        //Quit army manager and return armies management UI.
+        //Should I ask if the player wants to save?
+        public void ReturnToArmiesManagementUI()
+        {
+            if (!_isReady) return;
+
+            _canvasMgr.OnReturnToArmiesManagementClicked();
+        }
+
+        public void Open()
+        {
+            ShowInstantly();
+
+            //Here: refresh using units from current army!
+            if (_isReady)
+            {
+                DestroyElems();
+                CreateElems(_dataMgr.CurrArmy);
+            }
+            else
+            {
+                Debug.Log("WTF! I should create a routine to wait for ArmyBuilderUI to be ready...");
+            }
+
+            //If not, maybe wait until ready?
+
+            UpdateIntegrationValue();
+        }
+
+        public void Close()
+        {
+            HideInstantly();
         }
         #endregion Public
 

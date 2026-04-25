@@ -11,15 +11,5 @@ namespace Truelch.ScriptableObjects
         #region ATTRIBUTES
         public GearData Data;
         #endregion ATTRIBUTES
-
-
-        #region METHODS
-        [ContextMenu("Assign SO")]
-        void CM_AssignSO()
-        {
-            Debug.Log("Assign SO");
-            Data.SO = this;
-        }
-        #endregion METHODS
     }
 }

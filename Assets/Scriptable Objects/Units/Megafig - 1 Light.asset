@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Megafig - 1 Light
   m_EditorClassIdentifier: 
   Data:
+    Id: megafig_light
     LocNames:
     - _name: FR
       Language: 0
@@ -31,11 +32,12 @@ MonoBehaviour:
     IntegrationCost: 1
     MaxGear: 4
     MiniType: 0
+    RangeType: 0
     Abilities: []
     MegaSize: 1
     MegaCategory: 0
     Sturdiness: 3
     Recuperation: 4
     Speed: 3
-    CurrentName: 
+    _currentName: 
     GearList: []
