@@ -41,7 +41,7 @@ namespace Truelch.Managers
 
         //Public (Will certainly be moved to a DataManager)
         [Header("App")]
-        public bool IsPublicVersion; //true: public version (hidden texts) / false: "briqueux" version (full content)
+        public bool IsPublicVersion = true; //true: public version (hidden texts) / false: "briqueux" version (full content)
         
         // - Constant Data (units stats, gear, ...)
         [Header("Const")]
@@ -201,8 +201,22 @@ namespace Truelch.Managers
                     {
                         if (!IsGearOk(unit, gear, false, true))
                         {
-                            Debug.Log("HERE! :D :D :D");
                             unit.GearList[gearIndex].ClearMe();
+                        }
+
+                        if (gear.IsTurret)
+                        {
+                            //Debug.Log("Turret!");
+                            int prevIndex = gearIndex - 1;
+                            if (prevIndex >= 0 && prevIndex < unit.GearList.Count)
+                            {
+                                var prevGear = unit.GearList[prevIndex];
+                                if (!prevGear.IsReal || !prevGear.TurretPossible)
+                                {
+                                    //Debug.Log("Previous gear isn't fitting for a turret!");
+                                    unit.GearList[gearIndex].ClearMe();
+                                }
+                            }
                         }
                     }
                 }
@@ -232,8 +246,14 @@ namespace Truelch.Managers
             for (int i = 0; i < unitData.GearList.Count; i++)
             {
                 var gear2 = unitData.GearList[i];
-                if (gear2.Id == id)
+                if (gear2 != null && gear2.Id == id)
                 {
+                    gear2.ClearMe();
+                }
+                else if (gear2 == null)
+                {
+                    //Debug.Log("gear2 == null => new data and clear");
+                    gear2 = new GearData();
                     gear2.ClearMe();
                 }
             }
@@ -247,8 +267,24 @@ namespace Truelch.Managers
             Save();
         }
 
+        private bool IsTurretOk(UnitData unitData, int turretGearIndex)
+        {
+            int prevIndex = turretGearIndex - 1;
+            if (prevIndex >= 0 && prevIndex < unitData.GearList.Count) //second condition shouldn't be necessary, but let's stay safe...
+            {
+                GearData prevGear = unitData.GearList[prevIndex];
+                return prevGear.TurretPossible;
+            }
+            //Debug.Log("WTF");
+            return false;
+        }
+
         public bool IsGearOk(UnitData unitData, GearData gearData, bool checkSingleton, bool isDebug)
         {
+            //if (gearData.Id == "melee_weapon") isDebug = true;
+
+            //if (isDebug) Debug.Log("IsGearOk(unitData: " + unitData.Id + ", unit range type: " + unitData.RangeType + ", gearData: " + gearData.Id + ")");
+
             //gearSO can be null
             if (gearData == null || string.IsNullOrEmpty(gearData.Id))
             {
@@ -326,17 +362,24 @@ namespace Truelch.Managers
             }
 
             //Attack type (melee weapon is reserved for ranged units)
+            //if (isDebug) Debug.Log("gearData.RestrictedRangeTypes.Count: " + gearData.AuthorizedRangeTypes.Count);
             if (gearData.AuthorizedRangeTypes.Count > 0)
             {
                 bool isRangeTypeOk = false;
-                foreach (var rt in gearData.AuthorizedRangeTypes)
+                foreach (RangeType rt in gearData.AuthorizedRangeTypes)
                 {
+                    //if (isDebug) Debug.Log(" -> range type: " + rt + " / unitData.RangeType: " + unitData.RangeType);
                     if (rt == unitData.RangeType)
                     {
+                        //if (isDebug) Debug.Log(" ---> YES!");
                         isRangeTypeOk = true;
                     }
+                    //else
+                    //{
+                    //    if (isDebug) Debug.Log(" ---> NO!");
+                    //}
                 }
-                if (isDebug) Debug.Log("Incompatible Gears ===> isOk = false");
+                //if (isDebug) Debug.Log(" [END] ===> isRangeTypeOk: " + isRangeTypeOk);
                 isOk = isOk && isRangeTypeOk;
             }
 
@@ -350,12 +393,19 @@ namespace Truelch.Managers
             return isOk;
         }
 
-        public List<GearSO> GetGearSOs(UnitData unitData)
+        //New: index is for the turret option
+        public List<GearSO> GetGearSOs(UnitData unitData, int index)
         {
             List<GearSO> availableGears = new List<GearSO>();
             foreach (GearSO gearSO in GearSOs)
             {
                 bool isOk = IsGearOk(unitData, gearSO.Data, true, false /*true*/);
+
+                //Additional check for turret
+                if (gearSO.Data.IsTurret)
+                {
+                    isOk = isOk && IsTurretOk(unitData, index);
+                }
 
                 //End: Is Ok -> add
                 if (isOk)
@@ -474,9 +524,6 @@ namespace Truelch.Managers
             }
             changingUnit.GearList = gears;
 
-            //New
-            //ClearUnfitGears(changingUnit);
-
             //int unitIndex, MegafigCategory newCat
             onUnitMegaCatChanged?.Invoke(unitIndex, newCat);
         }
@@ -493,10 +540,6 @@ namespace Truelch.Managers
                 ClearSimilarGears(unit, unit.GearList[gearIndex]); //I hope this will work
             }
 
-            //If we have space, fill with the needed.
-            //If there's no space, don't do it and display a feedback.
-            //+ Apply new gear!
-            //Debug.Log("Apply new gear:");
             if (gearIndex + newGear.SlotSize - 1 < unit.GearList.Count)
             {
                 for (int index = gearIndex; index < gearIndex + newGear.SlotSize; index++)
@@ -514,21 +557,23 @@ namespace Truelch.Managers
                 //}
             }
 
+            // --- NEW ---
+            // -> WILL IT WORK?
+            ClearUnfitGears(unit); //test to remove turrets
+
             //Event
             onRefreshed?.Invoke();
         }
 
-        public void RemoveGear(int unitIndex, int gearIndex/*, GearData removedGear*/)
+        public void RemoveGear(int unitIndex, int gearIndex)
         {
-            Debug.Log("=== RemoveGear() ===");
-            var unit = ArmyUnits[unitIndex];
-            Debug.Log("unit: " + unit);
-            Debug.Log("gearIndex: " + gearIndex);
-            var gear = unit.GearList[gearIndex];
-            Debug.Log("gear: " + GearData.GetId(gear));
+            UnitData unit = ArmyUnits[unitIndex];
+            GearData gear = unit.GearList[gearIndex];
             ClearSimilarGears(unit, gear);
 
-            //removedGear.ClearMe(); //ClearSimilarGears will also remove self
+            // --- NEW ---
+            // -> IT WORKS!!!
+            ClearUnfitGears(unit); //test to remove turrets
 
             onRefreshed?.Invoke();
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Truelch.Managers;
 using UnityEngine;
 
 namespace Truelch.UI
@@ -11,6 +12,10 @@ namespace Truelch.UI
         //Inspector
         [SerializeField] private GameObject _popUpGo;
         [SerializeField] private TextMeshProUGUI _txt;
+
+        //Hidden
+        // - Managers
+        private DataManager _dataMgr;
         #endregion ATTRIBUTES
 
 
@@ -20,6 +25,12 @@ namespace Truelch.UI
         private void Awake()
         {
             _popUpGo.SetActive(false);
+        }
+
+        IEnumerator Start()
+        {
+            yield return new WaitUntil(() => DataManager.Instance);
+            _dataMgr = DataManager.Instance;
         }
         #endregion Init
 
@@ -34,7 +45,14 @@ namespace Truelch.UI
         {
             //Debug.Log("ShowPopUp(msg: " + msg + ")");
             _popUpGo.SetActive(true);
-            _txt.text = msg;
+            if (_dataMgr != null && !_dataMgr.IsPublicVersion)
+            {
+                _txt.text = msg;
+            }
+            else
+            {
+                _txt.text = "???";
+            }
         }
 
         // --- Button callbacks ---

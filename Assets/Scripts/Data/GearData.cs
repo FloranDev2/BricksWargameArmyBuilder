@@ -151,6 +151,18 @@ namespace Truelch.Data
 
             // --- Limitations (Minifig) ---
             clone.MiniType = MiniType;
+            clone.AuthorizedRangeTypes = new List<RangeType>();
+            if (AuthorizedRangeTypes != null)
+            {
+                foreach (var rrt in AuthorizedRangeTypes)
+                {
+                    clone.AuthorizedRangeTypes.Add(rrt);
+                }
+            }
+            else
+            {
+                Debug.Log("RestrictedRangeTypes is null!");
+            }
 
             // --- Limitations (Megafig) ---
             clone.RestrictedMegaCategories = new List<MegafigCategory>();
@@ -209,7 +221,6 @@ namespace Truelch.Data
 
             //Infos
             Id = "";
-            //SO = null;
             IsReal = false; //Most important!
             Color = Color.white;
             TextColor = Color.black;

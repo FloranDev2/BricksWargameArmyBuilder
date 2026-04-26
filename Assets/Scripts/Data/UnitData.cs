@@ -90,6 +90,7 @@ namespace Truelch.Data
 
             //Minifig only
             clone.MiniType = MiniType;
+            clone.RangeType = RangeType;
             clone.Abilities = new List<MinifigAbility>();
             foreach (MinifigAbility ability in Abilities)
             {
@@ -105,7 +106,6 @@ namespace Truelch.Data
 
             //Dynamic data
             clone.CurrentName = CurrentName; //maybe? YES!!
-            //clone.CurrentName = ""; //!!!
             clone.GearList = new List<GearData>();
             for (int i = 0; i < MaxGear; i++)
             {

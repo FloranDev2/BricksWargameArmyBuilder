@@ -97,7 +97,7 @@ namespace Truelch.UI
             base.OnExpandClick();
 
             Language language = _gameMgr.GetCurrentLanguage();
-            List<GearSO> availableGears = _gameMgr.GetGearSOs(_unitElem.UnitData);
+            List<GearSO> availableGears = _gameMgr.GetGearSOs(_unitElem.UnitData, Index);
 
             for (int i = 0; i < availableGears.Count; i++)
             {
@@ -117,7 +117,7 @@ namespace Truelch.UI
 
         public override void OnElemClick(int index)
         {
-            List<GearSO> availableGears = _gameMgr.GetGearSOs(_unitElem.UnitData);
+            List<GearSO> availableGears = _gameMgr.GetGearSOs(_unitElem.UnitData, Index);
             _unitElem.OnAttemptingToChangeGear(Index, availableGears[index].Data, Data);
         }
 
