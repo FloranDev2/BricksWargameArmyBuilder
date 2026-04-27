@@ -28,11 +28,26 @@ namespace Truelch.UI
         {
             _ui = ui;
             ArmyData = armyData;
+
+            if (!string.IsNullOrEmpty(armyData.Name))
+            {
+                ChangeName(armyData.Name);
+            }
         }
 
         public void ChangeName(string newName)
         {
             _inputField.text = newName;
+        }
+
+        public void OnDeleteArmyClick()
+        {
+            _ui.OnRemoveArmyClicked(this);
+        }
+
+        public void OnDuplicateArmyClick()
+        {
+            _ui.OnDuplicateArmyClicked(ArmyData);
         }
 
         //Clicking on this will open the Army Builder UI

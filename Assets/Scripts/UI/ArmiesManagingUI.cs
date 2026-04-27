@@ -63,7 +63,6 @@ namespace Truelch.UI
         private void OnArmyAdded(ArmyData armyData)
         {
             var armyElem = Instantiate(_elemPrefab, _wrapper);
-            //armyElem.Init(this);
             armyElem.Init(this, armyData);
             _armyElems.Add(armyElem);
         }
@@ -104,7 +103,21 @@ namespace Truelch.UI
         public void OnNewArmyClicked()
         {
             if (!_isReady) return;
-            _dataMgr.AddArmy();
+            _dataMgr.AddArmy(new ArmyData());
+        }
+
+        public void OnRemoveArmyClicked(ArmyElem armyElem)
+        {
+            if (!_isReady) return;
+            Destroy(armyElem.gameObject);
+            _armyElems.Remove(armyElem);
+            _dataMgr.RemoveArmy(armyElem.ArmyData);
+        }
+
+        public void OnDuplicateArmyClicked(ArmyData src)
+        {
+            if (!_isReady) return;
+            _dataMgr.AddArmy(src.GetClone());
         }
 
         public void OnEditArmyClicked(ArmyElem armyElem)
@@ -116,9 +129,8 @@ namespace Truelch.UI
         //From ArmyElem
         public void OnArmyNameChanged(ArmyElem armyElem, string newName)
         {
-            //Debug.Log("OnArmyNameChanged(armyElem: " + armyElem + ", newName: " + newName + ")");
+            Debug.Log("OnArmyNameChanged(armyElem: " + armyElem + ", newName: " + newName + ")");
             armyElem.ArmyData.Name = newName;
-            //_dataMgr.
         }
 
         //From exterior

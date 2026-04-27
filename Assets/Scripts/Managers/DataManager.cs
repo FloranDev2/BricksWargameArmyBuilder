@@ -24,6 +24,9 @@ namespace Truelch.Managers
         public delegate void OnArmyAdded(ArmyData armyData);
         public static OnArmyAdded onArmyAdded;
 
+        public delegate void OnArmyRemoved(ArmyData armyData);
+        public static OnArmyRemoved onArmyRemoved;
+
         public delegate void OnUnitAdded(UnitData unitData);
         public static OnUnitAdded onUnitAdded;
 
@@ -281,7 +284,7 @@ namespace Truelch.Managers
 
         public bool IsGearOk(UnitData unitData, GearData gearData, bool checkSingleton, bool isDebug)
         {
-            //if (gearData.Id == "melee_weapon") isDebug = true;
+            if (gearData.Id == "megafig_transport") isDebug = true;
 
             //if (isDebug) Debug.Log("IsGearOk(unitData: " + unitData.Id + ", unit range type: " + unitData.RangeType + ", gearData: " + gearData.Id + ")");
 
@@ -297,7 +300,7 @@ namespace Truelch.Managers
             //Minifig vs Megafig
             if (gearData.UnitType != unitData.Type)
             {
-                if (isDebug) Debug.Log("gearSO.Data.UnitType != unitData.Type ===> isOk = false");
+                //if (isDebug) Debug.Log("gearSO.Data.UnitType != unitData.Type ===> isOk = false");
                 isOk = false;
             }
 
@@ -569,6 +572,7 @@ namespace Truelch.Managers
         {
             UnitData unit = ArmyUnits[unitIndex];
             GearData gear = unit.GearList[gearIndex];
+            gear.ClearMe(); //for transport, since clear similar gears WON'T clear self!
             ClearSimilarGears(unit, gear);
 
             // --- NEW ---
@@ -619,13 +623,29 @@ namespace Truelch.Managers
             }
         }
 
-        public void AddArmy()
+        public void AddArmy(ArmyData src)
         {
-            var army = new ArmyData();
+            //var army = new ArmyData();
+            var army = src.GetClone();
             Armies.Add(army);
 
             //Event
             onArmyAdded?.Invoke(army);
+        }
+
+        public void RemoveArmy(ArmyData army)
+        {
+            if (Armies.Contains(army))
+            {
+                Armies.Remove(army);
+            }
+            else
+            {
+                Debug.Log("The army we want to remove isn't in the army list!");
+            }
+
+            //Event
+            onArmyRemoved?.Invoke(army);
         }
         #endregion Public
 
